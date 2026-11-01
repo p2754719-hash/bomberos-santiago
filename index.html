@@ -27,7 +27,7 @@
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -2;
             background-image: url('escudo.jpg');
-            background-size: cover;
+            background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
             background-color: #1c232d;
@@ -130,11 +130,6 @@
             text-align: center;
             pointer-events: auto;
         }
-        .share-flotante {
-            position: fixed;
-            top: 10px; right: 15px;
-            z-index: 9500;
-        }
 
         .dropdown-submenu {
             position: relative;
@@ -186,13 +181,6 @@
 
     <div class="bg-slide"></div>
     <div class="bg-overlay"></div>
-
-    <!-- BOTÓN FLOTANTE SUPERIOR PARA QR -->
-    <div id="widgetCompartir" class="share-flotante" style="display: none;">
-        <button class="btn btn-dark btn-sm shadow border border-secondary text-white fw-bold px-2 py-1" data-bs-toggle="modal" data-bs-target="#modalCompartirQR" style="background-color: rgba(26,26,26,0.9); font-size: 0.7rem;">
-            <i class="bi bi-qr-code text-danger me-1"></i> QR / Celular
-        </button>
-    </div>
 
     <!-- MODAL DE QR -->
     <div class="modal fade" id="modalCompartirQR" tabindex="-1" aria-hidden="true">
@@ -275,11 +263,15 @@
                 <span class="fw-bold text-dark small"><i class="bi bi-shield-fill-exclamation text-danger"></i> PANEL OPERATIVO</span>
                 
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle dropdown-toggle-apartados" type="button" id="btnApartadosPrincipal" data-bs-toggle="dropdown" aria-expanded="false" onclick="manejarVisibilidadWidget(false)">
+                    <button class="btn dropdown-toggle dropdown-toggle-apartados" type="button" id="btnApartadosPrincipal" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-folder2-open me-1"></i> APARTADOS
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow" aria-labelledby="btnApartadosPrincipal">
                         
+                        <!-- BOTÓN DE CÓDIGO QR DENTRO DE APARTADOS -->
+                        <li><a class="dropdown-item fw-bold text-warning" href="#" data-bs-toggle="modal" data-bs-target="#modalCompartirQR"><i class="bi bi-qr-code text-danger me-2"></i> Código QR / Móvil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+
                         <!-- SUBMENÚ: REGISTRO DE SERVICIOS -->
                         <li class="dropdown-submenu">
                             <a class="dropdown-item dropdown-toggle d-flex justify-content-between align-items-center" href="#">
@@ -303,7 +295,7 @@
                         </li>
 
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-novedades', event, true)"><i class="bi bi-journal-text me-2"></i> Novedades</a></li>
+                        <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-novedades', event)"><i class="bi bi-journal-text me-2"></i> Novedades</a></li>
                         <li><a class="dropdown-item" href="#" onclick="solicitarAcceso56(event)"><i class="bi bi-file-earmark-medical me-2"></i> 56</a></li>
                         <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-vehicular', event)"><i class="bi bi-truck me-2"></i> Parque Vehicular</a></li>
                         <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-inventario', event)"><i class="bi bi-box-seam me-2"></i> Inventario</a></li>
@@ -917,14 +909,12 @@
             if (pass === "bomberos1") {
                 document.getElementById('pantallaLogin').style.display = 'none';
                 document.getElementById('contenidoSistema').style.display = 'block';
-                document.getElementById('widgetCompartir').style.display = 'block';
-                abrirPestana('tab-enero');
             } else {
                 error.classList.remove('d-none');
             }
         }
 
-        function abrirPestana(idTab, event, esNovedades = false) {
+        function abrirPestana(idTab, event) {
             if (event) event.preventDefault();
             document.querySelectorAll('.tab-pane').forEach(el => {
                 el.classList.remove('show', 'active');
@@ -932,14 +922,6 @@
             const tabSeleccionada = document.getElementById(idTab);
             if (tabSeleccionada) {
                 tabSeleccionada.classList.add('show', 'active');
-            }
-            manejarVisibilidadWidget(false);
-        }
-
-        function manejarVisibilidadWidget(mostrar) {
-            const widget = document.getElementById('widgetCompartir');
-            if (widget) {
-                widget.style.display = mostrar ? 'block' : 'none';
             }
         }
 
@@ -1068,9 +1050,7 @@
             }
         }
 
-        function guardarDatosNovedades() {
-            // Soporte para persistencia local
-        }
+        function guardarDatosNovedades() {}
 
         function configurarSubmenusMovil() {
             document.querySelectorAll('.dropdown-submenu > a').forEach(function(element) {
