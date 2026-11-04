@@ -130,6 +130,19 @@
             text-align: center;
             pointer-events: auto;
         }
+        .badge-fechas {
+            position: fixed;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ccc;
+            font-size: 0.7rem;
+            padding: 6px 12px;
+            border-radius: 6px;
+            z-index: 9500;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+        }
 
         .dropdown-submenu {
             position: relative;
@@ -182,6 +195,11 @@
     <div class="bg-slide"></div>
     <div class="bg-overlay"></div>
 
+    <!-- INSIGNIA DE FECHAS EN ESQUINA INFERIOR DERECHA -->
+    <div class="badge-fechas">
+        <i class="bi bi-calendar3 text-danger"></i> Creación: <strong>04/11/2026</strong> | Act: <strong>04/11/2026</strong>
+    </div>
+
     <!-- MODAL DE QR -->
     <div class="modal fade" id="modalCompartirQR" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -203,7 +221,7 @@
         </div>
     </div>
 
-    <!-- MODAL DE CONTRASEÑA PARA APARTADO 56 (Clave: 12345) -->
+    <!-- MODAL DE CONTRASEÑA PARA APARTADO 56 -->
     <div class="modal fade" id="modalPassword56" tabindex="-1" data-bs-backdrop="static" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content bg-dark text-white border-secondary">
@@ -212,7 +230,7 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" onclick="cancelarPassword56()"></button>
                 </div>
                 <div class="modal-body text-center p-3">
-                    <p class="small text-secondary mb-2">Ingrese contraseña (12345):</p>
+                    <p class="small text-secondary mb-2">Ingrese contraseña:</p>
                     <input type="password" id="inputPass56" class="form-control form-control-sm text-center mb-2" placeholder="Clave">
                     <div id="errorPass56" class="text-danger small mb-2 d-none">Contraseña incorrecta.</div>
                     <button class="btn btn-rojo btn-sm w-100 fw-bold" onclick="validarPassword56()">ENTRAR</button>
@@ -221,7 +239,7 @@
         </div>
     </div>
 
-    <!-- PANTALLA DE ACCESO (Clave: bomberos1) -->
+    <!-- PANTALLA DE ACCESO INICIAL -->
     <div id="pantallaLogin">
         <div class="card card-login p-4 shadow-lg text-center">
             <div class="mb-3">
@@ -237,7 +255,7 @@
                 </div>
             </div>
             <button class="btn btn-rojo w-100 fw-bold py-2" onclick="verificarPassword()">INGRESAR AL SISTEMA</button>
-            <div id="errorLogin" class="text-danger text-center mt-2 small d-none">Contraseña incorrecta. (Clave: bomberos1)</div>
+            <div id="errorLogin" class="text-danger text-center mt-2 small d-none">Contraseña incorrecta.</div>
         </div>
     </div>
 
@@ -268,7 +286,7 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow" aria-labelledby="btnApartadosPrincipal">
                         
-                        <!-- BOTÓN DE CÓDIGO QR DENTRO DE APARTADOS -->
+                        <!-- BOTÓN DE CÓDIGO QR -->
                         <li><a class="dropdown-item fw-bold text-warning" href="#" data-bs-toggle="modal" data-bs-target="#modalCompartirQR"><i class="bi bi-qr-code text-danger me-2"></i> Código QR / Móvil</a></li>
                         <li><hr class="dropdown-divider"></li>
 
@@ -299,8 +317,10 @@
                         <li><a class="dropdown-item" href="#" onclick="solicitarAcceso56(event)"><i class="bi bi-file-earmark-medical me-2"></i> 56</a></li>
                         <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-vehicular', event)"><i class="bi bi-truck me-2"></i> Parque Vehicular</a></li>
                         <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-inventario', event)"><i class="bi bi-box-seam me-2"></i> Inventario</a></li>
-                        <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-ia', event)"><i class="bi bi-stars text-danger me-2"></i> Asistente IA Local (Ollama)</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <!-- BOTÓN DE BIBLIOGRAFÍA ENLACE ONEDRIVE -->
+                        <li><a class="dropdown-item fw-bold text-info" href="https://1drv.ms/w/c/9814f5b8f3a63889/IQAhB3MDoWwwQJJAerUn27lUAd811piLchYZCdnk54g2jIQ?e=KHkftK" target="_blank"><i class="bi bi-journal-bookmark-fill me-2"></i> Bibliografía</a></li>
                     </ul>
                 </div>
             </div>
@@ -310,8 +330,8 @@
 
             <div class="tab-content mb-5">
                 
-                <!-- TABLAS DE REGISTRO DE SERVICIOS POR MES -->
-                <div class="tab-pane fade" id="tab-enero">
+                <!-- ENERO -->
+                <div class="tab-pane fade show active" id="tab-enero">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Enero 2026</h5>
@@ -350,6 +370,7 @@
                     </div>
                 </div>
 
+                <!-- FEBRERO -->
                 <div class="tab-pane fade" id="tab-febrero">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
@@ -378,6 +399,7 @@
                     </div>
                 </div>
 
+                <!-- MARZO -->
                 <div class="tab-pane fade" id="tab-marzo">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
@@ -406,6 +428,7 @@
                     </div>
                 </div>
 
+                <!-- ABRIL -->
                 <div class="tab-pane fade" id="tab-abril">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
@@ -434,6 +457,7 @@
                     </div>
                 </div>
 
+                <!-- MAYO -->
                 <div class="tab-pane fade" id="tab-mayo">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
@@ -462,6 +486,7 @@
                     </div>
                 </div>
 
+                <!-- JUNIO -->
                 <div class="tab-pane fade" id="tab-junio">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
@@ -490,6 +515,7 @@
                     </div>
                 </div>
 
+                <!-- JULIO -->
                 <div class="tab-pane fade" id="tab-julio">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
@@ -518,6 +544,7 @@
                     </div>
                 </div>
 
+                <!-- AGOSTO -->
                 <div class="tab-pane fade" id="tab-agosto">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
@@ -546,6 +573,7 @@
                     </div>
                 </div>
 
+                <!-- SEPTIEMBRE -->
                 <div class="tab-pane fade" id="tab-septiembre">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
@@ -574,6 +602,7 @@
                     </div>
                 </div>
 
+                <!-- OCTUBRE -->
                 <div class="tab-pane fade" id="tab-octubre">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
@@ -602,6 +631,7 @@
                     </div>
                 </div>
 
+                <!-- NOVIEMBRE -->
                 <div class="tab-pane fade" id="tab-noviembre">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
@@ -630,6 +660,7 @@
                     </div>
                 </div>
 
+                <!-- DICIEMBRE -->
                 <div class="tab-pane fade" id="tab-diciembre">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
@@ -658,182 +689,57 @@
                     </div>
                 </div>
 
-                <!-- APARTADO 1: NOVEDADES -->
+                <!-- NOVEDADES -->
                 <div class="tab-pane fade" id="apartado-novedades">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-dark text-white py-3">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-journal-text me-2"></i> REPORTE DE NOVEDADES</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="border p-3 rounded bg-light mb-3">
-                                <div class="row g-3">
-                                    <div class="col-md-4">
-                                        <label class="form-label fw-bold small">Guardia:</label>
-                                        <input type="text" id="inputGuardia" class="form-control form-control-sm" placeholder="Nombre de guardia" oninput="guardarDatosNovedades()">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label fw-bold small">Cabinero:</label>
-                                        <input type="text" id="inputCabinero" class="form-control form-control-sm" placeholder="Nombre de cabinero" oninput="guardarDatosNovedades()">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label fw-bold small">Fecha:</label>
-                                        <input type="date" id="inputFechaNovedad" class="form-control form-control-sm" oninput="guardarDatosNovedades()">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label fw-bold">Reporte y Bitácora de Novedades:</label>
-                                <textarea id="inputTextoNovedades" class="form-control" rows="8" placeholder="Escriba las novedades relevantes de la jornada..." oninput="guardarDatosNovedades()"></textarea>
-                            </div>
-                        </div>
+                    <div class="card card-contenedor shadow-lg border-0 p-4">
+                        <h4 class="fw-bold text-danger mb-3"><i class="bi bi-journal-text me-2"></i>Novedades y Bitácora</h4>
+                        <p class="text-secondary small">Registro general de novedades operativas diarias de la corporación.</p>
+                        <textarea class="form-control" rows="6" placeholder="Escriba las novedades del turno..."></textarea>
+                        <button class="btn btn-rojo mt-3 w-auto align-self-start"><i class="bi bi-save me-1"></i> Guardar Novedades</button>
                     </div>
                 </div>
 
-                <!-- APARTADO 2: 56 (CLAVE 12345) -->
+                <!-- APARTADO 56 -->
                 <div class="tab-pane fade" id="apartado-56">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-file-earmark-medical me-2"></i> REGISTRO Y CONTROL DE 56</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFila56()"><i class="bi bi-plus-lg"></i> Agregar Registro</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover align-middle table-custom mb-0" id="tabla56">
-                                    <thead>
-                                        <tr>
-                                            <th>Día</th>
-                                            <th>Mes</th>
-                                            <th>Unidad</th>
-                                            <th>L/F</th>
-                                            <th>Costo</th>
-                                            <th>02</th>
-                                            <th>Viáticos</th>
-                                            <th style="min-width: 200px;">Colonia / Clínica / Hospital</th>
-                                            <th>Rojo</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="text" class="form-control form-control-sm" value="05"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Octubre"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="U-02"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Local"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="$0.00"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="2"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="$150"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Hospital General Tulantepec"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="N/A"></td>
-                                            <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div class="card card-contenedor shadow-lg border-0 p-4">
+                        <h4 class="fw-bold text-danger mb-3"><i class="bi bi-file-earmark-medical me-2"></i>Apartado Especial 56</h4>
+                        <p class="text-secondary small">Sección exclusiva para reportes especiales de atención prehospitalaria y servicios mayores.</p>
+                        <div class="alert alert-secondary text-dark" role="alert">
+                            Contenido restringido activo y validado correctamente por seguridad institucional.
                         </div>
                     </div>
                 </div>
 
-                <!-- APARTADO 3: PARQUE VEHICULAR -->
+                <!-- PARQUE VEHICULAR -->
                 <div class="tab-pane fade" id="apartado-vehicular">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-truck me-2"></i> ESTADO DEL PARQUE VEHICULAR</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaVehicular()"><i class="bi bi-plus-lg"></i> Agregar Unidad</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover align-middle table-custom mb-0" id="tablaVehicular">
-                                    <thead>
-                                        <tr>
-                                            <th>Unidad</th>
-                                            <th>Marca</th>
-                                            <th>Año</th>
-                                            <th style="min-width: 180px;">Situación</th>
-                                            <th style="min-width: 200px;">Servicio</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="text" class="form-control form-control-sm" value="Unidad 04"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Ford F-350"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="2018"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Operativa / En servicio"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Ataque rápido y rescate"></td>
-                                            <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    <div class="card card-contenedor shadow-lg border-0 p-4">
+                        <h4 class="fw-bold text-danger mb-3"><i class="bi bi-truck me-2"></i>Parque Vehicular y Unidades</h4>
+                        <p class="text-secondary small">Estatus operativo de motobombas, ambulancias y unidades de rescate.</p>
+                        <ul>
+                            <li><strong>Unidad 04:</strong> Motobomba Ligera (Operativa)</li>
+                            <li><strong>Unidad 08:</strong> Ambulancia de Rescate (Operativa)</li>
+                            <li><strong>Unidad 12:</strong> Pipa de Abastecimiento (En mantenimiento)</li>
+                        </ul>
                     </div>
                 </div>
 
-                <!-- APARTADO: INVENTARIO -->
+                <!-- INVENTARIO -->
                 <div class="tab-pane fade" id="apartado-inventario">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-box-seam text-danger me-2"></i> CONTROL DE INVENTARIO Y MATERIALES</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaInventario()"><i class="bi bi-plus-lg"></i> Agregar Elemento</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover align-middle table-custom mb-0" id="tablaInventario">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 30%;">Material / Descripción</th>
-                                            <th style="width: 25%;">Clasificación</th>
-                                            <th style="width: 20%;">Cantidad</th>
-                                            <th style="width: 15%;">Indicador de Estado</th>
-                                            <th style="width: 10%;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="text" class="form-control form-control-sm" value="Matafuegos de Polvo Químico"></td>
-                                            <td>
-                                                <select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)">
-                                                    <option value="pieza" selected>Pieza</option>
-                                                    <option value="servicio">Servicio</option>
-                                                </select>
-                                            </td>
-                                            <td><input type="number" class="form-control form-control-sm cantidad-inv" value="25" oninput="actualizarEstadoInventario(this)"></td>
-                                            <td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background-color: #ffc107; color: #000;">Amarillo</span></td>
-                                            <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                    <div class="card card-contenedor shadow-lg border-0 p-4">
+                        <h4 class="fw-bold text-danger mb-3"><i class="bi bi-box-seam me-2"></i>Inventario General</h4>
+                        <p class="text-secondary small">Control de equipo de protección personal, herramientas y material de rescate.</p>
+                        <p class="text-muted">Módulo configurado para control local de stock.</p>
                     </div>
                 </div>
 
-                <!-- APARTADO 4: INTELIGENCIA ARTIFICIAL (LOCAL - OLLAMA) -->
+                <!-- ASISTENTE IA -->
                 <div class="tab-pane fade" id="apartado-ia">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-dark text-white py-3">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-stars text-danger me-2"></i> ASISTENTE TÉCNICO LOCAL (OLLAMA)</h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="text-muted small mb-3">Modelo ligero ejecutándose localmente.</p>
-
-                            <div class="mb-3">
-                                <label class="form-label fw-bold">Escribe tu consulta para los Bomberos:</label>
-                                <div class="input-group mb-2">
-                                    <input type="text" id="promptIA" class="form-control" placeholder="Ej: ¿Qué hacer en caso de fuga de gas LP?">
-                                    <button class="btn btn-rojo" type="button" onclick="consultarOllama()">Consultar</button>
-                                </div>
-                                <small class="text-secondary">Modelo: <input type="text" id="nombreModelo" class="form-control form-control-sm d-inline-block w-25 ms-1" value="tinyllama:latest"></small>
-                            </div>
-
-                            <div id="loadingGemini" class="text-secondary d-none my-3">
-                                <span class="spinner-border spinner-border-sm text-danger" role="status"></span> Procesando localmente...
-                            </div>
-
-                            <div id="cajaRespuestaIA" class="p-3 bg-light rounded border d-none">
-                                <strong class="text-danger"><i class="bi bi-chat-left-text"></i> Respuesta de la IA Local:</strong>
-                                <div id="respuestaTextoIA" class="mt-2 text-dark" style="white-space: pre-wrap;"></div>
-                            </div>
+                    <div class="card card-contenedor shadow-lg border-0 p-4">
+                        <h4 class="fw-bold text-danger mb-3"><i class="bi bi-stars me-2"></i>Asistente IA Local (Ollama)</h4>
+                        <p class="text-secondary small">Panel de consulta conectado a modelos locales.</p>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Escriba su consulta operativa...">
+                            <button class="btn btn-rojo" type="button">Consultar IA</button>
                         </div>
                     </div>
                 </div>
@@ -842,104 +748,86 @@
 
         </div>
 
-        <!-- MARCA TRASLÚCIDA / CRÉDITOS -->
-        <div class="creditos-traslucidos shadow-sm">
-            <div><strong>Desarrolladores:</strong> Juan Pablo Muñoz García | Juan Santiago López Cabrera | Mildreth Ate Olvera Ruiz</div>
-            <div><strong>Componente:</strong> Programación | <strong>Plantel:</strong> CECyTEH | <strong>Ocupación:</strong> Estudiantes</div>
-            <div><strong>Contacto:</strong> 775 121 6014 - 775 182 5326 - 775 162 1447</div>
-            <div class="fst-italic opacity-75">Sin fines comerciales</div>
+        <div class="creditos-traslucidos">
+            <strong>H. Cuerpo de Bomberos y Protección Civil · Santiago Tulantepec</strong><br>
+            Sistema de Control Operativo Institucional 2026
         </div>
 
     </div>
 
-    <!-- Bootstrap JS Bundle -->
+    <!-- SCRIPTS DE BOOTSTRAP Y LÓGICA -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const URL_PRODUCCION = "https://bomberos-santiago.onrender.com";
-
-        document.addEventListener("DOMContentLoaded", function() {
-            generarQR(URL_PRODUCCION);
-            configurarSubmenusMovil();
+        // Generar QR al cargar la página
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlActual = window.location.href;
+            document.getElementById('urlCompartir').value = urlActual;
+            document.getElementById('contenedorQR').innerHTML = "";
+            new QRCode(document.getElementById("contenedorQR"), {
+                text: urlActual,
+                width: 128,
+                height: 128
+            });
         });
 
-        function generarQR(urlDestino) {
-            const contenedor = document.getElementById('contenedorQR');
-            const inputUrl = document.getElementById('urlCompartir');
-            if (contenedor && inputUrl) {
-                contenedor.innerHTML = "";
-                inputUrl.value = urlDestino;
-                new QRCode(contenedor, {
-                    text: urlDestino,
-                    width: 130,
-                    height: 130,
-                    colorDark: "#000000",
-                    colorLight: "#ffffff",
-                    correctLevel: QRCode.CorrectLevel.H
-                });
-            }
-        }
-
-        function copiarEnlace() {
-            const inputUrl = document.getElementById('urlCompartir');
-            inputUrl.select();
-            inputUrl.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(inputUrl.value);
-            const alerta = document.getElementById('copiadoAlerta');
-            if (alerta) {
-                alerta.classList.remove('d-none');
-                setTimeout(() => alerta.classList.add('d-none'), 2000);
-            }
-        }
-
+        // Alternar visibilidad de contraseña login principal
         function togglePassword() {
             const input = document.getElementById('inputPassword');
             const btn = document.getElementById('btnTogglePass');
-            if (input.type === "password") {
-                input.type = "text";
+            if (input.type === 'password') {
+                input.type = 'text';
                 btn.innerHTML = '<i class="bi bi-eye-slash"></i>';
             } else {
-                input.type = "password";
+                input.type = 'password';
                 btn.innerHTML = '<i class="bi bi-eye"></i>';
             }
         }
 
+        // Validación Login Principal (Clave: bomberos1)
         function verificarPassword() {
             const pass = document.getElementById('inputPassword').value;
-            const error = document.getElementById('errorLogin');
-            if (pass === "bomberos1") {
+            const errorDiv = document.getElementById('errorLogin');
+            if (pass === 'bomberos1') {
                 document.getElementById('pantallaLogin').style.display = 'none';
                 document.getElementById('contenidoSistema').style.display = 'block';
+                // Activar enero por defecto
+                abrirPestana('tab-enero');
             } else {
-                error.classList.remove('d-none');
+                errorDiv.classList.remove('d-none');
             }
         }
 
+        // Manejo de Pestañas
         function abrirPestana(idTab, event) {
-            if (event) event.preventDefault();
-            document.querySelectorAll('.tab-pane').forEach(el => {
-                el.classList.remove('show', 'active');
+            if(event) event.preventDefault();
+            
+            // Ocultar todas las pestañas
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('show', 'active');
             });
-            const tabSeleccionada = document.getElementById(idTab);
-            if (tabSeleccionada) {
-                tabSeleccionada.classList.add('show', 'active');
+
+            // Mostrar la seleccionada
+            const target = document.getElementById(idTab);
+            if(target) {
+                target.classList.add('show', 'active');
             }
         }
 
-        function solicitarAcceso56(event) {
-            event.preventDefault();
-            const modal = new bootstrap.Modal(document.getElementById('modalPassword56'));
-            modal.show();
+        // Seguridad para Apartado 56 (Clave: 12345)
+        let modal56Instance = null;
+        function solicitarAcceso56(e) {
+            e.preventDefault();
+            document.getElementById('inputPass56').value = '';
+            document.getElementById('errorPass56').classList.add('d-none');
+            modal56Instance = new bootstrap.Modal(document.getElementById('modalPassword56'));
+            modal56Instance.show();
         }
 
         function validarPassword56() {
             const pass = document.getElementById('inputPass56').value;
             const error = document.getElementById('errorPass56');
-            if (pass === "12345") {
-                const modalEl = document.getElementById('modalPassword56');
-                const modal = bootstrap.Modal.getInstance(modalEl);
-                modal.hide();
-                document.getElementById('inputPass56').value = '';
-                error.classList.add('d-none');
+            if (pass === '12345') {
+                modal56Instance.hide();
                 abrirPestana('apartado-56');
             } else {
                 error.classList.remove('d-none');
@@ -951,149 +839,40 @@
             document.getElementById('errorPass56').classList.add('d-none');
         }
 
+        // Copiar enlace QR
+        function copiarEnlace() {
+            const input = document.getElementById('urlCompartir');
+            input.select();
+            input.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(input.value);
+            const alerta = document.getElementById('copiadoAlerta');
+            alerta.classList.remove('d-none');
+            setTimeout(() => alerta.classList.add('d-none'), 2000);
+        }
+
+        // Agregar fila dinámica a tablas mensuales
         function agregarFilaServicio(idTabla) {
-            const tabla = document.getElementById(idTabla).getElementsByTagName('tbody')[0];
-            const nuevaFila = tabla.insertRow();
+            const tbody = document.querySelector(`#${idTabla} tbody`);
+            const numFilas = tbody.rows.length + 1;
+            const numStr = String(numFilas).padStart(3, '0');
+            
+            const nuevaFila = document.createElement('tr');
             nuevaFila.innerHTML = `
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><textarea class="form-control form-control-sm" rows="1"></textarea></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
+                <td><input type="text" class="form-control form-control-sm" value="${numStr}"></td>
+                <td><input type="text" class="form-control form-control-sm" placeholder="Servicio realizado"></td>
+                <td><input type="text" class="form-control form-control-sm" placeholder="Unidad"></td>
+                <td><input type="text" class="form-control form-control-sm" value="1"></td>
+                <td><textarea class="form-control form-control-sm" rows="1" placeholder="Materiales..."></textarea></td>
+                <td><input type="text" class="form-control form-control-sm" value="Servicio"></td>
+                <td><input type="text" class="form-control form-control-sm" placeholder="Reportante"></td>
                 <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
             `;
-        }
-
-        function agregarFila56() {
-            const tabla = document.getElementById('tabla56').getElementsByTagName('tbody')[0];
-            const nuevaFila = tabla.insertRow();
-            nuevaFila.innerHTML = `
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-            `;
-        }
-
-        function agregarFilaVehicular() {
-            const tabla = document.getElementById('tablaVehicular').getElementsByTagName('tbody')[0];
-            const nuevaFila = tabla.insertRow();
-            nuevaFila.innerHTML = `
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-            `;
-        }
-
-        function agregarFilaInventario() {
-            const tabla = document.getElementById('tablaInventario').getElementsByTagName('tbody')[0];
-            const nuevaFila = tabla.insertRow();
-            nuevaFila.innerHTML = `
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td>
-                    <select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)">
-                        <option value="pieza" selected>Pieza</option>
-                        <option value="servicio">Servicio</option>
-                    </select>
-                </td>
-                <td><input type="number" class="form-control form-control-sm cantidad-inv" value="0" oninput="actualizarEstadoInventario(this)"></td>
-                <td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background-color: #ffc107; color: #000;">Amarillo</span></td>
-                <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-            `;
+            tbody.appendChild(nuevaFila);
         }
 
         function eliminarFila(btn) {
-            const fila = btn.closest('tr');
-            fila.remove();
-        }
-
-        function actualizarEstadoInventario(elemento) {
-            const fila = elemento.closest('tr');
-            const selectClasificacion = fila.querySelector('select');
-            const inputCantidad = fila.querySelector('.cantidad-inv');
-            const badgeEstado = fila.querySelector('.indicador-estado');
-
-            if (!selectClasificacion || !inputCantidad || !badgeEstado) return;
-
-            const clasificacion = selectClasificacion.value;
-            const cantidad = parseInt(inputCantidad.value) || 0;
-
-            if (clasificacion === 'servicio') {
-                badgeEstado.style.backgroundColor = '#198754';
-                badgeEstado.style.color = '#fff';
-                badgeEstado.textContent = 'Verde';
-            } else {
-                if (cantidad > 20) {
-                    badgeEstado.style.backgroundColor = '#198754';
-                    badgeEstado.style.color = '#fff';
-                    badgeEstado.textContent = 'Verde';
-                } else if (cantidad >= 10) {
-                    badgeEstado.style.backgroundColor = '#ffc107';
-                    badgeEstado.style.color = '#000';
-                    badgeEstado.textContent = 'Amarillo';
-                } else {
-                    badgeEstado.style.backgroundColor = '#dc3545';
-                    badgeEstado.style.color = '#fff';
-                    badgeEstado.textContent = 'Rojo';
-                }
-            }
-        }
-
-        function guardarDatosNovedades() {}
-
-        function configurarSubmenusMovil() {
-            document.querySelectorAll('.dropdown-submenu > a').forEach(function(element) {
-                element.addEventListener('click', function(e) {
-                    if (window.innerWidth < 992) {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        let submenu = this.nextElementSibling;
-                        if (submenu) {
-                            submenu.classList.toggle('show');
-                        }
-                    }
-                });
-            });
-        }
-
-        async function consultarOllama() {
-            const prompt = document.getElementById('promptIA').value;
-            const modelo = document.getElementById('nombreModelo').value;
-            const loader = document.getElementById('loadingGemini');
-            const cajaRespuesta = document.getElementById('cajaRespuestaIA');
-            const textoRespuesta = document.getElementById('respuestaTextoIA');
-
-            if (!prompt.trim()) return;
-
-            loader.classList.remove('d-none');
-            cajaRespuesta.classList.add('d-none');
-
-            try {
-                const response = await fetch('http://localhost:11434/api/generate', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ model: modelo, prompt: prompt, stream: false })
-                });
-                const data = await response.json();
-                textoRespuesta.textContent = data.response || "Sin respuesta del modelo local.";
-                cajaRespuesta.classList.remove('d-none');
-            } catch (err) {
-                textoRespuesta.textContent = "Error: No se pudo conectar con Ollama en el entorno local (localhost:11434).";
-                cajaRespuesta.classList.remove('d-none');
-            } finally {
-                loader.classList.add('d-none');
-            }
+            const tr = btn.closest('tr');
+            tr.remove();
         }
     </script>
 </body>
