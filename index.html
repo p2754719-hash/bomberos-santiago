@@ -107,17 +107,24 @@
         .creditos-traslucidos {
             position: fixed;
             bottom: 10px; left: 10px; right: 10px;
-            background-color: rgba(18, 18, 18, 0.85);
+            background-color: rgba(18, 18, 18, 0.92);
             color: #ffffff;
             backdrop-filter: blur(6px);
             padding: 10px 14px;
             border-radius: 6px;
             font-size: 0.75rem;
-            line-height: 1.4;
+            line-height: 1.5;
             z-index: 9000;
-            border: 1px solid rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             text-align: center;
             pointer-events: auto;
+        }
+        .texto-fechas-visible {
+            color: #ffffff !important;
+            font-weight: 600;
+            text-shadow: 0px 1px 2px rgba(0,0,0,0.8);
+            display: inline-block;
+            margin-top: 2px;
         }
 
         @media (max-width: 768px) {
@@ -243,7 +250,7 @@
                         <li><a class="dropdown-item" href="#" onclick="solicitarAcceso56(event)"><i class="bi bi-file-earmark-medical me-2"></i> 56</a></li>
                         <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-vehicular', event)"><i class="bi bi-truck me-2"></i> Parque Vehicular</a></li>
                         <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-inventario', event)"><i class="bi bi-box-seam me-2"></i> Inventario</a></li>
-                        <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-ia', event)"><i class="bi bi-stars text-danger me-2"></i> Asistente IA Local (Ollama)</a></li>
+                        <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-ia', event)"><i class="bi bi-stars text-danger me-2"></i> Asistente IA Local (TinyLlama)</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <!-- BOTÓN DE BIBLIOGRAFÍA ENLACE ONEDRIVE -->
                         <li><a class="dropdown-item fw-bold text-info" href="https://1drv.ms/w/c/9814f5b8f3a63889/IQAhB3MDoWwwQJJAerUn27lUAd811piLchYZCdnk54g2jIQ?e=KHkftK" target="_blank"><i class="bi bi-journal-bookmark-fill me-2"></i> Bibliografía</a></li>
@@ -307,14 +314,21 @@
                     </div>
                 </div>
 
-                <!-- ASISTENTE IA -->
+                <!-- ASISTENTE IA (TINYLLAMA) -->
                 <div class="tab-pane fade" id="apartado-ia">
                     <div class="card card-contenedor shadow-lg border-0 p-4">
-                        <h4 class="fw-bold text-danger mb-3"><i class="bi bi-stars me-2"></i>Asistente IA Local (Ollama)</h4>
-                        <p class="text-secondary small">Panel de consulta conectado a modelos locales.</p>
+                        <h4 class="fw-bold text-danger mb-3"><i class="bi bi-stars me-2"></i>Asistente IA Local (TinyLlama)</h4>
+                        <p class="text-secondary small">Panel de consulta conectado a tu modelo local de Ollama.</p>
+                        
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Escriba su consulta operativa...">
-                            <button class="btn btn-rojo" type="button">Consultar IA</button>
+                            <input type="text" id="inputPromptIA" class="form-control" placeholder="Escriba su consulta operativa...">
+                            <button class="btn btn-rojo" type="button" onclick="consultarOllama()">Consultar IA</button>
+                        </div>
+
+                        <!-- Caja donde aparecerá la respuesta -->
+                        <div id="respuestaIAContainer" class="p-3 bg-white rounded text-dark d-none border mt-3 shadow-sm">
+                            <strong>Respuesta de TinyLlama:</strong>
+                            <p id="textoRespuestaIA" class="mb-0 mt-1" style="white-space: pre-wrap;"></p>
                         </div>
                     </div>
                 </div>
@@ -323,12 +337,12 @@
 
         </div>
 
-        <!-- INFORMACIÓN DE LOS DESARROLLADORES CON FECHAS VISIBLES -->
+        <!-- INFORMACIÓN DE LOS DESARROLLADORES CON FECHAS -->
         <div class="creditos-traslucidos">
             <strong>Desarrolladores:</strong> Juan Pablo Muñoz García | Juan Santiago López Cabrera | Mildreth Ate Olvera Ruiz<br>
             <strong>Componente:</strong> Programación | <strong>Plantel:</strong> CECyTEH | <strong>Ocupación:</strong> Estudiantes<br>
             <strong>Contacto:</strong> 775 121 6014 - 775 182 5326 - 775 162 1447<br>
-            <span class="text-light opacity-75">Sin fines comerciales · Creación: 04/11/2026 | Actualización: 04/11/2026</span>
+            <span class="texto-fechas-visible">Sin fines comerciales · Creación: 04/11/2026 | Actualización: 04/11/2026</span>
         </div>
 
     </div>
@@ -423,6 +437,40 @@
             const alerta = document.getElementById('copiadoAlerta');
             alerta.classList.remove('d-none');
             setTimeout(() => alerta.classList.add('d-none'), 2000);
+        }
+
+        // Conexión con TinyLlama (Ollama local)
+        async function consultarOllama() {
+            const inputField = document.getElementById('inputPromptIA');
+            const container = document.getElementById('respuestaIAContainer');
+            const textoRespuesta = document.getElementById('textoRespuestaIA');
+            
+            const prompt = inputField.value.trim();
+            if (!prompt) {
+                alert("Por favor escribe una consulta para la IA.");
+                return;
+            }
+
+            container.classList.remove('d-none');
+            textoRespuesta.textContent = "Consultando a TinyLlama, espera un momento...";
+
+            try {
+                const response = await fetch('http://localhost:11434/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model: "tinyllama",
+                        prompt: prompt,
+                        stream: false
+                    })
+                });
+
+                const data = await response.json();
+                textoRespuesta.textContent = data.response || "No se obtuvo respuesta del modelo.";
+            } catch (error) {
+                console.error("Error al conectar con Ollama:", error);
+                textoRespuesta.textContent = "Error: No se pudo conectar con Ollama. Asegúrate de tenerlo abierto en tu PC (ejecuta 'ollama run tinyllama' o 'ollama serve' en tu terminal).";
+            }
         }
     </script>
 </body>
