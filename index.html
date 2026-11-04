@@ -78,17 +78,6 @@
             border-radius: 8px;
             margin-bottom: 20px;
         }
-        .table-custom th {
-            background-color: #1a1a1a;
-            color: white;
-            font-size: 0.8rem;
-            text-align: center;
-            vertical-align: middle;
-            white-space: nowrap;
-        }
-        .table-custom td {
-            vertical-align: middle;
-        }
         .btn-rojo {
             background-color: var(--rojo-institucional);
             color: white;
@@ -129,28 +118,6 @@
             border: 1px solid rgba(255, 255, 255, 0.18);
             text-align: center;
             pointer-events: auto;
-        }
-
-        .dropdown-submenu {
-            position: relative;
-        }
-        .dropdown-submenu > .dropdown-menu {
-            top: 0;
-            right: 100%;
-            left: auto;
-            margin-top: -6px;
-            margin-right: -1px;
-            display: none;
-        }
-        .dropdown-submenu:hover > .dropdown-menu,
-        .dropdown-submenu > .dropdown-menu.show {
-            display: block;
-        }
-
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
         }
 
         @media (max-width: 768px) {
@@ -272,29 +239,6 @@
                         <li><a class="dropdown-item fw-bold text-warning" href="#" data-bs-toggle="modal" data-bs-target="#modalCompartirQR"><i class="bi bi-qr-code text-danger me-2"></i> Código QR / Móvil</a></li>
                         <li><hr class="dropdown-divider"></li>
 
-                        <!-- SUBMENÚ: REGISTRO DE SERVICIOS -->
-                        <li class="dropdown-submenu">
-                            <a class="dropdown-item dropdown-toggle d-flex justify-content-between align-items-center" href="#">
-                                <span><i class="bi bi-calendar-check text-danger me-2"></i> Registro de Servicios</span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-dark shadow">
-                                <li><h6 class="dropdown-header text-uppercase text-danger fw-bold" style="font-size: 0.7rem;">MESES 2026</h6></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-enero', event)"><i class="bi bi-calendar-event me-2"></i>Enero 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-febrero', event)"><i class="bi bi-calendar-event me-2"></i>Febrero 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-marzo', event)"><i class="bi bi-calendar-event me-2"></i>Marzo 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-abril', event)"><i class="bi bi-calendar-event me-2"></i>Abril 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-mayo', event)"><i class="bi bi-calendar-event me-2"></i>Mayo 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-junio', event)"><i class="bi bi-calendar-event me-2"></i>Junio 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-julio', event)"><i class="bi bi-calendar-event me-2"></i>Julio 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-agosto', event)"><i class="bi bi-calendar-event me-2"></i>Agosto 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-septiembre', event)"><i class="bi bi-calendar-event me-2"></i>Septiembre 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-octubre', event)"><i class="bi bi-calendar-event me-2"></i>Octubre 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-noviembre', event)"><i class="bi bi-calendar-event me-2"></i>Noviembre 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-diciembre', event)"><i class="bi bi-calendar-event me-2"></i>Diciembre 2026</a></li>
-                            </ul>
-                        </li>
-
-                        <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-novedades', event)"><i class="bi bi-journal-text me-2"></i> Novedades</a></li>
                         <li><a class="dropdown-item" href="#" onclick="solicitarAcceso56(event)"><i class="bi bi-file-earmark-medical me-2"></i> 56</a></li>
                         <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-vehicular', event)"><i class="bi bi-truck me-2"></i> Parque Vehicular</a></li>
@@ -312,362 +256,11 @@
 
             <div class="tab-content mb-5">
                 
-                <!-- ENERO -->
-                <div class="tab-pane fade show active" id="tab-enero">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Enero 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-enero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-enero">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="text" class="form-control form-control-sm" value="001"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Incendio en pastizal"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Unidad 04"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="1"></td>
-                                            <td><textarea class="form-control form-control-sm" rows="1">Matafuegos, batefuegos, 500L agua</textarea></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Servicio"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="REP-102 / Juan P."></td>
-                                            <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- FEBRERO -->
-                <div class="tab-pane fade" id="tab-febrero">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Febrero 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-febrero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-febrero">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MARZO -->
-                <div class="tab-pane fade" id="tab-marzo">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Marzo 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-marzo')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-marzo">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ABRIL -->
-                <div class="tab-pane fade" id="tab-abril">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Abril 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-abril')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-abril">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MAYO -->
-                <div class="tab-pane fade" id="tab-mayo">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Mayo 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-mayo')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-mayo">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- JUNIO -->
-                <div class="tab-pane fade" id="tab-junio">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Junio 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-junio')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-junio">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- JULIO -->
-                <div class="tab-pane fade" id="tab-julio">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Julio 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-julio')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-julio">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AGOSTO -->
-                <div class="tab-pane fade" id="tab-agosto">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Agosto 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-agosto')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-agosto">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SEPTIEMBRE -->
-                <div class="tab-pane fade" id="tab-septiembre">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Septiembre 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-septiembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-septiembre">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- OCTUBRE -->
-                <div class="tab-pane fade" id="tab-octubre">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Octubre 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-octubre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-octubre">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- NOVIEMBRE -->
-                <div class="tab-pane fade" id="tab-noviembre">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Noviembre 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-noviembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-noviembre">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DICIEMBRE -->
-                <div class="tab-pane fade" id="tab-diciembre">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Diciembre 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-diciembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-diciembre">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
+                <!-- PANTALLA DE INICIO / BIENVENIDA (SIN TABLAS DE REGISTRO) -->
+                <div class="tab-pane fade show active" id="tab-inicio">
+                    <div class="card card-contenedor shadow-lg border-0 p-4 text-center">
+                        <h3 class="fw-bold text-danger mb-3"><i class="bi bi-shield-shaded me-2"></i>Panel de Control Institucional</h3>
+                        <p class="text-secondary">Seleccione una opción en el menú superior <strong>APARTADOS</strong> para ver las novedades, parque vehicular, inventario o acceder a los submódulos correspondientes.</p>
                     </div>
                 </div>
 
@@ -730,7 +323,7 @@
 
         </div>
 
-        <!-- INFORMACIÓN DE LOS DESARROLLADORES CON LOS DATOS EXACTOS Y FECHAS -->
+        <!-- CRÉDITOS Y DESARROLLADORES CON FECHAS 04/11/2026 -->
         <div class="creditos-traslucidos">
             <strong>Desarrolladores:</strong> Juan Pablo Muñoz García | Juan Santiago López Cabrera | Mildreth Ate Olvera Ruiz<br>
             <strong>Componente:</strong> Programación | <strong>Plantel:</strong> CECyTEH | <strong>Ocupación:</strong> Estudiantes<br>
@@ -775,7 +368,7 @@
             if (pass === 'bomberos1') {
                 document.getElementById('pantallaLogin').style.display = 'none';
                 document.getElementById('contenidoSistema').style.display = 'block';
-                abrirPestana('tab-enero');
+                abrirPestana('tab-inicio');
             } else {
                 errorDiv.classList.remove('d-none');
             }
@@ -830,31 +423,6 @@
             const alerta = document.getElementById('copiadoAlerta');
             alerta.classList.remove('d-none');
             setTimeout(() => alerta.classList.add('d-none'), 2000);
-        }
-
-        // Agregar fila dinámica a tablas mensuales
-        function agregarFilaServicio(idTabla) {
-            const tbody = document.querySelector(`#${idTabla} tbody`);
-            const numFilas = tbody.rows.length + 1;
-            const numStr = String(numFilas).padStart(3, '0');
-            
-            const nuevaFila = document.createElement('tr');
-            nuevaFila.innerHTML = `
-                <td><input type="text" class="form-control form-control-sm" value="${numStr}"></td>
-                <td><input type="text" class="form-control form-control-sm" placeholder="Servicio realizado"></td>
-                <td><input type="text" class="form-control form-control-sm" placeholder="Unidad"></td>
-                <td><input type="text" class="form-control form-control-sm" value="1"></td>
-                <td><textarea class="form-control form-control-sm" rows="1" placeholder="Materiales..."></textarea></td>
-                <td><input type="text" class="form-control form-control-sm" value="Servicio"></td>
-                <td><input type="text" class="form-control form-control-sm" placeholder="Reportante"></td>
-                <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-            `;
-            tbody.appendChild(nuevaFila);
-        }
-
-        function eliminarFila(btn) {
-            const tr = btn.closest('tr');
-            tr.remove();
         }
     </script>
 </body>
