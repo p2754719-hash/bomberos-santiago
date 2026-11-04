@@ -130,19 +130,6 @@
             text-align: center;
             pointer-events: auto;
         }
-        .badge-fechas {
-            position: fixed;
-            bottom: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.8);
-            color: #ccc;
-            font-size: 0.7rem;
-            padding: 6px 12px;
-            border-radius: 6px;
-            z-index: 9500;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(4px);
-        }
 
         .dropdown-submenu {
             position: relative;
@@ -194,11 +181,6 @@
 
     <div class="bg-slide"></div>
     <div class="bg-overlay"></div>
-
-    <!-- INSIGNIA DE FECHAS EN ESQUINA INFERIOR DERECHA -->
-    <div class="badge-fechas">
-        <i class="bi bi-calendar3 text-danger"></i> Creación: <strong>04/11/2026</strong> | Act: <strong>04/11/2026</strong>
-    </div>
 
     <!-- MODAL DE QR -->
     <div class="modal fade" id="modalCompartirQR" tabindex="-1" aria-hidden="true">
@@ -748,9 +730,11 @@
 
         </div>
 
+        <!-- INFORMACIÓN DE LOS DESARROLLADORES (CÓDIGO ORIGINAL) -->
         <div class="creditos-traslucidos">
             <strong>H. Cuerpo de Bomberos y Protección Civil · Santiago Tulantepec</strong><br>
-            Sistema de Control Operativo Institucional 2026
+            Sistema de Control Operativo Institucional 2026<br>
+            <span class="text-muted" style="font-size: 0.58rem;">Desarrollado con arquitectura local y flujos web avanzados</span>
         </div>
 
     </div>
@@ -790,7 +774,6 @@
             if (pass === 'bomberos1') {
                 document.getElementById('pantallaLogin').style.display = 'none';
                 document.getElementById('contenidoSistema').style.display = 'block';
-                // Activar enero por defecto
                 abrirPestana('tab-enero');
             } else {
                 errorDiv.classList.remove('d-none');
@@ -801,12 +784,10 @@
         function abrirPestana(idTab, event) {
             if(event) event.preventDefault();
             
-            // Ocultar todas las pestañas
             document.querySelectorAll('.tab-pane').forEach(pane => {
                 pane.classList.remove('show', 'active');
             });
 
-            // Mostrar la seleccionada
             const target = document.getElementById(idTab);
             if(target) {
                 target.classList.add('show', 'active');
