@@ -314,20 +314,20 @@
                     </div>
                 </div>
 
-                <!-- ASISTENTE GEMINI IA (CONFIGURABLE SEGURA) -->
+                <!-- ASISTENTE GEMINI IA -->
                 <div class="tab-pane fade" id="apartado-ia">
                     <div class="card card-contenedor shadow-lg border-0 p-4">
                         <h4 class="fw-bold text-danger mb-3"><i class="bi bi-stars me-2"></i>Asistente Operativo Gemini</h4>
                         <p class="text-secondary small">Panel de consulta conectado a la inteligencia artificial de Google.</p>
 
-                        <!-- Entrada de API Key Segura para evitar bloqueos en Github -->
+                        <!-- Entrada de API Key Segura para evitar bloqueos en GitHub -->
                         <div class="mb-3 bg-light p-3 border rounded">
                             <label class="form-label fw-bold small text-dark"><i class="bi bi-key-fill text-warning me-1"></i> Clave API de Gemini:</label>
                             <div class="input-group">
-                                <input type="password" id="inputApiKeyUser" class="form-control form-control-sm" placeholder="Ingrese o pega tu API Key de Gemini (AQ... o AIzaSy...)">
+                                <input type="password" id="inputApiKeyUser" class="form-control form-control-sm" placeholder="Ingrese o pegue su API Key de Gemini">
                                 <button class="btn btn-outline-secondary btn-sm" type="button" onclick="guardarApiKey()"><i class="bi bi-floppy"></i> Guardar Key</button>
                             </div>
-                            <span id="msgKeyGuardada" class="text-success small d-none"><i class="bi bi-check-circle"></i> Clave guardada correctamente en tu navegador.</span>
+                            <span id="msgKeyGuardada" class="text-success small d-none"><i class="bi bi-check-circle"></i> Clave guardada correctamente en su navegador.</span>
                         </div>
                         
                         <div class="input-group mb-3">
@@ -464,7 +464,7 @@
             setTimeout(() => alerta.classList.add('d-none'), 2000);
         }
 
-        // Función de consulta a Gemini real con clave dinámica
+        // Función de consulta a Gemini con modelo compatible (gemini-pro)
         async function consultarGemini() {
             const inputField = document.getElementById('inputPromptGemini');
             const container = document.getElementById('respuestaIAContainer');
@@ -485,7 +485,7 @@
             textoRespuesta.textContent = "Consultando a Gemini, espera un momento...";
 
             try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
