@@ -247,6 +247,7 @@
                         <li><hr class="dropdown-divider"></li>
 
                         <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-novedades', event)"><i class="bi bi-journal-text me-2"></i> Novedades</a></li>
+                        <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-registros', event)"><i class="bi bi-table me-2"></i> Registros y Bitácora</a></li>
                         <li><a class="dropdown-item" href="#" onclick="solicitarAcceso56(event)"><i class="bi bi-file-earmark-medical me-2"></i> 56</a></li>
                         <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-vehicular', event)"><i class="bi bi-truck me-2"></i> Parque Vehicular</a></li>
                         <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-inventario', event)"><i class="bi bi-box-seam me-2"></i> Inventario</a></li>
@@ -276,8 +277,57 @@
                     <div class="card card-contenedor shadow-lg border-0 p-4">
                         <h4 class="fw-bold text-danger mb-3"><i class="bi bi-journal-text me-2"></i>Novedades y Bitácora</h4>
                         <p class="text-secondary small">Registro general de novedades operativas diarias de la corporación.</p>
-                        <textarea class="form-control" rows="6" placeholder="Escriba las novedades del turno..."></textarea>
-                        <button class="btn btn-rojo mt-3 w-auto align-self-start"><i class="bi bi-save me-1"></i> Guardar Novedades</button>
+                        <textarea class="form-control mb-3" rows="4" placeholder="Escriba las novedades del turno..."></textarea>
+                        <button class="btn btn-rojo w-auto align-self-start"><i class="bi bi-save me-1"></i> Guardar Novedades</button>
+                    </div>
+                </div>
+
+                <!-- REGISTROS (TABLA FUNCIONAL RECUPERADA) -->
+                <div class="tab-pane fade" id="apartado-registros">
+                    <div class="card card-contenedor shadow-lg border-0 p-4">
+                        <h4 class="fw-bold text-danger mb-3"><i class="bi bi-table me-2"></i>Registros Operativos y Servicios</h4>
+                        <p class="text-secondary small">Tabla general de servicios, traslados y emergencias atendidas.</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered align-middle">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Folio</th>
+                                        <th>Fecha / Hora</th>
+                                        <th>Tipo de Servicio</th>
+                                        <th>Ubicación</th>
+                                        <th>Unidad Asignada</th>
+                                        <th>Estatus</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#001</td>
+                                        <td>04/11/2026 - 08:30</td>
+                                        <td>Fuga de Gas LP</td>
+                                        <td>Col. Centro</td>
+                                        <td>Unidad 04</td>
+                                        <td><span class="badge bg-success">Concluido</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#002</td>
+                                        <td>04/11/2026 - 11:15</td>
+                                        <td>Atención Prehospitalaria</td>
+                                        <td>Blvd. Juárez</td>
+                                        <td>Unidad 08</td>
+                                        <td><span class="badge bg-warning text-dark">En Ruta</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#003</td>
+                                        <td>04/11/2026 - 14:00</td>
+                                        <td>Incendio en Pastizal</td>
+                                        <td>San Alejo</td>
+                                        <td>Unidad 04</td>
+                                        <td><span class="badge bg-success">Concluido</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
@@ -297,11 +347,34 @@
                     <div class="card card-contenedor shadow-lg border-0 p-4">
                         <h4 class="fw-bold text-danger mb-3"><i class="bi bi-truck me-2"></i>Parque Vehicular y Unidades</h4>
                         <p class="text-secondary small">Estatus operativo de motobombas, ambulancias y unidades de rescate.</p>
-                        <ul>
-                            <li><strong>Unidad 04:</strong> Motobomba Ligera (Operativa)</li>
-                            <li><strong>Unidad 08:</strong> Ambulancia de Rescate (Operativa)</li>
-                            <li><strong>Unidad 12:</strong> Pipa de Abastecimiento (En mantenimiento)</li>
-                        </ul>
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Unidad</th>
+                                        <th>Tipo</th>
+                                        <th>Estatus</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Unidad 04</strong></td>
+                                        <td>Motobomba Ligera</td>
+                                        <td><span class="badge bg-success">Operativa</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Unidad 08</strong></td>
+                                        <td>Ambulancia de Rescate</td>
+                                        <td><span class="badge bg-success">Operativa</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Unidad 12</strong></td>
+                                        <td>Pipa de Abastecimiento</td>
+                                        <td><span class="badge bg-danger">Mantenimiento</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
@@ -310,7 +383,34 @@
                     <div class="card card-contenedor shadow-lg border-0 p-4">
                         <h4 class="fw-bold text-danger mb-3"><i class="bi bi-box-seam me-2"></i>Inventario General</h4>
                         <p class="text-secondary small">Control de equipo de protección personal, herramientas y material de rescate.</p>
-                        <p class="text-muted">Módulo configurado para control local de stock.</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Material / Equipo</th>
+                                        <th>Cantidad</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Equipos de Respiración Autónoma (SCBA)</td>
+                                        <td>6</td>
+                                        <td>Bueno</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mangueras contraincendio 1.5"</td>
+                                        <td>12</td>
+                                        <td>Óptimo</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Camillas rígidas</td>
+                                        <td>3</td>
+                                        <td>Bueno</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
