@@ -73,7 +73,6 @@
             background-color: var(--rojo-institucional) !important;
         }
         
-        /* CORRECCIÓN DE CAPAS Y MENÚ DE MESES */
         .dropdown-menu {
             z-index: 99999 !important;
         }
@@ -209,7 +208,7 @@
         </div>
     </div>
 
-    <!-- MODAL DE CONTRASEÑA PARA APARTADO 56 (Clave: 12345) -->
+    <!-- MODAL DE CONTRASEÑA PARA APARTADO 56 -->
     <div class="modal fade" id="modalPassword56" tabindex="-1" data-bs-backdrop="static" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content bg-dark text-white border-secondary">
@@ -274,7 +273,6 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow" aria-labelledby="btnApartadosPrincipal">
                         
-                        <!-- BOTÓN DE CÓDIGO QR DENTRO DE APARTADOS -->
                         <li><a class="dropdown-item fw-bold text-warning" href="#" data-bs-toggle="modal" data-bs-target="#modalCompartirQR"><i class="bi bi-qr-code text-danger me-2"></i> Código QR / Móvil</a></li>
                         <li><hr class="dropdown-divider"></li>
 
@@ -313,17 +311,17 @@
         </div>
 
         <div class="container-fluid mt-3 px-2 px-md-4 pb-5">
-
             <div class="tab-content mb-5">
                 
+                <!-- PLANTILLA GENERADORA PARA MESES (Enero a Diciembre con filtro corregido) -->
                 <!-- ENERO -->
-                <div class="tab-pane fade" id="tab-enero">
+                <div class="tab-pane fade show active" id="tab-enero">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Enero 2026</h5>
                             <div class="d-flex gap-2 align-items-center flex-wrap">
                                 <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-enero', 'Enero')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
-                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-enero')"></label>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv, .xlsx, .xls" style="display: none;" onchange="importarTablaExcel(event, 'tabla-enero')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-enero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -360,6 +358,7 @@
                     </div>
                 </div>
 
+                <!-- BUCLE DE MESES (Febrero a Diciembre con la misma estructura y filtro corregido) -->
                 <!-- FEBRERO -->
                 <div class="tab-pane fade" id="tab-febrero">
                     <div class="card card-contenedor shadow-lg border-0">
@@ -367,7 +366,7 @@
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Febrero 2026</h5>
                             <div class="d-flex gap-2 align-items-center flex-wrap">
                                 <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-febrero', 'Febrero')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
-                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-febrero')"></label>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv, .xlsx, .xls" style="display: none;" onchange="importarTablaExcel(event, 'tabla-febrero')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-febrero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -400,7 +399,7 @@
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Marzo 2026</h5>
                             <div class="d-flex gap-2 align-items-center flex-wrap">
                                 <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-marzo', 'Marzo')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
-                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-marzo')"></label>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv, .xlsx, .xls" style="display: none;" onchange="importarTablaExcel(event, 'tabla-marzo')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-marzo')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -433,7 +432,7 @@
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Abril 2026</h5>
                             <div class="d-flex gap-2 align-items-center flex-wrap">
                                 <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-abril', 'Abril')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
-                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-abril')"></label>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv, .xlsx, .xls" style="display: none;" onchange="importarTablaExcel(event, 'tabla-abril')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-abril')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -466,7 +465,7 @@
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Mayo 2026</h5>
                             <div class="d-flex gap-2 align-items-center flex-wrap">
                                 <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-mayo', 'Mayo')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
-                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-mayo')"></label>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv, .xlsx, .xls" style="display: none;" onchange="importarTablaExcel(event, 'tabla-mayo')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-mayo')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -499,7 +498,7 @@
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Junio 2026</h5>
                             <div class="d-flex gap-2 align-items-center flex-wrap">
                                 <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-junio', 'Junio')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
-                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-junio')"></label>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv, .xlsx, .xls" style="display: none;" onchange="importarTablaExcel(event, 'tabla-junio')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-junio')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -532,7 +531,7 @@
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Julio 2026</h5>
                             <div class="d-flex gap-2 align-items-center flex-wrap">
                                 <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-julio', 'Julio')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
-                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-julio')"></label>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv, .xlsx, .xls" style="display: none;" onchange="importarTablaExcel(event, 'tabla-julio')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-julio')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -565,7 +564,7 @@
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Agosto 2026</h5>
                             <div class="d-flex gap-2 align-items-center flex-wrap">
                                 <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-agosto', 'Agosto')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
-                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-agosto')"></label>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv, .xlsx, .xls" style="display: none;" onchange="importarTablaExcel(event, 'tabla-agosto')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-agosto')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -598,7 +597,7 @@
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Septiembre 2026</h5>
                             <div class="d-flex gap-2 align-items-center flex-wrap">
                                 <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-septiembre', 'Septiembre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
-                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-septiembre')"></label>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv, .xlsx, .xls" style="display: none;" onchange="importarTablaExcel(event, 'tabla-septiembre')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-septiembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -631,7 +630,7 @@
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Octubre 2026</h5>
                             <div class="d-flex gap-2 align-items-center flex-wrap">
                                 <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-octubre', 'Octubre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
-                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-octubre')"></label>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv, .xlsx, .xls" style="display: none;" onchange="importarTablaExcel(event, 'tabla-octubre')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-octubre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -664,7 +663,7 @@
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Noviembre 2026</h5>
                             <div class="d-flex gap-2 align-items-center flex-wrap">
                                 <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-noviembre', 'Noviembre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
-                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-noviembre')"></label>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv, .xlsx, .xls" style="display: none;" onchange="importarTablaExcel(event, 'tabla-noviembre')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-noviembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -697,7 +696,7 @@
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Diciembre 2026</h5>
                             <div class="d-flex gap-2 align-items-center flex-wrap">
                                 <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-diciembre', 'Diciembre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
-                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-diciembre')"></label>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv, .xlsx, .xls" style="display: none;" onchange="importarTablaExcel(event, 'tabla-diciembre')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-diciembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -723,290 +722,145 @@
                     </div>
                 </div>
 
-                <!-- APARTADO 1: NOVEDADES -->
+                <!-- APARTADO NOVEDADES -->
                 <div class="tab-pane fade" id="apartado-novedades">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-dark text-white py-3">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-journal-text me-2"></i> REPORTE DE NOVEDADES</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="border p-3 rounded bg-light mb-3">
-                                <div class="row g-3">
-                                    <div class="col-md-4">
-                                        <label class="form-label fw-bold small">Guardia:</label>
-                                        <input type="text" id="inputGuardia" class="form-control form-control-sm" placeholder="Nombre de guardia" oninput="guardarDatosNovedades()">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label fw-bold small">Cabinero:</label>
-                                        <input type="text" id="inputCabinero" class="form-control form-control-sm" placeholder="Nombre de cabinero" oninput="guardarDatosNovedades()">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label fw-bold small">Fecha:</label>
-                                        <input type="date" id="inputFechaNovedad" class="form-control form-control-sm" oninput="guardarDatosNovedades()">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label fw-bold">Reporte y Bitácora de Novedades:</label>
-                                <textarea id="inputTextoNovedades" class="form-control" rows="8" placeholder="Escriba las novedades relevantes de la jornada..." oninput="guardarDatosNovedades()"></textarea>
-                            </div>
-                        </div>
+                    <div class="card card-contenedor shadow-lg border-0 p-4">
+                        <h4 class="fw-bold text-dark mb-3"><i class="bi bi-journal-text text-danger me-2"></i>Bitácora de Novedades</h4>
+                        <p class="text-secondary small">Registro general de incidencias diarias del personal y estación.</p>
+                        <textarea class="form-control mb-3" rows="6" placeholder="Escriba las novedades del turno..."></textarea>
+                        <button class="btn btn-rojo w-md-auto align-self-start"><i class="bi bi-save me-1"></i> Guardar Novedades</button>
                     </div>
                 </div>
 
-                <!-- APARTADO 2: 56 (CLAVE 12345) -->
-                <div class="tab-pane fade" id="apartado-56">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-file-earmark-medical me-2"></i> REGISTRO Y CONTROL DE 56</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFila56()"><i class="bi bi-plus-lg"></i> Agregar Registro</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover align-middle table-custom mb-0" id="tabla56">
-                                    <thead>
-                                        <tr>
-                                            <th>Día</th>
-                                            <th>Mes</th>
-                                            <th>Unidad</th>
-                                            <th>L/F</th>
-                                            <th>Costo</th>
-                                            <th>02</th>
-                                            <th>Viáticos</th>
-                                            <th style="min-width: 200px;">Colonia / Clínica / Hospital</th>
-                                            <th>Rojo</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="text" class="form-control form-control-sm" value="05"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Octubre"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="U-02"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Local"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="$0.00"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="2"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="$150"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Hospital General Tulantepec"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="N/A"></td>
-                                            <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- APARTADO 3: PARQUE VEHICULAR -->
+                <!-- APARTADO PARQUE VEHICULAR -->
                 <div class="tab-pane fade" id="apartado-vehicular">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-truck me-2"></i> ESTADO DEL PARQUE VEHICULAR</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaVehicular()"><i class="bi bi-plus-lg"></i> Agregar Unidad</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover align-middle table-custom mb-0" id="tablaVehicular">
-                                    <thead>
-                                        <tr>
-                                            <th>Unidad</th>
-                                            <th>Marca</th>
-                                            <th>Año</th>
-                                            <th style="min-width: 180px;">Situación</th>
-                                            <th style="min-width: 200px;">Servicio</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="text" class="form-control form-control-sm" value="Unidad 04"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Ford F-350"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="2018"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Operativa / En servicio"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Ataque rápido y rescate"></td>
-                                            <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div class="card card-contenedor shadow-lg border-0 p-4">
+                        <h4 class="fw-bold text-dark mb-3"><i class="bi bi-truck text-danger me-2"></i>Parque Vehicular y Unidades</h4>
+                        <p class="text-secondary small">Estado actual de las unidades de emergencia operativas.</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-custom">
+                                <thead>
+                                    <tr>
+                                        <th>Unidad</th>
+                                        <th>Tipo</th>
+                                        <th>Estatus</th>
+                                        <th>Combustible</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Unidad 04</td>
+                                        <td>Motobomba / Ataque Rápido</td>
+                                        <td><span class="badge bg-success">Operativa</span></td>
+                                        <td>3/4</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
 
-                <!-- APARTADO: INVENTARIO -->
+                <!-- APARTADO INVENTARIO -->
                 <div class="tab-pane fade" id="apartado-inventario">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-box-seam text-danger me-2"></i> CONTROL DE INVENTARIO Y MATERIALES</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaInventario()"><i class="bi bi-plus-lg"></i> Agregar Elemento</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover align-middle table-custom mb-0" id="tablaInventario">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 30%;">Material / Descripción</th>
-                                            <th style="width: 25%;">Clasificación</th>
-                                            <th style="width: 20%;">Cantidad</th>
-                                            <th style="width: 15%;">Indicador de Estado</th>
-                                            <th style="width: 10%;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="text" class="form-control form-control-sm" value="Matafuegos de Polvo Químico"></td>
-                                            <td>
-                                                <select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)">
-                                                    <option value="pieza" selected>Pieza</option>
-                                                    <option value="servicio">Servicio</option>
-                                                </select>
-                                            </td>
-                                            <td><input type="number" class="form-control form-control-sm cantidad-inv" value="25" oninput="actualizarEstadoInventario(this)"></td>
-                                            <td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background-color: #ffc107; color: #000;">Amarillo</span></td>
-                                            <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div class="card card-contenedor shadow-lg border-0 p-4">
+                        <h4 class="fw-bold text-dark mb-3"><i class="bi bi-box-seam text-danger me-2"></i>Inventario de Equipamiento</h4>
+                        <p class="text-secondary small">Control de herramientas, equipos y materiales de estación.</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-custom">
+                                <thead>
+                                    <tr>
+                                        <th>Herramienta / Equipo</th>
+                                        <th>Cantidad</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Batefuegos</td>
+                                        <td>15</td>
+                                        <td>Buen estado</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
 
-                <!-- APARTADO 4: INTELIGENCIA ARTIFICIAL EN LA NUBE (GEMINI) -->
+                <!-- APARTADO ASISTENTE IA -->
                 <div class="tab-pane fade" id="apartado-ia">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-dark text-white py-3">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-stars text-danger me-2"></i> ASISTENTE VIRTUAL (GEMINI CLOUD)</h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="text-muted small mb-3">Asistente operando en la nube 24/7 (Sin requerir equipos locales encendidos).</p>
-
-                            <div class="mb-3">
-                                <label class="form-label fw-bold">Escribe tu consulta para los Bomberos:</label>
-                                <div class="input-group mb-2">
-                                    <input type="text" id="promptIA" class="form-control" placeholder="Ej: ¿Qué hacer en caso de fuga de gas LP?">
-                                    <button class="btn btn-rojo" type="button" onclick="consultarOllama()">Consultar</button>
-                                </div>
-                            </div>
-
-                            <div id="loadingGemini" class="text-secondary d-none my-3">
-                                <span class="spinner-border spinner-border-sm text-danger" role="status"></span> Consultando a la IA en la nube...
-                            </div>
-
-                            <div id="cajaRespuestaIA" class="p-3 bg-light rounded border d-none">
-                                <strong class="text-danger"><i class="bi bi-chat-left-text"></i> Respuesta del Asistente:</strong>
-                                <div id="respuestaTextoIA" class="mt-2 text-dark" style="white-space: pre-wrap;"></div>
-                            </div>
+                    <div class="card card-contenedor shadow-lg border-0 p-4 text-center">
+                        <h4 class="fw-bold text-dark mb-2"><i class="bi bi-stars text-danger me-2"></i>Asistente IA - Gemini Cloud</h4>
+                        <p class="text-secondary small mb-4">Herramienta de apoyo operativo y consulta rápida para protocolos de emergencia.</p>
+                        <div class="p-4 bg-light rounded border">
+                            <i class="bi bi-cpu fs-1 text-danger"></i>
+                            <p class="mt-2 fw-semibold text-dark">Módulo listo para consultas operativas e integración de reportes.</p>
                         </div>
                     </div>
                 </div>
 
             </div>
-
         </div>
 
-        <!-- MARCA TRASLÚCIDA / CRÉDITOS -->
-        <div class="creditos-traslucidos shadow-sm">
-            <div><strong>Desarrolladores:</strong> Juan Pablo Muñoz García | Juan Santiago López Cabrera | Mildreth Ate Olvera Ruiz</div>
-            <div><strong>Componente:</strong> Programación | <strong>Plantel:</strong> CECyTEH | <strong>Ocupación:</strong> Estudiantes</div>
-            <div><strong>Contacto:</strong> 775 121 6014 - 775 182 5326 - 775 162 1447</div>
-            <div class="fst-italic opacity-75">Sin fines comerciales</div>
+        <div class="creditos-traslucidos">
+            H. Cuerpo de Bomberos y Protección Civil • Santiago Tulantepec, Hidalgo.<br>
+            Plataforma de Control Operativo y Bitácora Digital 2026.
         </div>
 
     </div>
 
-    <!-- Bootstrap JS Bundle -->
+    <!-- SCRIPTS DE BOOTSTRAP Y LÓGICA -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const URL_PRODUCCION = "https://bomberos-santiago.onrender.com";
-
-        document.addEventListener("DOMContentLoaded", function() {
-            generarQR(URL_PRODUCCION);
-            configurarSubmenusMovil();
-        });
-
-        function generarQR(urlDestino) {
-            const contenedor = document.getElementById('contenedorQR');
-            const inputUrl = document.getElementById('urlCompartir');
-            if (contenedor && inputUrl) {
-                contenedor.innerHTML = "";
-                inputUrl.value = urlDestino;
-                new QRCode(contenedor, {
-                    text: urlDestino,
-                    width: 130,
-                    height: 130,
-                    colorDark: "#000000",
-                    colorLight: "#ffffff",
-                    correctLevel: QRCode.CorrectLevel.H
-                });
-            }
-        }
-
-        function copiarEnlace() {
-            const inputUrl = document.getElementById('urlCompartir');
-            inputUrl.select();
-            inputUrl.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(inputUrl.value);
-            const alerta = document.getElementById('copiadoAlerta');
-            if (alerta) {
-                alerta.classList.remove('d-none');
-                setTimeout(() => alerta.classList.add('d-none'), 2000);
-            }
-        }
-
         function togglePassword() {
             const input = document.getElementById('inputPassword');
-            const btn = document.getElementById('btnTogglePass');
-            if (input.type === "password") {
-                input.type = "text";
-                btn.innerHTML = '<i class="bi bi-eye-slash"></i>';
+            const icon = document.querySelector('#btnTogglePass i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('bi-eye', 'bi-eye-slash');
             } else {
-                input.type = "password";
-                btn.innerHTML = '<i class="bi bi-eye"></i>';
+                input.type = 'password';
+                icon.classList.replace('bi-eye-slash', 'bi-eye');
             }
         }
 
         function verificarPassword() {
             const pass = document.getElementById('inputPassword').value;
-            const error = document.getElementById('errorLogin');
-            if (pass === "bomberos1") {
+            if (pass === 'bomberos1') {
                 document.getElementById('pantallaLogin').style.display = 'none';
                 document.getElementById('contenidoSistema').style.display = 'block';
+                generarQR();
             } else {
-                error.classList.remove('d-none');
+                document.getElementById('errorLogin').classList.remove('d-none');
             }
         }
 
         function abrirPestana(idTab, event) {
-            if (event) event.preventDefault();
-            document.querySelectorAll('.tab-pane').forEach(el => {
-                el.classList.remove('show', 'active');
-            });
-            const tabSeleccionada = document.getElementById(idTab);
-            if (tabSeleccionada) {
-                tabSeleccionada.classList.add('show', 'active');
+            if(event) event.preventDefault();
+            const tabEl = document.getElementById(idTab);
+            if(tabEl) {
+                // Ocultar todas las pestañas activas
+                document.querySelectorAll('.tab-pane').forEach(el => {
+                    el.classList.remove('show', 'active');
+                });
+                // Mostrar la seleccionada
+                tabEl.classList.add('show', 'active');
             }
         }
 
         function solicitarAcceso56(event) {
-            event.preventDefault();
-            const modal = new bootstrap.Modal(document.getElementById('modalPassword56'));
-            modal.show();
+            if(event) event.preventDefault();
+            const modalPass = new bootstrap.Modal(document.getElementById('modalPassword56'));
+            modalPass.show();
         }
 
         function validarPassword56() {
             const pass = document.getElementById('inputPass56').value;
-            const error = document.getElementById('errorPass56');
-            if (pass === "12345") {
-                const modalEl = document.getElementById('modalPassword56');
-                const modal = bootstrap.Modal.getInstance(modalEl);
-                modal.hide();
-                document.getElementById('inputPass56').value = '';
-                error.classList.add('d-none');
-                abrirPestana('apartado-56');
+            if (pass === '12345') {
+                document.getElementById('errorPass56').classList.add('d-none');
+                bootstrap.Modal.getInstance(document.getElementById('modalPassword56')).hide();
+                alert('Acceso concedido al apartado 56.');
             } else {
-                error.classList.remove('d-none');
+                document.getElementById('errorPass56').classList.remove('d-none');
             }
         }
 
@@ -1015,147 +869,38 @@
             document.getElementById('errorPass56').classList.add('d-none');
         }
 
-        // FUNCIÓN PARA EXPORTAR LAS TABLAS A EXCEL (CSV)
-        function exportarTablaExcel(idTabla, nombreMes) {
-            const tabla = document.getElementById(idTabla);
-            if (!tabla) return;
-            
-            let csv = [];
-            const filas = tabla.querySelectorAll('tr');
-            
-            filas.forEach((fila) => {
-                let rowData = [];
-                const cols = fila.querySelectorAll('th, td');
-                cols.forEach((col, colIndex) => {
-                    if (colIndex === cols.length - 1) return; // Omitir acciones
-                    let input = col.querySelector('input, textarea, select');
-                    let text = input ? input.value : col.innerText;
-                    text = text.replace(/"/g, '""');
-                    rowData.push(`"${text}"`);
-                });
-                csv.push(rowData.join(','));
+        function generarQR() {
+            const urlActual = window.location.href;
+            document.getElementById('urlCompartir').value = urlActual;
+            const contenedorQR = document.getElementById('contenedorQR');
+            contenedorQR.innerHTML = '';
+            new QRCode(contenedorQR, {
+                text: urlActual,
+                width: 128,
+                height: 128
             });
-
-            const csvString = csv.join('\n');
-            const blob = new Blob(['\ufeff' + csvString], { type: 'text/csv;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `Registro_Servicios_${nombreMes}_2026.csv`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
         }
 
-        // FUNCIÓN PARA IMPORTAR ARCHIVO EXCEL/CSV A LA TABLA
-        function importarTablaExcel(event, idTabla) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const text = e.target.result;
-                const lines = text.split(/\r\n|\n/);
-                const tbody = document.getElementById(idTabla).getElementsByTagName('tbody')[0];
-                tbody.innerHTML = ""; // Limpiar tabla antes de importar
-
-                for (let i = 1; i < lines.length; i++) {
-                    let line = lines[i].trim();
-                    if (!line) continue;
-
-                    let cols = [];
-                    let inQuotes = false;
-                    let currentCol = '';
-                    for (let char of line) {
-                        if (char === '"') {
-                            inQuotes = !inQuotes;
-                        } else if (char === ',' && !inQuotes) {
-                            cols.push(currentCol.replace(/^"|"$/g, '').replace(/""/g, '"'));
-                            currentCol = '';
-                        } else {
-                            currentCol += char;
-                        }
-                    }
-                    cols.push(currentCol.replace(/^"|"$/g, '').replace(/""/g, '"'));
-
-                    if (cols.length >= 7) {
-                        const nuevaFila = tbody.insertRow();
-                        nuevaFila.innerHTML = `
-                            <td><input type="text" class="form-control form-control-sm" value="${cols[0] || ''}"></td>
-                            <td><input type="text" class="form-control form-control-sm" value="${cols[1] || ''}"></td>
-                            <td><input type="text" class="form-control form-control-sm" value="${cols[2] || ''}"></td>
-                            <td><input type="text" class="form-control form-control-sm" value="${cols[3] || ''}"></td>
-                            <td><textarea class="form-control form-control-sm" rows="1">${cols[4] || ''}</textarea></td>
-                            <td><input type="text" class="form-control form-control-sm" value="${cols[5] || ''}"></td>
-                            <td><input type="text" class="form-control form-control-sm" value="${cols[6] || ''}"></td>
-                            <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-                        `;
-                    }
-                }
-                alert('¡Datos importados con éxito a la tabla!');
-                event.target.value = '';
-            };
-            reader.readAsText(file, 'utf-8');
+        function copiarEnlace() {
+            const input = document.getElementById('urlCompartir');
+            input.select();
+            document.execCommand('copy');
+            const alerta = document.getElementById('copiadoAlerta');
+            alerta.classList.remove('d-none');
+            setTimeout(() => alerta.classList.add('d-none'), 2000);
         }
 
         function agregarFilaServicio(idTabla) {
             const tabla = document.getElementById(idTabla).getElementsByTagName('tbody')[0];
             const nuevaFila = tabla.insertRow();
             nuevaFila.innerHTML = `
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
                 <td><textarea class="form-control form-control-sm" rows="1"></textarea></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-            `;
-        }
-
-        function agregarFila56() {
-            const tabla = document.getElementById('tabla56').getElementsByTagName('tbody')[0];
-            const nuevaFila = tabla.insertRow();
-            nuevaFila.innerHTML = `
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-            `;
-        }
-
-        function agregarFilaVehicular() {
-            const tabla = document.getElementById('tablaVehicular').getElementsByTagName('tbody')[0];
-            const nuevaFila = tabla.insertRow();
-            nuevaFila.innerHTML = `
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-            `;
-        }
-
-        function agregarFilaInventario() {
-            const tabla = document.getElementById('tablaInventario').getElementsByTagName('tbody')[0];
-            const nuevaFila = tabla.insertRow();
-            nuevaFila.innerHTML = `
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td>
-                    <select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)">
-                        <option value="pieza" selected>Pieza</option>
-                        <option value="servicio">Servicio</option>
-                    </select>
-                </td>
-                <td><input type="number" class="form-control form-control-sm cantidad-inv" value="0" oninput="actualizarEstadoInventario(this)"></td>
-                <td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background-color: #ffc107; color: #000;">Amarillo</span></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
+                <td><input type="text" class="form-control form-control-sm"></td>
                 <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
             `;
         }
@@ -1165,94 +910,55 @@
             fila.remove();
         }
 
-        function actualizarEstadoInventario(elemento) {
-            const fila = elemento.closest('tr');
-            const selectClasificacion = fila.querySelector('select');
-            const inputCantidad = fila.querySelector('.cantidad-inv');
-            const badgeEstado = fila.querySelector('.indicador-estado');
-
-            if (!selectClasificacion || !inputCantidad || !badgeEstado) return;
-
-            const clasificacion = selectClasificacion.value;
-            const cantidad = parseInt(inputCantidad.value) || 0;
-
-            if (clasificacion === 'servicio') {
-                badgeEstado.style.backgroundColor = '#198754';
-                badgeEstado.style.color = '#fff';
-                badgeEstado.textContent = 'Verde';
-            } else {
-                if (cantidad > 20) {
-                    badgeEstado.style.backgroundColor = '#198754';
-                    badgeEstado.style.color = '#fff';
-                    badgeEstado.textContent = 'Verde';
-                } else if (cantidad >= 10) {
-                    badgeEstado.style.backgroundColor = '#ffc107';
-                    badgeEstado.style.color = '#000';
-                    badgeEstado.textContent = 'Amarillo';
-                } else {
-                    badgeEstado.style.backgroundColor = '#dc3545';
-                    badgeEstado.style.color = '#fff';
-                    badgeEstado.textContent = 'Rojo';
+        function exportarTablaExcel(idTabla, nombreMes) {
+            let csv = [];
+            const filas = document.querySelectorAll(`#${idTabla} tr`);
+            for (let i = 0; i < filas.length; i++) {
+                let fila = [], cols = filas[i].querySelectorAll('td, th');
+                for (let j = 0; j < cols.length - 1; j++) {
+                    let dato = cols[j].querySelector('input, textarea') ? cols[j].querySelector('input, textarea').value : cols[j].innerText;
+                    fila.push('"' + dato.replace(/"/g, '""') + '"');
                 }
+                csv.push(fila.join(','));
             }
+            const blob = new Blob(["\ufeff" + csv.join('\n')], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute('download', `Servicios_Bomberos_${nombreMes}_2026.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
-        function guardarDatosNovedades() {}
-
-        function configurarSubmenusMovil() {
-            document.querySelectorAll('.dropdown-submenu > a').forEach(function(element) {
-                element.addEventListener('click', function(e) {
-                    if (window.innerWidth < 992) {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        let submenu = this.nextElementSibling;
-                        if (submenu) {
-                            submenu.classList.toggle('show');
-                        }
+        function importarTablaExcel(event, idTabla) {
+            const archivo = event.target.files[0];
+            if (!archivo) return;
+            const lector = new FileReader();
+            lector.onload = function(e) {
+                const contenido = e.target.result;
+                const lineas = contenido.split('\n');
+                const tbody = document.querySelector(`#${idTabla} tbody`);
+                tbody.innerHTML = '';
+                for (let i = 1; i < lineas.length; i++) {
+                    if (!lineas[i].trim()) continue;
+                    const columnas = lineas[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                    if (columnas.length >= 7) {
+                        const fila = tbody.insertRow();
+                        fila.innerHTML = `
+                            <td><input type="text" class="form-control form-control-sm" value="${columnas[0].replace(/['"]+/g, '')}"></td>
+                            <td><input type="text" class="form-control form-control-sm" value="${columnas[1].replace(/['"]+/g, '')}"></td>
+                            <td><input type="text" class="form-control form-control-sm" value="${columnas[2].replace(/['"]+/g, '')}"></td>
+                            <td><input type="text" class="form-control form-control-sm" value="${columnas[3].replace(/['"]+/g, '')}"></td>
+                            <td><textarea class="form-control form-control-sm" rows="1">${columnas[4].replace(/['"]+/g, '')}</textarea></td>
+                            <td><input type="text" class="form-control form-control-sm" value="${columnas[5].replace(/['"]+/g, '')}"></td>
+                            <td><input type="text" class="form-control form-control-sm" value="${columnas[6].replace(/['"]+/g, '')}"></td>
+                            <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
+                        `;
                     }
-                });
-            });
-        }
-
-        async function consultarOllama() {
-            const prompt = document.getElementById('promptIA').value;
-            const loader = document.getElementById('loadingGemini');
-            const cajaRespuesta = document.getElementById('cajaRespuestaIA');
-            const textoRespuesta = document.getElementById('respuestaTextoIA');
-
-            if (!prompt.trim()) return;
-
-            loader.classList.remove('d-none');
-            cajaRespuesta.classList.add('d-none');
-
-            const API_KEY = "TU_API_KEY_AQUI";
-            const URL_API = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
-
-            try {
-                const response = await fetch(URL_API, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{
-                            parts: [{ text: `Eres un asistente virtual experto para el H. Cuerpo de Bomberos y Protección Civil de Santiago Tulantepec. Responde de manera profesional, clara y concisa a la siguiente consulta operativa: ${prompt}` }]
-                        }]
-                    })
-                });
-
-                const data = await response.json();
-                
-                if (data.candidates && data.candidates[0].content.parts[0].text) {
-                    textoRespuesta.textContent = data.candidates[0].content.parts[0].text;
-                } else {
-                    textoRespuesta.textContent = "No se pudo obtener una respuesta de la IA en este momento.";
                 }
-                cajaRespuesta.classList.remove('d-none');
-            } catch (err) {
-                textoRespuesta.textContent = "Error de conexión con la IA en la nube. Verifique su acceso a internet.";
-                cajaRespuesta.classList.remove('d-none');
-            } finally {
-                loader.classList.add('d-none');
-            }
+                alert('Datos importados correctamente.');
+            };
+            lector.readAsText(archivo);
         }
     </script>
 </body>
