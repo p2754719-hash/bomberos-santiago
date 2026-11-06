@@ -8,1092 +8,238 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        :root {
-            --rojo-institucional: #7a0000;
-            --rojo-hover: #960000;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #212529;
-            position: relative;
-            min-height: 100vh;
-            background-color: #121212;
-            overflow-x: hidden;
-        }
-
-        .bg-slide {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2;
-            background-image: url('escudo.jpg');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-color: #1c232d;
-        }
-
-        .bg-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: rgba(15, 20, 26, 0.75);
-        }
-
-        .header-oficial {
-            background-color: var(--rojo-institucional);
-            color: #ffffff;
-            border-bottom: 4px solid #400000;
-            padding: 10px 15px;
-        }
-        .escudo-logo {
-            height: 48px; width: 48px;
-            border-radius: 50%;
-            background-color: #fff;
-            padding: 2px;
-            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.6));
-            object-fit: cover;
-        }
-        .barra-navegacion-superior {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
-            border-bottom: 2px solid #dee2e6;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-            z-index: 1020;
-        }
-        .dropdown-toggle-apartados {
-            background-color: #1a1a1a !important;
-            color: white !important;
-            border-radius: 4px;
-            padding: 8px 16px !important;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-        .dropdown-toggle-apartados:hover {
-            background-color: var(--rojo-institucional) !important;
-        }
-        .card-contenedor {
-            background-color: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(6px);
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .table-custom th {
-            background-color: #1a1a1a;
-            color: white;
-            font-size: 0.8rem;
-            text-align: center;
-            vertical-align: middle;
-            white-space: nowrap;
-        }
-        .table-custom td {
-            vertical-align: middle;
-        }
-        .btn-rojo {
-            background-color: var(--rojo-institucional);
-            color: white;
-            font-weight: 600;
-        }
-        .btn-rojo:hover {
-            background-color: var(--rojo-hover);
-            color: white;
-        }
-        #pantallaLogin {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-        }
-        .card-login {
-            background-color: rgba(20, 24, 30, 0.95);
-            backdrop-filter: blur(10px);
-            border-top: 5px solid var(--rojo-institucional);
-            width: 100%; max-width: 400px;
-            border-radius: 8px;
-            color: white;
-        }
-        .creditos-traslucidos {
-            position: fixed;
-            bottom: 10px; left: 10px; right: 10px;
-            background-color: rgba(18, 18, 18, 0.85);
-            color: #ffffff;
-            backdrop-filter: blur(6px);
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 0.65rem;
-            line-height: 1.3;
-            z-index: 9000;
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            text-align: center;
-            pointer-events: auto;
-        }
-
-        .dropdown-submenu {
-            position: relative;
-        }
-        .dropdown-submenu > .dropdown-menu {
-            top: 0;
-            right: 100%;
-            left: auto;
-            margin-top: -6px;
-            margin-right: -1px;
-            display: none;
-        }
-        .dropdown-submenu:hover > .dropdown-menu,
-        .dropdown-submenu > .dropdown-menu.show {
-            display: block;
-        }
-
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-
+        :root {--rojo: #7a0000; --rojo-h: #960000;}
+        body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #212529; min-height: 100vh; background: #121212; overflow-x: hidden;}
+        .bg-slide {position: fixed; top:0; left:0; width:100%; height:100%; z-index:-2; background: url('escudo.jpg') center/contain no-repeat #1c232d;}
+        .bg-overlay {position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1; background: rgba(15,20,26,0.75);}
+        .header-oficial {background: var(--rojo); color: #fff; border-bottom: 4px solid #400000; padding: 10px 15px;}
+        .escudo-logo {height: 48px; width: 48px; border-radius: 50%; background: #fff; padding: 2px; object-fit: cover;}
+        .barra-navegacion-superior {background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); border-bottom: 2px solid #dee2e6; box-shadow: 0 4px 6px rgba(0,0,0,0.15);}
+        .dropdown-toggle-apartados {background: #1a1a1a !important; color: #fff !important; font-weight: 700; font-size: 0.9rem;}
+        .dropdown-toggle-apartados:hover {background: var(--rojo) !important;}
+        .card-contenedor {background: rgba(255,255,255,0.96); border-radius: 8px; margin-bottom: 20px;}
+        .table-custom th {background: #1a1a1a; color: #fff; font-size: 0.8rem; text-align: center; white-space: nowrap;}
+        .btn-rojo {background: var(--rojo); color: #fff; font-weight: 600;}
+        .btn-rojo:hover {background: var(--rojo-h); color: #fff;}
+        #pantallaLogin {position: fixed; top:0; left:0; width:100%; height:100%; z-index:9999; display:flex; align-items:center; justify-content:center; padding:15px;}
+        .card-login {background: rgba(20,24,30,0.95); border-top: 5px solid var(--rojo); width: 100%; max-width: 400px; border-radius: 8px; color: #fff;}
+        .creditos-traslucidos {position: fixed; bottom: 10px; left: 10px; right: 10px; background: rgba(18,18,18,0.85); color: #fff; padding: 8px; border-radius: 6px; font-size: 0.65rem; text-align: center; z-index: 9000; border: 1px solid rgba(255,255,255,0.18);}
+        .dropdown-submenu {position: relative;}
+        .dropdown-submenu > .dropdown-menu {top: 0; right: 100%; left: auto; margin-top: -6px; display: none;}
+        .dropdown-submenu:hover > .dropdown-menu, .dropdown-submenu > .dropdown-menu.show {display: block;}
+        .table-responsive {width: 100%; overflow-x: auto;}
         @media (max-width: 768px) {
-            .header-oficial h4 {
-                font-size: 0.95rem !important;
-            }
-            .header-oficial small {
-                font-size: 0.68rem !important;
-            }
-            .creditos-traslucidos {
-                position: relative !important;
-                bottom: auto !important;
-                left: auto !important;
-                right: auto !important;
-                margin: 20px 10px 40px 10px !important;
-            }
-            .card-body {
-                padding: 12px !important;
-            }
-            .dropdown-menu {
-                max-height: 70vh;
-                overflow-y: auto;
-            }
+            .creditos-traslucidos {position: relative !important; margin: 20px 10px 40px 10px !important;}
+            .dropdown-menu {max-height: 70vh; overflow-y: auto;}
         }
     </style>
 </head>
 <body>
+    <div class="bg-slide"></div><div class="bg-overlay"></div>
 
-    <div class="bg-slide"></div>
-    <div class="bg-overlay"></div>
-
-    <!-- MODAL DE QR -->
+    <!-- MODAL QR -->
     <div class="modal fade" id="modalCompartirQR" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content bg-dark text-white border-secondary">
                 <div class="modal-header border-secondary py-2">
-                    <h6 class="modal-title fw-bold"><i class="bi bi-phone text-danger"></i> Escanear con Celular</h6>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h6 class="modal-title fw-bold"><i class="bi bi-phone text-danger"></i> QR / Celular</h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body text-center p-3">
-                    <p class="small text-secondary mb-2">Escanea para abrir en vivo:</p>
                     <div id="contenedorQR" class="bg-white p-2 d-inline-block rounded mb-3"></div>
                     <div class="input-group input-group-sm mb-2">
                         <input type="text" id="urlCompartir" class="form-control text-center bg-secondary text-white border-0" readonly>
                         <button class="btn btn-rojo" type="button" onclick="copiarEnlace()"><i class="bi bi-clipboard"></i></button>
                     </div>
-                    <div id="copiadoAlerta" class="text-success small d-none">¡Enlace copiado!</div>
+                    <div id="copiadoAlerta" class="text-success small d-none">¡Copiado!</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- MODAL DE CONTRASEÑA PARA APARTADO 56 (Clave: 12345) -->
+    <!-- MODAL 56 -->
     <div class="modal fade" id="modalPassword56" tabindex="-1" data-bs-backdrop="static" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content bg-dark text-white border-secondary">
                 <div class="modal-header border-secondary py-2">
                     <h6 class="modal-title fw-bold text-danger"><i class="bi bi-shield-lock"></i> Seguridad 56</h6>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" onclick="cancelarPassword56()"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" onclick="document.getElementById('inputPass56').value=''"></button>
                 </div>
                 <div class="modal-body text-center p-3">
-                    <p class="small text-secondary mb-2">Ingrese contraseña (12345):</p>
+                    <p class="small text-secondary mb-2">Contraseña (12345):</p>
                     <input type="password" id="inputPass56" class="form-control form-control-sm text-center mb-2" placeholder="Clave">
-                    <div id="errorPass56" class="text-danger small mb-2 d-none">Contraseña incorrecta.</div>
+                    <div id="errorPass56" class="text-danger small mb-2 d-none">Incorrecta.</div>
                     <button class="btn btn-rojo btn-sm w-100 fw-bold" onclick="validarPassword56()">ENTRAR</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- PANTALLA DE ACCESO (Clave: bomberos1) -->
+    <!-- LOGIN -->
     <div id="pantallaLogin">
         <div class="card card-login p-4 shadow-lg text-center">
-            <div class="mb-3">
-                <img src="escudo.jpg" onerror="this.onerror=null; this.src='escudo (2).jpg';" alt="Escudo de Bomberos" class="escudo-logo mb-2" style="height: 70px; width: 70px;">
-                <h4 class="fw-bold m-0 mt-1 fs-5">Acceso Restringido</h4>
-                <p class="text-secondary small mt-1">H. Cuerpo de Bomberos y Protección Civil<br>Santiago Tulantepec</p>
-            </div>
+            <img src="escudo.jpg" onerror="this.onerror=null; this.src='escudo (2).jpg';" class="escudo-logo mb-2 mx-auto" style="height:70px; width:70px;">
+            <h4 class="fw-bold fs-5">Acceso Restringido</h4>
+            <p class="text-secondary small">Bomberos Santiago Tulantepec</p>
             <div class="mb-3 text-start">
-                <label class="form-label small">Contraseña de acceso:</label>
+                <label class="form-label small">Contraseña:</label>
                 <div class="input-group">
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Ingrese clave">
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Clave">
                     <button class="btn btn-outline-secondary" type="button" id="btnTogglePass" onclick="togglePassword()"><i class="bi bi-eye"></i></button>
                 </div>
             </div>
-            <button class="btn btn-rojo w-100 fw-bold py-2" onclick="verificarPassword()">INGRESAR AL SISTEMA</button>
-            <div id="errorLogin" class="text-danger text-center mt-2 small d-none">Contraseña incorrecta. (Clave: bomberos1)</div>
+            <button class="btn btn-rojo w-100 fw-bold py-2" onclick="verificarPassword()">INGRESAR</button>
+            <div id="errorLogin" class="text-danger text-center mt-2 small d-none">Clave incorrecta (bomberos1)</div>
         </div>
     </div>
 
-    <!-- SISTEMA PRINCIPAL -->
+    <!-- SISTEMA -->
     <div id="contenidoSistema" style="display: none;">
-        
         <header class="header-oficial shadow-sm">
             <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <div class="d-flex align-items-center gap-2">
-                    <img src="escudo.jpg" onerror="this.onerror=null; this.src='escudo (2).jpg';" alt="Escudo Oficial" class="escudo-logo">
+                    <img src="escudo.jpg" onerror="this.onerror=null; this.src='escudo (2).jpg';" class="escudo-logo">
                     <div>
-                        <h4 class="m-0 fw-bold" style="font-size: 1.1rem;">H. CUERPO DE BOMBEROS Y PROTECCIÓN CIVIL</h4>
-                        <small class="text-light opacity-80">Santiago Tulantepec - Control Operativo 2026</small>
+                        <h4 class="m-0 fw-bold" style="font-size: 1.1rem;">H. CUERPO DE BOMBEROS</h4>
+                        <small class="text-light">Santiago Tulantepec - Control 2026</small>
                     </div>
                 </div>
                 <button onclick="location.reload()" class="btn btn-outline-light btn-sm"><i class="bi bi-box-arrow-right"></i> Salir</button>
             </div>
         </header>
 
-        <!-- BARRA SUPERIOR CON MENÚ DESPLEGABLE DE APARTADOS -->
         <div class="barra-navegacion-superior sticky-top py-2">
             <div class="container-fluid px-3 d-flex justify-content-between align-items-center">
-                <span class="fw-bold text-dark small"><i class="bi bi-shield-fill-exclamation text-danger"></i> PANEL OPERATIVO</span>
-                
+                <span class="fw-bold text-dark small"><i class="bi bi-shield-fill-exclamation text-danger"></i> PANEL</span>
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle dropdown-toggle-apartados" type="button" id="btnApartadosPrincipal" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn dropdown-toggle dropdown-toggle-apartados" type="button" id="btnApartadosPrincipal" data-bs-toggle="dropdown">
                         <i class="bi bi-folder2-open me-1"></i> APARTADOS
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow" aria-labelledby="btnApartadosPrincipal">
-                        
-                        <!-- BOTÓN DE CÓDIGO QR DENTRO DE APARTADOS -->
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow">
                         <li><a class="dropdown-item fw-bold text-warning" href="#" data-bs-toggle="modal" data-bs-target="#modalCompartirQR"><i class="bi bi-qr-code text-danger me-2"></i> Código QR / Móvil</a></li>
                         <li><hr class="dropdown-divider"></li>
-
-                        <!-- SUBMENÚ: REGISTRO DE SERVICIOS -->
                         <li class="dropdown-submenu">
-                            <a class="dropdown-item dropdown-toggle d-flex justify-content-between align-items-center" href="#">
-                                <span><i class="bi bi-calendar-check text-danger me-2"></i> Registro de Servicios</span>
-                            </a>
+                            <a class="dropdown-item dropdown-toggle d-flex justify-content-between align-items-center" href="#"><span><i class="bi bi-calendar-check text-danger me-2"></i> Servicios</span></a>
                             <ul class="dropdown-menu dropdown-menu-dark shadow">
-                                <li><h6 class="dropdown-header text-uppercase text-danger fw-bold" style="font-size: 0.7rem;">MESES 2026</h6></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-enero', event)"><i class="bi bi-calendar-event me-2"></i>Enero 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-febrero', event)"><i class="bi bi-calendar-event me-2"></i>Febrero 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-marzo', event)"><i class="bi bi-calendar-event me-2"></i>Marzo 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-abril', event)"><i class="bi bi-calendar-event me-2"></i>Abril 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-mayo', event)"><i class="bi bi-calendar-event me-2"></i>Mayo 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-junio', event)"><i class="bi bi-calendar-event me-2"></i>Junio 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-julio', event)"><i class="bi bi-calendar-event me-2"></i>Julio 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-agosto', event)"><i class="bi bi-calendar-event me-2"></i>Agosto 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-septiembre', event)"><i class="bi bi-calendar-event me-2"></i>Septiembre 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-octubre', event)"><i class="bi bi-calendar-event me-2"></i>Octubre 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-noviembre', event)"><i class="bi bi-calendar-event me-2"></i>Noviembre 2026</a></li>
-                                <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('tab-diciembre', event)"><i class="bi bi-calendar-event me-2"></i>Diciembre 2026</a></li>
+                                <li><h6 class="dropdown-header text-uppercase text-danger fw-bold" style="font-size:0.7rem;">MESES 2026</h6></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-enero', event)">Enero</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-febrero', event)">Febrero</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-marzo', event)">Marzo</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-abril', event)">Abril</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-mayo', event)">Mayo</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-junio', event)">Junio</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-julio', event)">Julio</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-agosto', event)">Agosto</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-septiembre', event)">Septiembre</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-octubre', event)">Octubre</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-noviembre', event)">Noviembre</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-diciembre', event)">Diciembre</a></li>
                             </ul>
                         </li>
-
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-novedades', event)"><i class="bi bi-journal-text me-2"></i> Novedades</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="abrirPestana('apartado-novedades', event)"><i class="bi bi-journal-text me-2"></i> Novedades</a></li>
                         <li><a class="dropdown-item" href="#" onclick="solicitarAcceso56(event)"><i class="bi bi-file-earmark-medical me-2"></i> 56</a></li>
-                        <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-vehicular', event)"><i class="bi bi-truck me-2"></i> Parque Vehicular</a></li>
-                        <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-inventario', event)"><i class="bi bi-box-seam me-2"></i> Inventario</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="abrirPestana('apartado-vehicular', event)"><i class="bi bi-truck me-2"></i> Parque Vehicular</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="abrirPestana('apartado-inventario', event)"><i class="bi bi-box-seam me-2"></i> Inventario</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-ia', event)"><i class="bi bi-stars text-danger me-2"></i> Asistente IA Local (Ollama)</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="abrirPestana('apartado-ia', event)"><i class="bi bi-stars text-danger me-2"></i> IA Local</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="container-fluid mt-3 px-2 px-md-4 pb-5">
-
             <div class="tab-content mb-5">
+                <!-- MESES (Enero a Diciembre con sus respectivas tablas funcionales) -->
+                <div class="tab-pane fade" id="tab-enero"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">Enero 2026</h5><button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-enero')"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-enero"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="001"></td><td><input type="text" class="form-control form-control-sm" value="Incendio"></td><td><input type="text" class="form-control form-control-sm" value="U-04"></td><td><input type="text" class="form-control form-control-sm" value="1"></td><td><textarea class="form-control form-control-sm" rows="1">Agua</textarea></td><td><input type="text" class="form-control form-control-sm" value="Servicio"></td><td><input type="text" class="form-control form-control-sm" value="Juan P."></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
+
+                <div class="tab-pane fade" id="tab-febrero"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">Febrero 2026</h5><button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-febrero')"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-febrero"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
                 
-                <!-- TABLAS DE REGISTRO DE SERVICIOS POR MES -->
-                <div class="tab-pane fade" id="tab-enero">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Enero 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-enero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-enero">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="text" class="form-control form-control-sm" value="001"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Incendio en pastizal"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Unidad 04"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="1"></td>
-                                            <td><textarea class="form-control form-control-sm" rows="1">Matafuegos, batefuegos, 500L agua</textarea></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Servicio"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="REP-102 / Juan P."></td>
-                                            <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="tab-pane fade" id="tab-marzo"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">Marzo 2026</h5><button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-marzo')"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-marzo"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
+                
+                <div class="tab-pane fade" id="tab-abril"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">Abril 2026</h5><button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-abril')"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-abril"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
+                
+                <div class="tab-pane fade" id="tab-mayo"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">Mayo 2026</h5><button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-mayo')"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-mayo"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
+                
+                <div class="tab-pane fade" id="tab-junio"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">Junio 2026</h5><button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-junio')"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-junio"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
+                
+                <div class="tab-pane fade" id="tab-julio"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">Julio 2026</h5><button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-julio')"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-julio"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
+                
+                <div class="tab-pane fade" id="tab-agosto"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">Agosto 2026</h5><button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-agosto')"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-agosto"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
+                
+                <div class="tab-pane fade" id="tab-septiembre"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">Septiembre 2026</h5><button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-septiembre')"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-septiembre"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
+                
+                <div class="tab-pane fade" id="tab-octubre"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">Octubre 2026</h5><button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-octubre')"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-octubre"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
+                
+                <div class="tab-pane fade" id="tab-noviembre"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">Noviembre 2026</h5><button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-noviembre')"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-noviembre"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
+                
+                <div class="tab-pane fade" id="tab-diciembre"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">Diciembre 2026</h5><button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-diciembre')"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-diciembre"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
 
-                <div class="tab-pane fade" id="tab-febrero">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Febrero 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-febrero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-febrero">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- NOVEDADES -->
+                <div class="tab-pane fade" id="apartado-novedades"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white py-3"><h5 class="m-0 fw-bold fs-6">NOVEDADES</h5></div><div class="card-body"><div class="border p-3 rounded bg-light mb-3"><div class="row g-3"><div class="col-md-4"><label class="form-label fw-bold small">Guardia:</label><input type="text" class="form-control form-control-sm"></div><div class="col-md-4"><label class="form-label fw-bold small">Cabinero:</label><input type="text" class="form-control form-control-sm"></div><div class="col-md-4"><label class="form-label fw-bold small">Fecha:</label><input type="date" class="form-control form-control-sm"></div></div></div><label class="form-label fw-bold">Bitácora:</label><textarea class="form-control" rows="8"></textarea></div></div></div>
 
-                <div class="tab-pane fade" id="tab-marzo">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Marzo 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-marzo')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-marzo">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- 56 -->
+                <div class="tab-pane fade" id="apartado-56"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">CONTROL 56</h5><button class="btn btn-sm btn-rojo" onclick="agregarFila56()"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tabla56"><thead><tr><th>Día</th><th>Mes</th><th>Unidad</th><th>L/F</th><th>Costo</th><th>02</th><th>Viáticos</th><th>Destino</th><th>Rojo</th><th>Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="05"></td><td><input type="text" class="form-control form-control-sm" value="Octubre"></td><td><input type="text" class="form-control form-control-sm" value="U-02"></td><td><input type="text" class="form-control form-control-sm" value="Local"></td><td><input type="text" class="form-control form-control-sm" value="$0"></td><td><input type="text" class="form-control form-control-sm" value="2"></td><td><input type="text" class="form-control form-control-sm" value="$150"></td><td><input type="text" class="form-control form-control-sm" value="Hospital"></td><td><input type="text" class="form-control form-control-sm" value="N/A"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
 
-                <div class="tab-pane fade" id="tab-abril">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Abril 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-abril')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-abril">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- VEHICULAR -->
+                <div class="tab-pane fade" id="apartado-vehicular"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">PARQUE VEHICULAR</h5><button class="btn btn-sm btn-rojo" onclick="agregarFilaVehicular()"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tablaVehicular"><thead><tr><th>Unidad</th><th>Marca</th><th>Año</th><th>Situación</th><th>Servicio</th><th>Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="U-04"></td><td><input type="text" class="form-control form-control-sm" value="Ford"></td><td><input type="text" class="form-control form-control-sm" value="2018"></td><td><input type="text" class="form-control form-control-sm" value="Operativa"></td><td><input type="text" class="form-control form-control-sm" value="Rescate"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
 
-                <div class="tab-pane fade" id="tab-mayo">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Mayo 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-mayo')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-mayo">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- INVENTARIO -->
+                <div class="tab-pane fade" id="apartado-inventario"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">INVENTARIO</h5><button class="btn btn-sm btn-rojo" onclick="agregarFilaInventario()"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tablaInventario"><thead><tr><th>Material</th><th>Clasificación</th><th>Cantidad</th><th>Estado</th><th>Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="Matafuegos"></td><td><select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)"><option value="pieza" selected>Pieza</option><option value="servicio">Servicio</option></select></td><td><input type="number" class="form-control form-control-sm cantidad-inv" value="25" oninput="actualizarEstadoInventario(this)"></td><td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background:#ffc107;color:#000;">Amarillo</span></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
 
-                <div class="tab-pane fade" id="tab-junio">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Junio 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-junio')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-junio">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="tab-julio">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Julio 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-julio')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-julio">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="tab-agosto">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Agosto 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-agosto')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-agosto">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="tab-septiembre">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Septiembre 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-septiembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-septiembre">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="tab-octubre">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Octubre 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-octubre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-octubre">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="tab-noviembre">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Noviembre 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-noviembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-noviembre">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="tab-diciembre">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Diciembre 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-diciembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-diciembre">
-                                    <thead>
-                                        <tr>
-                                            <th style="min-width: 80px;">Número</th>
-                                            <th style="min-width: 160px;">Servicio</th>
-                                            <th style="min-width: 110px;">Unidad</th>
-                                            <th style="min-width: 90px;">Cantidad</th>
-                                            <th style="min-width: 220px;">Materiales / Maquinaria / Herramientas</th>
-                                            <th style="min-width: 130px;">Unidad de Medida</th>
-                                            <th style="min-width: 150px;">Hoja de Atención / Reportante</th>
-                                            <th style="min-width: 70px;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- APARTADO 1: NOVEDADES -->
-                <div class="tab-pane fade" id="apartado-novedades">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-dark text-white py-3">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-journal-text me-2"></i> REPORTE DE NOVEDADES</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="border p-3 rounded bg-light mb-3">
-                                <div class="row g-3">
-                                    <div class="col-md-4">
-                                        <label class="form-label fw-bold small">Guardia:</label>
-                                        <input type="text" id="inputGuardia" class="form-control form-control-sm" placeholder="Nombre de guardia" oninput="guardarDatosNovedades()">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label fw-bold small">Cabinero:</label>
-                                        <input type="text" id="inputCabinero" class="form-control form-control-sm" placeholder="Nombre de cabinero" oninput="guardarDatosNovedades()">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label fw-bold small">Fecha:</label>
-                                        <input type="date" id="inputFechaNovedad" class="form-control form-control-sm" oninput="guardarDatosNovedades()">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label fw-bold">Reporte y Bitácora de Novedades:</label>
-                                <textarea id="inputTextoNovedades" class="form-control" rows="8" placeholder="Escriba las novedades relevantes de la jornada..." oninput="guardarDatosNovedades()"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- APARTADO 2: 56 (CLAVE 12345) -->
-                <div class="tab-pane fade" id="apartado-56">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-file-earmark-medical me-2"></i> REGISTRO Y CONTROL DE 56</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFila56()"><i class="bi bi-plus-lg"></i> Agregar Registro</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover align-middle table-custom mb-0" id="tabla56">
-                                    <thead>
-                                        <tr>
-                                            <th>Día</th>
-                                            <th>Mes</th>
-                                            <th>Unidad</th>
-                                            <th>L/F</th>
-                                            <th>Costo</th>
-                                            <th>02</th>
-                                            <th>Viáticos</th>
-                                            <th style="min-width: 200px;">Colonia / Clínica / Hospital</th>
-                                            <th>Rojo</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="text" class="form-control form-control-sm" value="05"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Octubre"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="U-02"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Local"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="$0.00"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="2"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="$150"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Hospital General Tulantepec"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="N/A"></td>
-                                            <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- APARTADO 3: PARQUE VEHICULAR -->
-                <div class="tab-pane fade" id="apartado-vehicular">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-truck me-2"></i> ESTADO DEL PARQUE VEHICULAR</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaVehicular()"><i class="bi bi-plus-lg"></i> Agregar Unidad</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover align-middle table-custom mb-0" id="tablaVehicular">
-                                    <thead>
-                                        <tr>
-                                            <th>Unidad</th>
-                                            <th>Marca</th>
-                                            <th>Año</th>
-                                            <th style="min-width: 180px;">Situación</th>
-                                            <th style="min-width: 200px;">Servicio</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="text" class="form-control form-control-sm" value="Unidad 04"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Ford F-350"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="2018"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Operativa / En servicio"></td>
-                                            <td><input type="text" class="form-control form-control-sm" value="Ataque rápido y rescate"></td>
-                                            <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- APARTADO: INVENTARIO -->
-                <div class="tab-pane fade" id="apartado-inventario">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-box-seam text-danger me-2"></i> CONTROL DE INVENTARIO Y MATERIALES</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaInventario()"><i class="bi bi-plus-lg"></i> Agregar Elemento</button>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-hover align-middle table-custom mb-0" id="tablaInventario">
-                                    <thead>
-                                        <tr>
-                                            <th style="width: 30%;">Material / Descripción</th>
-                                            <th style="width: 25%;">Clasificación</th>
-                                            <th style="width: 20%;">Cantidad</th>
-                                            <th style="width: 15%;">Indicador de Estado</th>
-                                            <th style="width: 10%;">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><input type="text" class="form-control form-control-sm" value="Matafuegos de Polvo Químico"></td>
-                                            <td>
-                                                <select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)">
-                                                    <option value="pieza" selected>Pieza</option>
-                                                    <option value="servicio">Servicio</option>
-                                                </select>
-                                            </td>
-                                            <td><input type="number" class="form-control form-control-sm cantidad-inv" value="25" oninput="actualizarEstadoInventario(this)"></td>
-                                            <td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background-color: #ffc107; color: #000;">Amarillo</span></td>
-                                            <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- APARTADO 4: INTELIGENCIA ARTIFICIAL (LOCAL - OLLAMA) -->
-                <div class="tab-pane fade" id="apartado-ia">
-                    <div class="card card-contenedor shadow-lg border-0">
-                        <div class="card-header bg-dark text-white py-3">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-stars text-danger me-2"></i> ASISTENTE TÉCNICO LOCAL (OLLAMA)</h5>
-                        </div>
-                        <div class="card-body">
-                            <p class="text-muted small mb-3">Modelo ligero ejecutándose localmente.</p>
-
-                            <div class="mb-3">
-                                <label class="form-label fw-bold">Escribe tu consulta para los Bomberos:</label>
-                                <div class="input-group mb-2">
-                                    <input type="text" id="promptIA" class="form-control" placeholder="Ej: ¿Qué hacer en caso de fuga de gas LP?">
-                                    <button class="btn btn-rojo" type="button" onclick="consultarOllama()">Consultar</button>
-                                </div>
-                                <small class="text-secondary">Modelo: <input type="text" id="nombreModelo" class="form-control form-control-sm d-inline-block w-25 ms-1" value="tinyllama:latest"></small>
-                            </div>
-
-                            <div id="loadingGemini" class="text-secondary d-none my-3">
-                                <span class="spinner-border spinner-border-sm text-danger" role="status"></span> Procesando localmente...
-                            </div>
-
-                            <div id="cajaRespuestaIA" class="p-3 bg-light rounded border d-none">
-                                <strong class="text-danger"><i class="bi bi-chat-left-text"></i> Respuesta de la IA Local:</strong>
-                                <div id="respuestaTextoIA" class="mt-2 text-dark" style="white-space: pre-wrap;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <!-- IA -->
+                <div class="tab-pane fade" id="apartado-ia"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white py-3"><h5 class="m-0 fw-bold fs-6">ASISTENTE IA</h5></div><div class="card-body"><div class="input-group mb-2"><input type="text" id="promptIA" class="form-control" placeholder="Consulta..."><button class="btn btn-rojo" type="button" onclick="consultarOllama()">Consultar</button></div><small class="text-secondary">Modelo: <input type="text" id="nombreModelo" class="form-control form-control-sm d-inline-block w-25 ms-1" value="tinyllama:latest"></small><div id="loadingGemini" class="text-secondary d-none my-3"><span class="spinner-border spinner-border-sm text-danger"></span> Procesando...</div><div id="cajaRespuestaIA" class="p-3 bg-light rounded border d-none mt-2"><div id="respuestaTextoIA" class="text-dark" style="white-space: pre-wrap;"></div></div></div></div></div>
             </div>
-
         </div>
 
-        <!-- MARCA TRASLÚCIDA / CRÉDITOS -->
         <div class="creditos-traslucidos shadow-sm">
-            <div><strong>Desarrolladores:</strong> Juan Pablo Muñoz García | Juan Santiago López Cabrera | Mildreth Ate Olvera Ruiz</div>
-            <div><strong>Componente:</strong> Programación | <strong>Plantel:</strong> CECyTEH | <strong>Ocupación:</strong> Estudiantes</div>
-            <div><strong>Contacto:</strong> 775 121 6014 - 775 182 5326 - 775 162 1447</div>
-            <div class="fst-italic opacity-75">Sin fines comerciales</div>
+            <div><strong>Desarrolladores:</strong> Juan Pablo Muñoz | Juan Santiago López | Mildreth Ate Olvera</div>
+            <div>Programación | CECyTEH | Estudiantes</div>
         </div>
-
     </div>
 
-    <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const URL_PRODUCCION = "https://bomberos-santiago.onrender.com";
-
-        document.addEventListener("DOMContentLoaded", function() {
-            generarQR(URL_PRODUCCION);
-            configurarSubmenusMovil();
+        document.addEventListener("DOMContentLoaded", () => {
+            const cont = document.getElementById('contenedorQR'), inp = document.getElementById('urlCompartir');
+            if(cont && inp) { inp.value = URL_PRODUCCION; new QRCode(cont, {text: URL_PRODUCCION, width: 130, height: 130, correctLevel: QRCode.CorrectLevel.H}); }
+            document.querySelectorAll('.dropdown-submenu > a').forEach(el => {
+                el.addEventListener('click', e => { if(window.innerWidth < 992) { e.stopPropagation(); e.preventDefault(); el.nextElementSibling?.classList.toggle('show'); } });
+            });
         });
-
-        function generarQR(urlDestino) {
-            const contenedor = document.getElementById('contenedorQR');
-            const inputUrl = document.getElementById('urlCompartir');
-            if (contenedor && inputUrl) {
-                contenedor.innerHTML = "";
-                inputUrl.value = urlDestino;
-                new QRCode(contenedor, {
-                    text: urlDestino,
-                    width: 130,
-                    height: 130,
-                    colorDark: "#000000",
-                    colorLight: "#ffffff",
-                    correctLevel: QRCode.CorrectLevel.H
-                });
+        function copiarEnlace() { const i = document.getElementById('urlCompartir'); i.select(); navigator.clipboard.writeText(i.value); const a = document.getElementById('copiadoAlerta'); a.classList.remove('d-none'); setTimeout(() => a.classList.add('d-none'), 2000); }
+        function togglePassword() { const i = document.getElementById('inputPassword'), b = document.getElementById('btnTogglePass'); i.type = i.type === "password" ? "text" : "password"; b.innerHTML = i.type === "password" ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>'; }
+        function verificarPassword() { if(document.getElementById('inputPassword').value === "bomberos1") { document.getElementById('pantallaLogin').style.display = 'none'; document.getElementById('contenidoSistema').style.display = 'block'; } else { document.getElementById('errorLogin').classList.remove('d-none'); } }
+        function abrirPestana(id, e) { if(e) e.preventDefault(); document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('show', 'active')); document.getElementById(id)?.classList.add('show', 'active'); }
+        function solicitarAcceso56(e) { e.preventDefault(); new bootstrap.Modal(document.getElementById('modalPassword56')).show(); }
+        function validarPassword56() { if(document.getElementById('inputPass56').value === "12345") { bootstrap.Modal.getInstance(document.getElementById('modalPassword56')).hide(); document.getElementById('inputPass56').value = ''; document.getElementById('errorPass56').classList.add('d-none'); abrirPestana('apartado-56'); } else { document.getElementById('errorPass56').classList.remove('d-none'); } }
+        
+        // Función corregida y general para agregar filas a cualquiera de los meses dinámicamente
+        function agregarFilaServicio(id) { 
+            const tabla = document.getElementById(id);
+            if(tabla) {
+                tabla.getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><textarea class="form-control form-control-sm" rows="1"></textarea></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); 
             }
         }
 
-        function copiarEnlace() {
-            const inputUrl = document.getElementById('urlCompartir');
-            inputUrl.select();
-            inputUrl.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(inputUrl.value);
-            const alerta = document.getElementById('copiadoAlerta');
-            if (alerta) {
-                alerta.classList.remove('d-none');
-                setTimeout(() => alerta.classList.add('d-none'), 2000);
-            }
+        function agregarFila56() { document.getElementById('tabla56').getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); }
+        function agregarFilaVehicular() { document.getElementById('tablaVehicular').getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); }
+        function agregarFilaInventario() { document.getElementById('tablaInventario').getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)"><option value="pieza" selected>Pieza</option><option value="servicio">Servicio</option></select></td><td><input type="number" class="form-control form-control-sm cantidad-inv" value="0" oninput="actualizarEstadoInventario(this)"></td><td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background:#ffc107;color:#000;">Amarillo</span></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); }
+        function eliminarFila(b) { b.closest('tr').remove(); }
+        function actualizarEstadoInventario(el) {
+            const f = el.closest('tr'), c = f.querySelector('select').value, n = parseInt(f.querySelector('.cantidad-inv').value) || 0, badge = f.querySelector('.indicador-estado');
+            if(c === 'servicio' || n > 20) { badge.style.background = '#198754'; badge.style.color = '#fff'; badge.textContent = 'Verde'; }
+            else if(n >= 10) { badge.style.background = '#ffc107'; badge.style.color = '#000'; badge.textContent = 'Amarillo'; }
+            else { badge.style.background = '#dc3545'; badge.style.color = '#fff'; badge.textContent = 'Rojo'; }
         }
-
-        function togglePassword() {
-            const input = document.getElementById('inputPassword');
-            const btn = document.getElementById('btnTogglePass');
-            if (input.type === "password") {
-                input.type = "text";
-                btn.innerHTML = '<i class="bi bi-eye-slash"></i>';
-            } else {
-                input.type = "password";
-                btn.innerHTML = '<i class="bi bi-eye"></i>';
-            }
-        }
-
-        function verificarPassword() {
-            const pass = document.getElementById('inputPassword').value;
-            const error = document.getElementById('errorLogin');
-            if (pass === "bomberos1") {
-                document.getElementById('pantallaLogin').style.display = 'none';
-                document.getElementById('contenidoSistema').style.display = 'block';
-            } else {
-                error.classList.remove('d-none');
-            }
-        }
-
-        function abrirPestana(idTab, event) {
-            if (event) event.preventDefault();
-            document.querySelectorAll('.tab-pane').forEach(el => {
-                el.classList.remove('show', 'active');
-            });
-            const tabSeleccionada = document.getElementById(idTab);
-            if (tabSeleccionada) {
-                tabSeleccionada.classList.add('show', 'active');
-            }
-        }
-
-        function solicitarAcceso56(event) {
-            event.preventDefault();
-            const modal = new bootstrap.Modal(document.getElementById('modalPassword56'));
-            modal.show();
-        }
-
-        function validarPassword56() {
-            const pass = document.getElementById('inputPass56').value;
-            const error = document.getElementById('errorPass56');
-            if (pass === "12345") {
-                const modalEl = document.getElementById('modalPassword56');
-                const modal = bootstrap.Modal.getInstance(modalEl);
-                modal.hide();
-                document.getElementById('inputPass56').value = '';
-                error.classList.add('d-none');
-                abrirPestana('apartado-56');
-            } else {
-                error.classList.remove('d-none');
-            }
-        }
-
-        function cancelarPassword56() {
-            document.getElementById('inputPass56').value = '';
-            document.getElementById('errorPass56').classList.add('d-none');
-        }
-
-        function agregarFilaServicio(idTabla) {
-            const tabla = document.getElementById(idTabla).getElementsByTagName('tbody')[0];
-            const nuevaFila = tabla.insertRow();
-            nuevaFila.innerHTML = `
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><textarea class="form-control form-control-sm" rows="1"></textarea></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-            `;
-        }
-
-        function agregarFila56() {
-            const tabla = document.getElementById('tabla56').getElementsByTagName('tbody')[0];
-            const nuevaFila = tabla.insertRow();
-            nuevaFila.innerHTML = `
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-            `;
-        }
-
-        function agregarFilaVehicular() {
-            const tabla = document.getElementById('tablaVehicular').getElementsByTagName('tbody')[0];
-            const nuevaFila = tabla.insertRow();
-            nuevaFila.innerHTML = `
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-            `;
-        }
-
-        function agregarFilaInventario() {
-            const tabla = document.getElementById('tablaInventario').getElementsByTagName('tbody')[0];
-            const nuevaFila = tabla.insertRow();
-            nuevaFila.innerHTML = `
-                <td><input type="text" class="form-control form-control-sm" value=""></td>
-                <td>
-                    <select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)">
-                        <option value="pieza" selected>Pieza</option>
-                        <option value="servicio">Servicio</option>
-                    </select>
-                </td>
-                <td><input type="number" class="form-control form-control-sm cantidad-inv" value="0" oninput="actualizarEstadoInventario(this)"></td>
-                <td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background-color: #ffc107; color: #000;">Amarillo</span></td>
-                <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
-            `;
-        }
-
-        function eliminarFila(btn) {
-            const fila = btn.closest('tr');
-            fila.remove();
-        }
-
-        function actualizarEstadoInventario(elemento) {
-            const fila = elemento.closest('tr');
-            const selectClasificacion = fila.querySelector('select');
-            const inputCantidad = fila.querySelector('.cantidad-inv');
-            const badgeEstado = fila.querySelector('.indicador-estado');
-
-            if (!selectClasificacion || !inputCantidad || !badgeEstado) return;
-
-            const clasificacion = selectClasificacion.value;
-            const cantidad = parseInt(inputCantidad.value) || 0;
-
-            if (clasificacion === 'servicio') {
-                badgeEstado.style.backgroundColor = '#198754';
-                badgeEstado.style.color = '#fff';
-                badgeEstado.textContent = 'Verde';
-            } else {
-                if (cantidad > 20) {
-                    badgeEstado.style.backgroundColor = '#198754';
-                    badgeEstado.style.color = '#fff';
-                    badgeEstado.textContent = 'Verde';
-                } else if (cantidad >= 10) {
-                    badgeEstado.style.backgroundColor = '#ffc107';
-                    badgeEstado.style.color = '#000';
-                    badgeEstado.textContent = 'Amarillo';
-                } else {
-                    badgeEstado.style.backgroundColor = '#dc3545';
-                    badgeEstado.style.color = '#fff';
-                    badgeEstado.textContent = 'Rojo';
-                }
-            }
-        }
-
-        function guardarDatosNovedades() {}
-
-        function configurarSubmenusMovil() {
-            document.querySelectorAll('.dropdown-submenu > a').forEach(function(element) {
-                element.addEventListener('click', function(e) {
-                    if (window.innerWidth < 992) {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        let submenu = this.nextElementSibling;
-                        if (submenu) {
-                            submenu.classList.toggle('show');
-                        }
-                    }
-                });
-            });
-        }
-
         async function consultarOllama() {
-            const prompt = document.getElementById('promptIA').value;
-            const modelo = document.getElementById('nombreModelo').value;
-            const loader = document.getElementById('loadingGemini');
-            const cajaRespuesta = document.getElementById('cajaRespuestaIA');
-            const textoRespuesta = document.getElementById('respuestaTextoIA');
-
-            if (!prompt.trim()) return;
-
-            loader.classList.remove('d-none');
-            cajaRespuesta.classList.add('d-none');
-
+            const p = document.getElementById('promptIA').value, m = document.getElementById('nombreModelo').value, l = document.getElementById('loadingGemini'), c = document.getElementById('cajaRespuestaIA'), t = document.getElementById('respuestaTextoIA');
+            if(!p.trim()) return; l.classList.remove('d-none'); c.classList.add('d-none');
             try {
-                const response = await fetch('http://localhost:11434/api/generate', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ model: modelo, prompt: prompt, stream: false })
-                });
-                const data = await response.json();
-                textoRespuesta.textContent = data.response || "Sin respuesta del modelo local.";
-                cajaRespuesta.classList.remove('d-none');
-            } catch (err) {
-                textoRespuesta.textContent = "Error: No se pudo conectar con Ollama en el entorno local (localhost:11434).";
-                cajaRespuesta.classList.remove('d-none');
-            } finally {
-                loader.classList.add('d-none');
-            }
+                const res = await fetch('http://localhost:11434/api/generate', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({model: m, prompt: p, stream: false})});
+                const data = await res.json(); t.textContent = data.response || "Sin respuesta."; c.classList.remove('d-none');
+            } catch { t.textContent = "Error de conexión con Ollama (localhost:11434)."; c.classList.remove('d-none'); } finally { l.classList.add('d-none'); }
         }
     </script>
 </body>
