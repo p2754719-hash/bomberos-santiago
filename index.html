@@ -35,11 +35,12 @@
             background-color: #1c232d;
         }
 
+        /* Se redujo la opacidad del fondo de 0.85 a 0.35 para que el escudo sea visible */
         .bg-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: rgba(15, 20, 26, 0.85);
+            background: rgba(15, 20, 26, 0.35);
         }
 
         .header-oficial {
@@ -88,6 +89,13 @@
             border-radius: 10px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.25);
             margin-bottom: 20px;
+        }
+
+        /* Estilo específico para ajustar la tarjeta de bienvenida */
+        #vistaBienvenida {
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .table-custom th {
@@ -308,11 +316,11 @@
         </div>
 
         <div class="container-fluid mt-3 px-2 px-md-4 pb-5">
-            <div id="vistaBienvenida" class="card card-contenedor shadow-lg border-0 text-center p-5 my-5">
+            <div id="vistaBienvenida" class="card card-contenedor shadow-lg border-0 text-center p-4 my-5">
                 <div class="card-body">
                     <i class="bi bi-shield-lock display-4 text-danger mb-3"></i>
-                    <h2 class="fw-bold text-dark mb-2">Bienvenido al Sistema de Control Operativo</h2>
-                    <p class="text-muted">Utiliza el menú superior <strong>"APARTADOS"</strong> para buscar y abrir los registros mensuales de servicios, novedades o inventarios.</p>
+                    <h2 class="fw-bold text-dark mb-2" style="font-size: 1.5rem;">Bienvenido al Sistema de Control Operativo</h2>
+                    <p class="text-muted small">Utiliza el menú superior <strong>"APARTADOS"</strong> para buscar y abrir los registros mensuales de servicios, novedades o inventarios.</p>
                 </div>
             </div>
 
@@ -696,7 +704,7 @@
                 if(pLow.includes("gas") || pLow.includes("fuga")) {
                     resp = "Protocolo de Fuga de Gas LP:\n1. Evacuar el área inmediatamente.\n2. No accionar interruptores eléctricos.\n3. Cerrar el tanque de gas si es seguro y reportar al 911.";
                 } else if(pLow.includes("incendio")) {
-                    resp = "Protocolo de Incendio:\n1. Mantener la calma y evacuar por rutas seguras.\n2. Não inhalar humo (cubrir nariz y boca).\n3. Esperar unidades de emergencia.";
+                    resp = "Protocolo de Incendio:\n1. Mantener la calma y evacuar por rutas seguras.\n2. No inhalar humo (cubrir nariz y boca).\n3. Esperar unidades de emergencia.";
                 }
                 t.textContent = resp;
                 l.classList.add('d-none');
