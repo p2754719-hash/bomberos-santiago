@@ -367,7 +367,7 @@
                 <!-- ASISTENTE IA -->
                 <div class="tab-pane fade" id="apartado-ia"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-stars text-danger me-2"></i>ASISTENTE IA</h5></div><div class="card-body"><div class="input-group mb-2"><input type="text" id="promptIA" class="form-control" placeholder="Consulta..."><button class="btn btn-rojo shadow-sm" type="button" onclick="consultarIA()">Consultar</button></div><small class="text-secondary">Modelo: <input type="text" id="nombreModelo" class="form-control form-control-sm d-inline-block w-25 ms-1" value="Gemini 2.5 Flash"></small><div id="loadingGemini" class="text-secondary d-none my-3"><span class="spinner-border spinner-border-sm text-danger"></span> Procesando...</div><div id="cajaRespuestaIA" class="p-3 bg-light rounded border d-none mt-2"><div id="respuestaTextoIA" class="text-dark" style="white-space: pre-wrap;"></div></div></div></div></div>
 
-                <!-- BIBLIOGRAFÍA -->
+                <!-- BIBLIOGRAFÍA CON ENLACES FUNCIONALES -->
                 <div class="tab-pane fade" id="apartado-bibliografia">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-dark text-white py-3">
@@ -377,14 +377,14 @@
                             <p class="text-muted small mb-3">Fuentes de consulta y referencias técnicas utilizadas en el proyecto de investigación y desarrollo operativo.</p>
                             <div class="p-3 bg-light rounded border" style="line-height: 1.6; font-size: 0.9rem;">
                                 <ul class="mb-0" style="padding-left: 20px;">
-                                    <li class="mb-2">Ajelix. (2023). <em>Herramientas de automatización de Excel</em>.[cite: 5]</li>
-                                    <li class="mb-2">Apidog. (2024). <em>Guía completa para principiantes sobre LLMs locales con Ollama</em>.[cite: 5]</li>
-                                    <li class="mb-2">Ciencia Latina. (2023). Impacto de la utilización de un Framework como Laravel en el desarrollo web. <em>Revista Científica Multidisciplinar</em>, 7(3), 3220-3223.[cite: 5]</li>
-                                    <li class="mb-2">Dialnet. (2002). <em>Microsoft Excel 2002: Hoja de cálculo avanzada</em>. Universidad de La Rioja.[cite: 5]</li>
-                                    <li class="mb-2">Dos a la Tres. (2020). <em>Listado de comandos de CMD de Windows 10</em>.[cite: 5]</li>
-                                    <li class="mb-2">Lenovo. (2023). <em>Conceptos de programación y comandos del sistema operativo</em>. Guías técnicas de desarrollo.[cite: 5]</li>
-                                    <li class="mb-2">MDN Web Docs. (2023). <em>HTML: Lenguaje de marcado de hipertexto</em>. Mozilla Developer Network.[cite: 5]</li>
-                                    <li class="mb-2">SciELO. (2024). Factores de riesgo psicosocial y carga operativa en cuerpos de emergencia y bomberos. <em>Revista Peruana de Medicina Experimental y Salud Pública</em>.[cite: 5]</li>
+                                    <li class="mb-2">Ajelix. (2023). <em>Herramientas de automatización de Excel</em>. <a href="https://ajelix.com/es/ia/automatizacion-de-excel/" target="_blank">https://ajelix.com/es/ia/automatizacion-de-excel/</a></li>
+                                    <li class="mb-2">Apidog. (2024). <em>Guía completa para principiantes sobre LLMs locales con Ollama</em>. <a href="https://apidog.com/es/blog/how-to-use-ollama/" target="_blank">https://apidog.com/es/blog/how-to-use-ollama/</a></li>
+                                    <li class="mb-2">Ciencia Latina. (2023). Impacto de la utilización de un Framework como Laravel en el desarrollo web. <em>Revista Científica Multidisciplinar</em>, 7(3), 3220-3223. <a href="https://ciencialatina.org/index.php/cienciala/article/download/6402/9767/" target="_blank">https://ciencialatina.org/index.php/cienciala/article/download/6402/9767/</a></li>
+                                    <li class="mb-2">Dialnet. (2002). <em>Microsoft Excel 2002: Hoja de cálculo avanzada</em>. Universidad de La Rioja. <a href="https://dialnet.unirioja.es/servlet/libro?codigo=315859" target="_blank">https://dialnet.unirioja.es/servlet/libro?codigo=315859</a></li>
+                                    <li class="mb-2">Dos a la Tres. (2020). <em>Listado de comandos de CMD de Windows 10</em>. <a href="https://www.dos-a-la-tres.com/Aplicaciones/Programacion-de-Pol-S..." target="_blank">https://www.dos-a-la-tres.com/Aplicaciones/Programacion-de-Pol-S...</a></li>
+                                    <li class="mb-2">Lenovo. (2023). <em>Conceptos de programación y comandos del sistema operativo</em>. Guías técnicas de desarrollo.</li>
+                                    <li class="mb-2">MDN Web Docs. (2023). <em>HTML: Lenguaje de marcado de hipertexto</em>. Mozilla Developer Network. <a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank">https://developer.mozilla.org/es/docs/Web/HTML</a></li>
+                                    <li class="mb-2">SciELO. (2024). Factores de riesgo psicosocial y carga operativa en cuerpos de emergencia y bomberos. <em>Revista Peruana de Medicina Experimental y Salud Pública</em>.</li>
                                 </ul>
                             </div>
                         </div>
@@ -489,17 +489,15 @@
         function eliminarFila(b) { b.closest('tr').remove(); sincronizarInventarioTotal(); guardarEstadoLocal(); }
         
         function borrarDatosApartado(id) {
-            if(confirm("¿Deseas borrar todos los registros de este apartado?")) {
-                if(id.startsWith('tabla')) {
-                    document.querySelector(`#${id} tbody`).innerHTML = "";
-                } else if(id === 'apartado-novedades') {
-                    document.getElementById('nov-guardia').value = "";
-                    document.getElementById('nov-cabinero').value = "";
-                    document.getElementById('nov-fecha').value = "";
-                    document.getElementById('nov-bitacora').value = "";
-                }
-                guardarEstadoLocal();
+            if(id.startsWith('tabla')) {
+                document.querySelector(`#${id} tbody`).innerHTML = "";
+            } else if(id === 'apartado-novedades') {
+                document.getElementById('nov-guardia').value = "";
+                document.getElementById('nov-cabinero').value = "";
+                document.getElementById('nov-fecha').value = "";
+                document.getElementById('nov-bitacora').value = "";
             }
+            guardarEstadoLocal();
         }
 
         function guardarEstadoLocal() {
@@ -677,7 +675,7 @@
                     sincronizarInventarioTotal();
                     guardarEstadoLocal();
                 } catch (err) {
-                    alert("Error al importar el archivo Excel. Verifica el formato.");
+                    console.error("Error al importar el archivo Excel.");
                 }
             };
             lector.readAsArrayBuffer(archivo);
@@ -698,7 +696,7 @@
                 if(pLow.includes("gas") || pLow.includes("fuga")) {
                     resp = "Protocolo de Fuga de Gas LP:\n1. Evacuar el área inmediatamente.\n2. No accionar interruptores eléctricos.\n3. Cerrar el tanque de gas si es seguro y reportar al 911.";
                 } else if(pLow.includes("incendio")) {
-                    resp = "Protocolo de Incendio:\n1. Mantener la calma y evacuar por rutas seguras.\n2. No inhalar humo (cubrir nariz y boca).\n3. Esperar unidades de emergencia.";
+                    resp = "Protocolo de Incendio:\n1. Mantener la calma y evacuar por rutas seguras.\n2. Não inhalar humo (cubrir nariz y boca).\n3. Esperar unidades de emergencia.";
                 }
                 t.textContent = resp;
                 l.classList.add('d-none');
