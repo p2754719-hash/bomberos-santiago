@@ -21,7 +21,7 @@
             min-height: 100vh;
             background-color: #121212;
             overflow-x: hidden;
-            padding-bottom: 95px; /* Espacio para que el footer fijo no tape el contenido */
+            padding-bottom: 95px;
         }
 
         .bg-slide {
@@ -356,7 +356,28 @@
                 <div class="tab-pane fade" id="apartado-ia"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-stars text-danger me-2"></i>ASISTENTE IA (GOOGLE GEMINI)</h5></div><div class="card-body"><p class="text-muted small mb-3">Asistente avanzado potenciado con inteligencia artificial para protocolos de emergencia y consulta operativa.</p><div class="input-group mb-2"><input type="text" id="promptIA" class="form-control" placeholder="Consulta..." onkeyup="if(event.key==='Enter') consultarGemini()"><button class="btn btn-rojo shadow-sm" type="button" onclick="consultarGemini()">Consultar</button></div><small class="text-secondary">Modelo: <input type="text" id="nombreModelo" class="form-control form-control-sm d-inline-block w-25 ms-1" value="Gemini 2.5 Flash"></small><div id="loadingGemini" class="text-secondary d-none my-3"><span class="spinner-border spinner-border-sm text-danger"></span> Procesando consulta...</div><div id="cajaRespuestaIA" class="p-3 bg-light rounded border d-none mt-2"><strong class="text-danger"><i class="bi bi-chat-left-text"></i> Respuesta:</strong><div id="respuestaTextoIA" class="text-dark mt-2" style="white-space: pre-wrap;"></div></div></div></div></div>
 
                 <!-- BIBLIOGRAFÍA -->
-                <div class="tab-pane fade" id="apartado-bibliografia"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-book text-danger me-2"></i>BIBLIOGRAFÍA Y REFERENCIAS</h5></div><div class="card-body"><p class="text-muted small mb-3">Fuentes de consulta y referencias técnicas utilizadas en el proyecto.</p><div class="p-3 bg-light rounded border" style="line-height: 1.6; font-size: 0.9rem;"><ul class="mb-0" style="padding-left: 20px;"><li class="mb-2">Ajelix. (2023). <em>Herramientas de automatización de Excel</em>.[cite: 5]</li><li class="mb-2">Apidog. (2024). <em>Guía completa para principiantes sobre LLMs y herramientas de IA</em>.[cite: 5]</li><li class="mb-2">MDN Web Docs. (2023). <em>HTML y JavaScript: Desarrollo Web Moderno</em>. Mozilla Developer Network.[cite: 5]</li></ul></div></div></div></div>
+                <div class="tab-pane fade" id="apartado-bibliografia">
+                    <div class="card card-contenedor shadow-lg border-0">
+                        <div class="card-header bg-dark text-white py-3">
+                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-book text-danger me-2"></i>BIBLIOGRAFÍA Y REFERENCIAS (FORMATO APA 7.ª EDICIÓN)</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="text-muted small mb-3">Fuentes de consulta y referencias técnicas utilizadas en el proyecto de investigación y desarrollo operativo.</p>
+                            <div class="p-3 bg-light rounded border" style="line-height: 1.6; font-size: 0.9rem;">
+                                <ul class="mb-0" style="padding-left: 20px;">
+                                    <li class="mb-2">Ajelix. (2023). <em>Herramientas de automatización de Excel</em>. <a href="https://ajelix.com/es/ia/automatizacion-de-excel/" target="_blank">https://ajelix.com/es/ia/automatizacion-de-excel/</a></li>
+                                    <li class="mb-2">Apidog. (2024). <em>Guía completa para principiantes sobre LLMs locales con Ollama</em>. <a href="https://apidog.com/es/blog/how-to-use-ollama/" target="_blank">https://apidog.com/es/blog/how-to-use-ollama/</a></li>
+                                    <li class="mb-2">Ciencia Latina. (2023). Impacto de la utilización de un Framework como Laravel en el desarrollo web. <em>Revista Científica Multidisciplinar</em>, 7(3), 3220-3223. <a href="https://ciencialatina.org/index.php/cienciala/article/download/6402/9767/" target="_blank">https://ciencialatina.org/index.php/cienciala/article/download/6402/9767/</a></li>
+                                    <li class="mb-2">Dialnet. (2002). <em>Microsoft Excel 2002: Hoja de cálculo avanzada</em>. Universidad de La Rioja. <a href="https://dialnet.unirioja.es/servlet/libro?codigo=315859" target="_blank">https://dialnet.unirioja.es/servlet/libro?codigo=315859</a></li>
+                                    <li class="mb-2">Dos a la Tres. (2020). <em>Listado de comandos de CMD de Windows 10</em>. <a href="https://www.dos-a-la-tres.com/Aplicaciones/Programacion-de-Pol-S..." target="_blank">https://www.dos-a-la-tres.com/Aplicaciones/Programacion-de-Pol-S...</a></li>
+                                    <li class="mb-2">Lenovo. (2023). <em>Conceptos de programación y comandos del sistema operativo</em>. Guías técnicas de desarrollo.</li>
+                                    <li class="mb-2">MDN Web Docs. (2023). <em>HTML: Lenguaje de marcado de hipertexto</em>. Mozilla Developer Network. <a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank">https://developer.mozilla.org/es/docs/Web/HTML</a></li>
+                                    <li class="mb-2">SciELO. (2024). Factores de riesgo psicosocial y carga operativa en cuerpos de emergencia y bomberos. <em>Revista Peruana de Medicina Experimental y Salud Pública</em>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
