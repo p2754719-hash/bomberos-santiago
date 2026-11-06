@@ -285,19 +285,106 @@
             </div>
         </div>
 
-        <!-- CONTENEDORES DE TABLAS (Inician ocultos sin mostrar ninguna pestaña por defecto) -->
+        <!-- CONTENEDORES DE LA APLICACIÓN -->
         <div class="container-fluid mt-4 px-2 px-md-4 pb-5">
+            
+            <!-- Vista de Bienvenida inicial (recogida/oculta por defecto al buscar algo) -->
             <div id="vistaBienvenida" class="card card-contenedor shadow-lg border-0 text-center p-5 my-5">
                 <div class="card-body">
                     <i class="bi bi-shield-lock display-4 text-danger mb-3"></i>
                     <h3 class="fw-bold text-dark">Bienvenido al Sistema de Control Operativo</h3>
-                    <p class="text-muted">Utiliza el menú superior <strong>"APARTADOS"</strong> para buscar y abrir los registros mensuales de servicios, novedades o inventarios.</p>
+                    <p class="text-muted">Utiliza el menú superior <strong>"APARTADOS"</strong> para buscar y abrir los registros de servicios mensuales, novedades, parque vehicular o inventario.</p>
                 </div>
             </div>
 
+            <!-- Contenedores de Meses -->
             <div class="tab-content mb-5" id="contenedorMeses">
                 <!-- Se poblará vía JavaScript con las pestañas mensuales (todas ocultas al inicio) -->
             </div>
+
+            <!-- Apartado: Novedades -->
+            <div class="tab-pane fade" id="apartado-novedades">
+                <div class="card card-contenedor shadow-lg border-0 p-4">
+                    <h4 class="fw-bold text-dark mb-3"><i class="bi bi-journal-text text-danger me-2"></i>Novedades Operativas</h4>
+                    <p class="text-muted small">Registro y bitácora de novedades del personal y turno.</p>
+                    <hr>
+                    <div class="mb-3">
+                        <textarea class="form-control" rows="4" placeholder="Escriba la novedad del turno..."></textarea>
+                    </div>
+                    <button class="btn btn-rojo btn-sm w-auto align-self-start"><i class="bi bi-save me-1"></i> Guardar Novedad</button>
+                </div>
+            </div>
+
+            <!-- Apartado: Parque Vehicular -->
+            <div class="tab-pane fade" id="apartado-vehicular">
+                <div class="card card-contenedor shadow-lg border-0 p-4">
+                    <h4 class="fw-bold text-dark mb-3"><i class="bi bi-truck text-danger me-2"></i>Parque Vehicular</h4>
+                    <p class="text-muted small">Estado actual y estatus de unidades.</p>
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover align-middle table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Unidad</th>
+                                    <th>Tipo</th>
+                                    <th>Estatus</th>
+                                    <th>Combustible</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Unidad 04</td>
+                                    <td>Motobomba / Ataque Rápido</td>
+                                    <td><span class="badge bg-success">Operativa</span></td>
+                                    <td>3/4</td>
+                                </tr>
+                                <tr>
+                                    <td>Unidad 05</td>
+                                    <td>Ambulancia</td>
+                                    <td><span class="badge bg-success">Operativa</span></td>
+                                    <td>Llena</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Apartado: Inventario -->
+            <div class="tab-pane fade" id="apartado-inventario">
+                <div class="card card-contenedor shadow-lg border-0 p-4">
+                    <h4 class="fw-bold text-dark mb-3"><i class="bi bi-box-seam text-danger me-2"></i>Inventario General</h4>
+                    <p class="text-muted small">Control de herramientas, equipos y materiales de estación.</p>
+                    <hr>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover align-middle table-custom">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Artículo</th>
+                                    <th>Cantidad</th>
+                                    <th>Ubicación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>INV-001</td>
+                                    <td>Matafuegos forestales</td>
+                                    <td>12 pzas</td>
+                                    <td>Bodega Central</td>
+                                </tr>
+                                <tr>
+                                    <td>INV-002</td>
+                                    <td>Mangueras contraincendio 1.5"</td>
+                                    <td>8 tramos</td>
+                                    <td>Unidad 04</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -314,7 +401,6 @@
             MESES.forEach((mes) => {
                 const mesCapitalizado = mes.charAt(0).toUpperCase() + mes.slice(1);
                 
-                // NOTA: Se eliminó "show active" para que ninguna tabla aparezca abierta al entrar
                 contenedor.innerHTML += `
                     <div class="tab-pane fade" id="tab-${mes}">
                         <div class="card card-contenedor shadow-lg border-0">
@@ -349,7 +435,7 @@
                     </div>`;
             });
             
-            // Fila inicial de ejemplo en Enero (se cargará en segundo plano sin mostrar la tabla)
+            // Fila inicial de ejemplo en Enero
             agregarFilaServicio('tabla-enero', ['001', 'Incendio en pastizal', 'Unidad 04', '1', 'Matafuegos, 500L agua', 'Servicio', 'REP-102 / Juan P.']);
         });
 
@@ -376,7 +462,7 @@
             }
         }
 
-        // Navegación de pestañas y ocultar bienvenida
+        // Navegación unificada para pestañas de meses y apartados generales
         function abrirPestana(idTab, e) {
             if (e) e.preventDefault();
             
