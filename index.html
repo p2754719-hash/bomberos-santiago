@@ -380,20 +380,28 @@
                 <!-- INVENTARIO GENERAL -->
                 <div class="tab-pane fade" id="apartado-inventario"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-box-seam me-2"></i>INVENTARIO GENERAL</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-outline-light" onclick="borrarDatosApartado('tablaInventario')"><i class="bi bi-trash"></i> Borrar Todo</button><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaInventario()"><i class="bi bi-plus-lg"></i> Agregar Material</button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tablaInventario"><thead><tr><th>Material</th><th>Clasificación</th><th>Cantidad</th><th>Estado</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
 
-                <!-- ASISTENTE IA CORREGIDO -->
+                <!-- ASISTENTE IA ACTUALIZADO -->
                 <div class="tab-pane fade" id="apartado-ia">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-dark text-white py-3">
                             <h5 class="m-0 fw-bold fs-6"><i class="bi bi-stars text-danger me-2"></i>ASISTENTE IA (Google Gemini)</h5>
                         </div>
                         <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold text-secondary"><i class="bi bi-key-fill text-danger"></i> API Key de Google Gemini:</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="password" id="geminiApiKey" class="form-control" placeholder="Pega aquí tu API Key de Google AI Studio" oninput="guardarEstadoLocal()">
+                                    <button class="btn btn-outline-secondary text-white" type="button" onclick="toggleApiKey()"><i class="bi bi-eye" id="iconEyeKey"></i></button>
+                                </div>
+                                <small class="text-muted" style="font-size: 0.75rem;">Necesaria para responder cualquier pregunta de forma dinámica en tiempo real.</small>
+                            </div>
                             <div class="input-group mb-2">
-                                <input type="text" id="promptIA" class="form-control" placeholder="Escribe tu consulta operativa..." onkeyup="if(event.key==='Enter') consultarIA()">
+                                <input type="text" id="promptIA" class="form-control" placeholder="Escribe cualquier duda o pregunta operativa..." onkeyup="if(event.key==='Enter') consultarIA()">
                                 <button class="btn btn-rojo shadow-sm" type="button" onclick="consultarIA()">Consultar</button>
                             </div>
-                            <small class="text-secondary">Modelo activo: <input type="text" id="nombreModelo" class="form-control form-control-sm d-inline-block w-25 ms-1" value="Gemini 2.5 Flash"></small>
+                            <small class="text-secondary">Modelo activo: <input type="text" id="nombreModelo" class="form-control form-control-sm d-inline-block w-25 ms-1" value="gemini-1.5-flash"></small>
                             <div id="loadingGemini" class="text-secondary d-none my-3">
-                                <span class="spinner-border spinner-border-sm text-danger"></span> Procesando respuesta inteligente...
+                                <span class="spinner-border spinner-border-sm text-danger"></span> Consultando a Google Gemini...
                             </div>
                             <div id="cajaRespuestaIA" class="p-3 bg-light rounded border d-none mt-3">
                                 <h6 class="fw-bold text-danger mb-2"><i class="bi bi-robot"></i> Respuesta de la IA:</h6>
@@ -567,6 +575,7 @@
 
             const estado = {
                 meses: {},
+                geminiApiKey: document.getElementById('geminiApiKey')?.value || '',
                 novedades: {
                     guardia: document.getElementById('nov-guardia')?.value || '',
                     cabinero: document.getElementById('nov-cabinero')?.value || '',
@@ -592,6 +601,7 @@
             if(!guardado) return;
             try {
                 const est = JSON.parse(guardado);
+                if(est.geminiApiKey) document.getElementById('geminiApiKey').value = est.geminiApiKey;
                 if(est.novedades) {
                     document.getElementById('nov-guardia').value = est.novedades.guardia || '';
                     document.getElementById('nov-cabinero').value = est.novedades.cabinero || '';
@@ -752,35 +762,70 @@
             lector.readAsArrayBuffer(archivo);
         }
 
+        function toggleApiKey() {
+            const input = document.getElementById('geminiApiKey');
+            const icon = document.getElementById('iconEyeKey');
+            if (input.type === "password") {
+                input.type = "text";
+                icon.className = "bi bi-eye-slash";
+            } else {
+                input.type = "password";
+                icon.className = "bi bi-eye";
+            }
+        }
+
         async function consultarIA() {
+            const apiKey = document.getElementById('geminiApiKey').value.trim();
             const inputVal = document.getElementById('promptIA').value.trim();
+            const modelo = document.getElementById('nombreModelo').value.trim() || 'gemini-1.5-flash';
             const l = document.getElementById('loadingGemini');
             const c = document.getElementById('cajaRespuestaIA');
             const t = document.getElementById('respuestaTextoIA');
+
             if(!inputVal) return;
+
+            if(!apiKey) {
+                alert("Por favor, ingresa tu API Key de Google Gemini para poder responder a cualquier pregunta.");
+                document.getElementById('geminiApiKey').focus();
+                return;
+            }
+
             l.classList.remove('d-none');
             c.classList.add('d-none');
-            
-            setTimeout(() => {
-                let respuestaFinal = "";
-                const textoLower = inputVal.toLowerCase();
 
-                if(textoLower.includes("hola") || textoLower.includes("saludos") || textoLower.includes("buenos días")) {
-                    respuestaFinal = "¡Hola! Soy el Asistente Operativo de la corporación. ¿En qué protocolo, registro o duda técnica te puedo apoyar el día de hoy?";
-                } else if(textoLower.includes("gas") || textoLower.includes("fuga")) {
-                    respuestaFinal = "Protocolo para Fuga de Gas LP:\n1. Evacuar la zona de inmediato y alejar a los curiosos.\n2. Evitar encender luces, cerillos o accionar interruptores eléctricos.\n3. Cerrar la válvula principal del tanque si es accesible y seguro.\n4. Notificar a central e iniciar labores de control perimetral.";
-                } else if(textoLower.includes("incendio") || textoLower.includes("fuego")) {
-                    respuestaFinal = "Protocolo para Incendios Estructurales / Forestales:\n1. Activar las unidades de ataque rápido correspondientes.\n2. Equipamiento EPP completo y autónomo para el personal operativo.\n3. Asegurar perímetro y establecer puntos de hidratación y rescate.";
-                } else if(textoLower.includes("inventario") || textoLower.includes("stock")) {
-                    respuestaFinal = "Gestión de Inventario:\nPuedes revisar el estado de los materiales en el apartado de 'Inventario'. Los niveles se sincronizan automáticamente con las cantidades registradas en los servicios mensuales.";
+            try {
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelo}:generateContent?key=${apiKey}`;
+                
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: "Eres un asistente operativo experto para el H. Cuerpo de Bomberos y Protección Civil de Santiago Tulantepec. Responde con precisión, profesionalismo y en español a la siguiente consulta: " + inputVal
+                            }]
+                        }]
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts[0].text) {
+                    t.textContent = data.candidates[0].content.parts[0].text;
+                } else if (data.error) {
+                    t.textContent = "Error de la API de Gemini: " + (data.error.message || JSON.stringify(data.error));
                 } else {
-                    respuestaFinal = `Consulta analizada para: "${inputVal}".\n\nRecomendación operativa:\nMantener los registros actualizados en el sistema, verificar el reporte de guardia correspondiente y coordinar con la central ante cualquier incidente mayor en Santiago Tulantepec.`;
+                    t.textContent = "No se pudo obtener una respuesta válida de la IA.";
                 }
-
-                t.textContent = respuestaFinal;
+            } catch (err) {
+                console.error(err);
+                t.textContent = "Ocurrió un error de conexión al consultar a Google Gemini.";
+            } finally {
                 l.classList.add('d-none');
                 c.classList.remove('d-none');
-            }, 600);
+            }
         }
     </script>
 </body>
