@@ -7,7 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <!-- Librería SheetJS para lectura correcta de Excel -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         :root {
@@ -321,8 +320,8 @@
             </div>
 
             <div class="tab-content mb-5">
-                <!-- VISTAS DE MESES CON COLUMNA DE FECHA INCLUIDA -->
-                <div class="tab-pane fade" id="tab-enero"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Enero 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-enero', 'Enero_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-primary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-enero')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-enero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-enero"><thead><tr><th style="min-width: 70px;">Número</th><th style="min-width: 110px;">Fecha</th><th style="min-width: 150px;">Servicio</th><th style="min-width: 100px;">Unidad</th><th style="min-width: 80px;">Cantidad</th><th style="min-width: 220px;">Materiales / Herramientas</th><th style="min-width: 130px;">Unidad de Medida</th><th style="min-width: 140px;">Reportante</th><th style="min-width: 60px;">Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="001"></td><td><input type="text" class="form-control form-control-sm" value="01/01/2026"></td><td><input type="text" class="form-control form-control-sm" value="Incendio"></td><td><input type="text" class="form-control form-control-sm" value="U-04"></td><td><input type="number" class="form-control form-control-sm cant-serv" value="2" onchange="descontarInventarioAutomatico()"></td><td><textarea class="form-control form-control-sm mat-serv" rows="1" onchange="descontarInventarioAutomatico()">Baumanometro</textarea></td><td><input type="text" class="form-control form-control-sm" value="servicio"></td><td><input type="text" class="form-control form-control-sm" value="Juan P."></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
+                <!-- MESES CON LA ESTRUCTURA EXACTA DE COLUMNAS -->
+                <div class="tab-pane fade" id="tab-enero"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Enero 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-enero', 'Enero_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-primary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-enero')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-enero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-enero"><thead><tr><th style="min-width: 70px;">Número</th><th style="min-width: 110px;">Fecha</th><th style="min-width: 150px;">Servicio</th><th style="min-width: 100px;">Unidad</th><th style="min-width: 80px;">Cantidad</th><th style="min-width: 220px;">Materiales / Herramientas</th><th style="min-width: 130px;">Unidad de Medida</th><th style="min-width: 140px;">Reportante</th><th style="min-width: 60px;">Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="1"></td><td><input type="text" class="form-control form-control-sm" value="01/01/2026"></td><td><input type="text" class="form-control form-control-sm" value="Incendio"></td><td><input type="text" class="form-control form-control-sm" value="U-04"></td><td><input type="number" class="form-control form-control-sm cant-serv" value="2" onchange="sincronizarInventarioTotal()"></td><td><textarea class="form-control form-control-sm mat-serv" rows="1" onchange="sincronizarInventarioTotal()">Baumanometro</textarea></td><td><input type="text" class="form-control form-control-sm" value="servicio"></td><td><input type="text" class="form-control form-control-sm" value="Juan P."></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
 
                 <div class="tab-pane fade" id="tab-febrero"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Febrero 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-febrero', 'Febrero_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-primary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-febrero')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-febrero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-febrero"><thead><tr><th>Número</th><th>Fecha</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales / Herramientas</th><th>Unidad de Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
                 <div class="tab-pane fade" id="tab-marzo"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Marzo 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-marzo', 'Marzo_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-primary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-marzo')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-marzo')"><i class="bi bi-plus-lg"></i> Agregar Fila</button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-marzo"><thead><tr><th>Número</th><th>Fecha</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales / Herramientas</th><th>Unidad de Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
@@ -339,7 +338,7 @@
                 <!-- NOVEDADES -->
                 <div class="tab-pane fade" id="apartado-novedades"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-journal-text me-2"></i>NOVEDADES</h5></div><div class="card-body"><div class="border p-3 rounded bg-light mb-3"><div class="row g-3"><div class="col-md-4"><label class="form-label fw-bold small">Guardia:</label><input type="text" class="form-control form-control-sm"></div><div class="col-md-4"><label class="form-label fw-bold small">Cabinero:</label><input type="text" class="form-control form-control-sm"></div><div class="col-md-4"><label class="form-label fw-bold small">Fecha:</label><input type="date" class="form-control form-control-sm"></div></div></div><label class="form-label fw-bold">Bitácora:</label><textarea class="form-control" rows="8"></textarea></div></div></div>
 
-                <!-- TABLA DE CONTROL 56 -->
+                <!-- CONTROL 56 -->
                 <div class="tab-pane fade" id="apartado-56"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-file-earmark-medical me-2"></i>CONTROL 56</h5><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFila56()"><i class="bi bi-plus-lg"></i> Agregar Registro</button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tabla56"><thead><tr><th>Día</th><th>Mes</th><th>Unidad</th><th>L/F</th><th>Costo</th><th>02</th><th>Viáticos</th><th>Destino</th><th>Rojo</th><th>Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="05"></td><td><input type="text" class="form-control form-control-sm" value="Octubre"></td><td><input type="text" class="form-control form-control-sm" value="U-02"></td><td><input type="text" class="form-control form-control-sm" value="Local"></td><td><input type="text" class="form-control form-control-sm" value="$0"></td><td><input type="text" class="form-control form-control-sm" value="2"></td><td><input type="text" class="form-control form-control-sm" value="$150"></td><td><input type="text" class="form-control form-control-sm" value="Hospital"></td><td><input type="text" class="form-control form-control-sm" value="N/A"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
 
                 <!-- PARQUE VEHICULAR -->
@@ -356,7 +355,7 @@
                     <tr><td><input type="text" class="form-control form-control-sm material-nombre" value="Camilla"></td><td><select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)"><option value="pieza" selected>Pieza</option><option value="servicio">Servicio</option></select></td><td><input type="number" class="form-control form-control-sm cantidad-inv" value="5" oninput="actualizarEstadoInventario(this)"></td><td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background:#dc3545;color:#fff;">Rojo</span></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>
                 </tbody></table></div></div></div></div>
 
-                <!-- IA LOCAL -->
+                <!-- ASISTENTE IA -->
                 <div class="tab-pane fade" id="apartado-ia"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-stars text-danger me-2"></i>ASISTENTE IA</h5></div><div class="card-body"><div class="input-group mb-2"><input type="text" id="promptIA" class="form-control" placeholder="Consulta..."><button class="btn btn-rojo shadow-sm" type="button" onclick="consultarOllama()">Consultar</button></div><small class="text-secondary">Modelo: <input type="text" id="nombreModelo" class="form-control form-control-sm d-inline-block w-25 ms-1" value="tinyllama:latest"></small><div id="loadingGemini" class="text-secondary d-none my-3"><span class="spinner-border spinner-border-sm text-danger"></span> Procesando...</div><div id="cajaRespuestaIA" class="p-3 bg-light rounded border d-none mt-2"><div id="respuestaTextoIA" class="text-dark" style="white-space: pre-wrap;"></div></div></div></div></div>
             </div>
         </div>
@@ -404,12 +403,12 @@
         }
 
         function solicitarAcceso56(e) { e.preventDefault(); new bootstrap.Modal(document.getElementById('modalPassword56')).show(); }
-        function validarPassword56() { if(document.getElementById('inputPass56').value === "12345") { bootstrap.Modal.getInstance(document.getElementById('modalPassword56')).hide(); document.getElementById('inputPass56').value = ''; document.getElementById('errorPass56').classList.add('d-none'); abrirPestana('apartado-56'); } else { document.getElementById('errorPass56').classList.remove('d-none'); } }
+        function validarPassword56() { if(document.getElementById('inputPass56').value === "12345") { bootstrap.Modal.getInstance(document.getElementById('modalPassword56')).hide(); document.getElementById('inputPass56').value = ''; document.getElementById('errorPass56').classList.add('d-none'); abrirPestana('apartado-56'); } else { document.getElementById('errorPass56').classList.add('d-none'); } }
         
         function agregarFilaServicio(id) { 
             const tabla = document.getElementById(id);
             if(tabla) {
-                tabla.getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="number" class="form-control form-control-sm cant-serv" value="0" onchange="descontarInventarioAutomatico()"></td><td><textarea class="form-control form-control-sm mat-serv" rows="1" onchange="descontarInventarioAutomatico()"></textarea></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); 
+                tabla.getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="number" class="form-control form-control-sm cant-serv" value="0" onchange="sincronizarInventarioTotal()"></td><td><textarea class="form-control form-control-sm mat-serv" rows="1" onchange="sincronizarInventarioTotal()"></textarea></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); 
             }
         }
 
@@ -417,7 +416,7 @@
         function agregarFilaVehicular() { document.getElementById('tablaVehicular').getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); }
         function agregarFilaCombustible() { document.getElementById('tablaCombustible').getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="date" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="number" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); }
         function agregarFilaInventario() { document.getElementById('tablaInventario').getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm material-nombre"></td><td><select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)"><option value="pieza" selected>Pieza</option><option value="servicio">Servicio</option></select></td><td><input type="number" class="form-control form-control-sm cantidad-inv" value="0" oninput="actualizarEstadoInventario(this)"></td><td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background:#ffc107;color:#000;">Amarillo</span></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); }
-        function eliminarFila(b) { b.closest('tr').remove(); descontarInventarioAutomatico(); }
+        function eliminarFila(b) { b.closest('tr').remove(); sincronizarInventarioTotal(); }
         
         function actualizarEstadoInventario(el) {
             const f = el.closest('tr'), c = f.querySelector('select').value, n = parseInt(f.querySelector('.cantidad-inv').value) || 0, badge = f.querySelector('.indicador-estado');
@@ -426,8 +425,8 @@
             else { badge.style.background = '#dc3545'; badge.style.color = '#fff'; badge.textContent = 'Rojo'; }
         }
 
-        // Lógica para descontar inventario en tiempo real
-        function descontarInventarioAutomatico() {
+        // Sincronización estricta entre Registros de Meses e Inventario General
+        function sincronizarInventarioTotal() {
             const filasInventario = document.querySelectorAll('#tablaInventario tbody tr');
             filasInventario.forEach(fila => {
                 let inputCant = fila.querySelector('.cantidad-inv');
@@ -436,7 +435,7 @@
                 }
             });
 
-            let consTotales = {};
+            let consumoMateriales = {};
             const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
             meses.forEach(mes => {
                 const tablaMes = document.querySelector(`#tabla-${mes}`);
@@ -445,11 +444,12 @@
                         let matUsado = filaServicio.querySelector('.mat-serv')?.value.trim().toLowerCase();
                         let cantUsada = parseInt(filaServicio.querySelector('.cant-serv')?.value) || 0;
                         if(matUsado && cantUsada > 0) {
-                            // Si el campo tiene múltiples materiales separados por coma o salto de línea
-                            let listaMat = matUsado.split(/[\n,]+/);
-                            listaMat.forEach(m => {
-                                let mLimpio = m.trim();
-                                if(mLimpio) consTotales[mLimpio] = (consTotales[mLimpio] || 0) + cantUsada;
+                            let lista = matUsado.split(/[\n,]+/);
+                            lista.forEach(item => {
+                                let limpio = item.trim();
+                                if(limpio) {
+                                    consumoMateriales[limpio] = (consumoMateriales[limpio] || 0) + cantUsada;
+                                }
                             });
                         }
                     });
@@ -461,15 +461,14 @@
                 let inputCant = fila.querySelector('.cantidad-inv');
                 let stockBase = parseInt(fila.dataset.stockBase) || 0;
                 if(nombreMat && inputCant) {
-                    let totalUsado = consTotales[nombreMat] || 0;
-                    let nuevoStock = Math.max(0, stockBase - totalUsado);
-                    inputCant.value = nuevoStock;
+                    let totalGastado = consumoMateriales[nombreMat] || 0;
+                    let stockFinal = Math.max(0, stockBase - totalGastado);
+                    inputCant.value = stockFinal;
                     actualizarEstadoInventario(inputCant);
                 }
             });
         }
 
-        // Exportar a Excel
         function exportarExcel(idTabla, nombreArchivo) {
             const tabla = document.getElementById(idTabla);
             let datos = [];
@@ -494,7 +493,7 @@
             XLSX.writeFile(wb, nombreArchivo);
         }
 
-        // Importación INTELIGENTE que mapea encabezados para evitar que los campos se desordenen
+        // Importación Inteligente con mapeo exacto de columnas para que no se revuelvan los datos
         function importarExcel(e, idTabla) {
             const archivo = e.target.files[0];
             if (!archivo) return;
@@ -513,52 +512,48 @@
 
                     if(json.length === 0) return;
 
-                    // Mapear los índices de encabezados dinámicamente
-                    let mapIndices = { num: 0, fecha: 1, servicio: 2, unidad: 3, cant: 4, mat: 5, medida: 6, rep: 7 };
+                    let indices = { num: 0, fecha: 1, servicio: 2, unidad: 3, cant: 4, mat: 5, medida: 6, rep: 7 };
                     let filaInicio = 0;
 
-                    // Revisar si la primera fila contiene los encabezados
                     let primeraFila = json[0].map(c => c ? c.toString().toLowerCase() : '');
                     if(primeraFila.some(c => c.includes('num') || c.includes('servicio') || c.includes('fecha') || c.includes('material'))) {
-                        filaInicio = 1; // Omitir fila de títulos
+                        filaInicio = 1;
                         primeraFila.forEach((col, idx) => {
-                            if(col.includes('num')) mapIndices.num = idx;
-                            else if(col.includes('fech')) mapIndices.fecha = idx;
-                            else if(col.includes('servic')) mapIndices.servicio = idx;
-                            else if(col.includes('unid') && !col.includes('medid')) mapIndices.unidad = idx;
-                            else if(col.includes('cant')) mapIndices.cant = idx;
-                            else if(col.includes('mat') || col.includes('herram')) mapIndices.mat = idx;
-                            else if(col.includes('medid')) mapIndices.medida = idx;
-                            else if(col.includes('report') || col.includes('resp')) mapIndices.rep = idx;
+                            if(col.includes('num')) indices.num = idx;
+                            else if(col.includes('fech')) indices.fecha = idx;
+                            else if(col.includes('servic')) indices.servicio = idx;
+                            else if(col.includes('unid') && !col.includes('medid')) indices.unidad = idx;
+                            else if(col.includes('cant')) indices.cant = idx;
+                            else if(col.includes('mat') || col.includes('herram')) indices.mat = idx;
+                            else if(col.includes('medid')) indices.medida = idx;
+                            else if(col.includes('report') || col.includes('resp')) indices.rep = idx;
                         });
                     }
 
                     for(let i = filaInicio; i < json.length; i++) {
                         let fila = json[i];
                         if (!fila || fila.length === 0) continue;
-
-                        // Ignorar filas repetidas que digan "numero" o "servicio" a mitad de tabla
-                        let txtFila = fila.join(' ').toLowerCase();
-                        if(txtFila.includes('numero') && txtFila.includes('servicio')) continue;
+                        let textoFila = fila.join(' ').toLowerCase();
+                        if(textoFila.includes('numero') && textoFila.includes('servicio')) continue;
 
                         agregarFilaServicio(idTabla);
-                        const trs = tbody.querySelectorAll('tr');
-                        const ultimaTr = trs[trs.length - 1];
-                        const inputs = ultimaTr.querySelectorAll('input, textarea, select');
+                        let trs = tbody.querySelectorAll('tr');
+                        let ultimaTr = trs[trs.length - 1];
+                        let inputs = ultimaTr.querySelectorAll('input, textarea, select');
                         
-                        inputs[0].value = fila[mapIndices.num] !== undefined ? fila[mapIndices.num] : '';
-                        inputs[1].value = fila[mapIndices.fecha] !== undefined ? fila[mapIndices.fecha] : '';
-                        inputs[2].value = fila[mapIndices.servicio] !== undefined ? fila[mapIndices.servicio] : '';
-                        inputs[3].value = fila[mapIndices.unidad] !== undefined ? fila[mapIndices.unidad] : '';
-                        inputs[4].value = fila[mapIndices.cant] !== undefined ? fila[mapIndices.cant] : 0;
-                        inputs[5].value = fila[mapIndices.mat] !== undefined ? fila[mapIndices.mat] : '';
-                        inputs[6].value = fila[mapIndices.medida] !== undefined ? fila[mapIndices.medida] : '';
-                        inputs[7].value = fila[mapIndices.rep] !== undefined ? fila[mapIndices.rep] : '';
+                        inputs[0].value = fila[indices.num] !== undefined ? fila[indices.num] : '';
+                        inputs[1].value = fila[indices.fecha] !== undefined ? fila[indices.fecha] : '';
+                        inputs[2].value = fila[indices.servicio] !== undefined ? fila[indices.servicio] : '';
+                        inputs[3].value = fila[indices.unidad] !== undefined ? fila[indices.unidad] : '';
+                        inputs[4].value = fila[indices.cant] !== undefined ? fila[indices.cant] : 0;
+                        inputs[5].value = fila[indices.mat] !== undefined ? fila[indices.mat] : '';
+                        inputs[6].value = fila[indices.medida] !== undefined ? fila[indices.medida] : '';
+                        inputs[7].value = fila[indices.rep] !== undefined ? fila[indices.rep] : '';
                     }
                     
-                    descontarInventarioAutomatico();
+                    sincronizarInventarioTotal();
                 } catch (err) {
-                    alert("Ocurrió un error al procesar el archivo Excel. Asegúrate de importar un formato válido.");
+                    alert("Error al importar el archivo. Verifica que el formato del Excel sea correcto.");
                 }
             };
             lector.readAsArrayBuffer(archivo);
