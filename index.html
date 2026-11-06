@@ -90,7 +90,6 @@
             margin-bottom: 20px;
         }
 
-        /* Estilo pestaña superior compacta para el mensaje de bienvenida */
         #vistaBienvenida {
             max-width: 750px;
             margin: 20px auto;
@@ -317,7 +316,6 @@
         </div>
 
         <div class="container-fluid mt-3 px-2 px-md-4 pb-5">
-            <!-- Pestaña de bienvenida compacta superior -->
             <div id="vistaBienvenida" class="card shadow border-0 py-3 px-4 text-center">
                 <div class="d-flex align-items-center justify-content-center gap-3 flex-wrap">
                     <i class="bi bi-shield-lock fs-3 text-danger"></i>
@@ -344,12 +342,15 @@
                 <div class="tab-pane fade" id="tab-noviembre"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Noviembre 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-outline-danger" onclick="borrarDatosApartado('tabla-noviembre')"><i class="bi bi-trash"></i> Borrar Todo</button><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-noviembre', 'Noviembre_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-primary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-noviembre')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-noviembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-noviembre"><thead><tr><th>Número</th><th>Fecha</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales / Herramientas</th><th>Unidad de Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
                 <div class="tab-pane fade" id="tab-diciembre"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Diciembre 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-outline-danger" onclick="borrarDatosApartado('tabla-diciembre')"><i class="bi bi-trash"></i> Borrar Todo</button><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-diciembre', 'Diciembre_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-primary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-diciembre')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-diciembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-diciembre"><thead><tr><th>Número</th><th>Fecha</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales / Herramientas</th><th>Unidad de Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
 
-                <!-- NOVEDADES -->
+                <!-- NOVEDADES (MEJORADO CON BOTÓN DE AÑADIR APARTADO) -->
                 <div class="tab-pane fade" id="apartado-novedades">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3">
                             <h5 class="m-0 fw-bold fs-6"><i class="bi bi-journal-text me-2"></i>NOVEDADES</h5>
-                            <button class="btn btn-sm btn-outline-light" onclick="borrarDatosApartado('apartado-novedades')"><i class="bi bi-trash"></i> Borrar</button>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarSeccionNovedad()"><i class="bi bi-plus-lg"></i> Añadir Apartado</button>
+                                <button class="btn btn-sm btn-outline-light" onclick="borrarDatosApartado('apartado-novedades')"><i class="bi bi-trash"></i> Borrar Todo</button>
+                            </div>
                         </div>
                         <div class="card-body">
                             <div class="border p-3 rounded bg-light mb-3">
@@ -359,7 +360,11 @@
                                     <div class="col-md-4"><label class="form-label fw-bold small">Fecha:</label><input type="date" id="nov-fecha" class="form-control form-control-sm" oninput="guardarEstadoLocal()"></div>
                                 </div>
                             </div>
-                            <label class="form-label fw-bold">Bitácora:</label><textarea id="nov-bitacora" class="form-control" rows="8" oninput="guardarEstadoLocal()"></textarea>
+                            <label class="form-label fw-bold">Bitácora Principal:</label>
+                            <textarea id="nov-bitacora" class="form-control mb-4" rows="5" oninput="guardarEstadoLocal()"></textarea>
+                            
+                            <!-- Contenedor donde se agregan los nuevos apartados dinámicos -->
+                            <div id="contenedorSeccionesNovedades"></div>
                         </div>
                     </div>
                 </div>
@@ -376,10 +381,30 @@
                 <!-- INVENTARIO GENERAL -->
                 <div class="tab-pane fade" id="apartado-inventario"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-box-seam me-2"></i>INVENTARIO GENERAL</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-outline-light" onclick="borrarDatosApartado('tablaInventario')"><i class="bi bi-trash"></i> Borrar Todo</button><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaInventario()"><i class="bi bi-plus-lg"></i> Agregar Material</button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tablaInventario"><thead><tr><th>Material</th><th>Clasificación</th><th>Cantidad</th><th>Estado</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
 
-                <!-- ASISTENTE IA -->
-                <div class="tab-pane fade" id="apartado-ia"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-stars text-danger me-2"></i>ASISTENTE IA</h5></div><div class="card-body"><div class="input-group mb-2"><input type="text" id="promptIA" class="form-control" placeholder="Consulta..."><button class="btn btn-rojo shadow-sm" type="button" onclick="consultarIA()">Consultar</button></div><small class="text-secondary">Modelo: <input type="text" id="nombreModelo" class="form-control form-control-sm d-inline-block w-25 ms-1" value="Gemini 2.5 Flash"></small><div id="loadingGemini" class="text-secondary d-none my-3"><span class="spinner-border spinner-border-sm text-danger"></span> Procesando...</div><div id="cajaRespuestaIA" class="p-3 bg-light rounded border d-none mt-2"><div id="respuestaTextoIA" class="text-dark" style="white-space: pre-wrap;"></div></div></div></div></div>
+                <!-- ASISTENTE IA MEJORADO -->
+                <div class="tab-pane fade" id="apartado-ia">
+                    <div class="card card-contenedor shadow-lg border-0">
+                        <div class="card-header bg-dark text-white py-3">
+                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-stars text-danger me-2"></i>ASISTENTE IA (Google Gemini)</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group mb-2">
+                                <input type="text" id="promptIA" class="form-control" placeholder="Escribe tu consulta operativa..." onkeyup="if(event.key==='Enter') consultarIA()">
+                                <button class="btn btn-rojo shadow-sm" type="button" onclick="consultarIA()">Consultar</button>
+                            </div>
+                            <small class="text-secondary">Modelo activo: <input type="text" id="nombreModelo" class="form-control form-control-sm d-inline-block w-25 ms-1" value="Gemini 2.5 Flash"></small>
+                            <div id="loadingGemini" class="text-secondary d-none my-3">
+                                <span class="spinner-border spinner-border-sm text-danger"></span> Procesando respuesta inteligente...
+                            </div>
+                            <div id="cajaRespuestaIA" class="p-3 bg-light rounded border d-none mt-3">
+                                <h6 class="fw-bold text-danger mb-2"><i class="bi bi-robot"></i> Respuesta de la IA:</h6>
+                                <div id="respuestaTextoIA" class="text-dark" style="white-space: pre-wrap; font-size: 0.95rem;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                <!-- BIBLIOGRAFÍA CON ENLACES FUNCIONALES -->
+                <!-- BIBLIOGRAFÍA -->
                 <div class="tab-pane fade" id="apartado-bibliografia">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-dark text-white py-3">
@@ -500,6 +525,26 @@
         }
         function eliminarFila(b) { b.closest('tr').remove(); sincronizarInventarioTotal(); guardarEstadoLocal(); }
         
+        // Función para añadir una nueva sección/apartado en Novedades
+        function agregarSeccionNovedad(titulo = '', contenido = '') {
+            const contenedor = document.getElementById('contenedorSeccionesNovedades');
+            const idUnico = 'nov_sec_' + Date.now() + Math.random().toString(36).substr(2, 5);
+            
+            const htmlSeccion = `
+                <div class="card border mb-3 seccion-novedad-item shadow-sm" id="${idUnico}">
+                    <div class="card-header bg-light d-flex justify-content-between align-items-center py-2">
+                        <input type="text" class="form-control form-control-sm fw-bold border-0 bg-transparent titulo-sec-nov" placeholder="Título del apartado (Ej. Novedades Nocturnas)" value="${titulo}" oninput="guardarEstadoLocal()" style="max-width: 80%;">
+                        <button class="btn btn-sm btn-outline-danger" onclick="document.getElementById('${idUnico}').remove(); guardarEstadoLocal();" title="Eliminar este apartado"><i class="bi bi-trash"></i></button>
+                    </div>
+                    <div class="card-body">
+                        <textarea class="form-control contenido-sec-nov" rows="4" placeholder="Escribe los detalles de este apartado..." oninput="guardarEstadoLocal()">${contenido}</textarea>
+                    </div>
+                </div>
+            `;
+            contenedor.insertAdjacentHTML('beforeend', htmlSeccion);
+            guardarEstadoLocal();
+        }
+        
         function borrarDatosApartado(id) {
             if(id.startsWith('tabla')) {
                 document.querySelector(`#${id} tbody`).innerHTML = "";
@@ -508,18 +553,29 @@
                 document.getElementById('nov-cabinero').value = "";
                 document.getElementById('nov-fecha').value = "";
                 document.getElementById('nov-bitacora').value = "";
+                document.getElementById('contenedorSeccionesNovedades').innerHTML = "";
             }
             guardarEstadoLocal();
         }
 
         function guardarEstadoLocal() {
+            // Guardar secciones dinámicas de novedades
+            const seccionesNovedades = [];
+            document.querySelectorAll('.seccion-novedad-item').forEach(sec => {
+                seccionesNovedades.push({
+                    titulo: sec.querySelector('.titulo-sec-nov').value,
+                    contenido: sec.querySelector('.contenido-sec-nov').value
+                });
+            });
+
             const estado = {
                 meses: {},
                 novedades: {
                     guardia: document.getElementById('nov-guardia')?.value || '',
                     cabinero: document.getElementById('nov-cabinero')?.value || '',
                     fecha: document.getElementById('nov-fecha')?.value || '',
-                    bitacora: document.getElementById('nov-bitacora')?.value || ''
+                    bitacora: document.getElementById('nov-bitacora')?.value || '',
+                    seccionesExtras: seccionesNovedades
                 },
                 tabla56: document.getElementById('tabla56')?.tBodies[0].innerHTML || '',
                 tablaVehicular: document.getElementById('tablaVehicular')?.tBodies[0].innerHTML || '',
@@ -540,10 +596,16 @@
             try {
                 const est = JSON.parse(guardado);
                 if(est.novedades) {
-                    document.getElementById('nov-guardia').value = est.novedades.guardia;
-                    document.getElementById('nov-cabinero').value = est.novedades.cabinero;
-                    document.getElementById('nov-fecha').value = est.novedades.fecha;
-                    document.getElementById('nov-bitacora').value = est.novedades.bitacora;
+                    document.getElementById('nov-guardia').value = est.novedades.guardia || '';
+                    document.getElementById('nov-cabinero').value = est.novedades.cabinero || '';
+                    document.getElementById('nov-fecha').value = est.novedades.fecha || '';
+                    document.getElementById('nov-bitacora').value = est.novedades.bitacora || '';
+                    
+                    if(est.novedades.seccionesExtras && Array.isArray(est.novedades.seccionesExtras)) {
+                        est.novedades.seccionesExtras.forEach(sec => {
+                            agregarSeccionNovedad(sec.titulo, sec.contenido);
+                        });
+                    }
                 }
                 if(est.tabla56) document.querySelector('#tabla56 tbody').innerHTML = est.tabla56;
                 if(est.tablaVehicular) document.querySelector('#tablaVehicular tbody').innerHTML = est.tablaVehicular;
@@ -664,57 +726,4 @@
                             else if(col.includes('unid') && !col.includes('medid')) indices.unidad = idx;
                             else if(col.includes('cant')) indices.cant = idx;
                             else if(col.includes('mat') || col.includes('herram')) indices.mat = idx;
-                            else if(col.includes('medid')) indices.medida = idx;
-                            else if(col.includes('report') || col.includes('resp')) indices.rep = idx;
-                        });
-                    }
-                    for(let i = filaInicio; i < json.length; i++) {
-                        let fila = json[i];
-                        if (!fila || fila.length === 0) continue;
-                        agregarFilaServicio(idTabla);
-                        let trs = tbody.querySelectorAll('tr');
-                        let ultimaTr = trs[trs.length - 1];
-                        let inputs = ultimaTr.querySelectorAll('input, textarea, select');
-                        inputs[0].value = fila[indices.num] !== undefined ? fila[indices.num] : '';
-                        inputs[1].value = fila[indices.fecha] !== undefined ? fila[indices.fecha] : '';
-                        inputs[2].value = fila[indices.servicio] !== undefined ? fila[indices.servicio] : '';
-                        inputs[3].value = fila[indices.unidad] !== undefined ? fila[indices.unidad] : '';
-                        inputs[4].value = fila[indices.cant] !== undefined ? fila[indices.cant] : 0;
-                        inputs[5].value = fila[indices.mat] !== undefined ? fila[indices.mat] : '';
-                        inputs[6].value = fila[indices.medida] !== undefined ? fila[indices.medida] : '';
-                        inputs[7].value = fila[indices.rep] !== undefined ? fila[indices.rep] : '';
-                    }
-                    sincronizarInventarioTotal();
-                    guardarEstadoLocal();
-                } catch (err) {
-                    console.error("Error al importar el archivo Excel.");
-                }
-            };
-            lector.readAsArrayBuffer(archivo);
-        }
-
-        async function consultarIA() {
-            const p = document.getElementById('promptIA').value.trim();
-            const l = document.getElementById('loadingGemini');
-            const c = document.getElementById('cajaRespuestaIA');
-            const t = document.getElementById('respuestaTextoIA');
-            if(!p) return;
-            l.classList.remove('d-none');
-            c.classList.add('d-none');
-            
-            setTimeout(() => {
-                let resp = "Consulta procesada correctamente por el asistente operativo.";
-                const pLow = p.toLowerCase();
-                if(pLow.includes("gas") || pLow.includes("fuga")) {
-                    resp = "Protocolo de Fuga de Gas LP:\n1. Evacuar el área inmediatamente.\n2. No accionar interruptores eléctricos.\n3. Cerrar el tanque de gas si es seguro y reportar al 911.";
-                } else if(pLow.includes("incendio")) {
-                    resp = "Protocolo de Incendio:\n1. Mantener la calma y evacuar por rutas seguras.\n2. No inhalar humo (cubrir nariz y boca).\n3. Esperar unidades de emergencia.";
-                }
-                t.textContent = resp;
-                l.classList.add('d-none');
-                c.classList.remove('d-none');
-            }, 500);
-        }
-    </script>
-</body>
-</html>
+                            else if(col.includes('medid')) indices.medida =
