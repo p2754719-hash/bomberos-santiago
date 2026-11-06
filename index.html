@@ -72,6 +72,16 @@
         .dropdown-toggle-apartados:hover {
             background-color: var(--rojo-institucional) !important;
         }
+        
+        /* CORRECCIÓN DE CAPAS Y MENÚ DE MESES */
+        .dropdown-menu {
+            z-index: 99999 !important;
+        }
+        .dropdown-submenu > .dropdown-menu {
+            max-height: 260px;
+            overflow-y: auto;
+        }
+
         .card-contenedor {
             background-color: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(6px);
@@ -169,10 +179,6 @@
             }
             .card-body {
                 padding: 12px !important;
-            }
-            .dropdown-menu {
-                max-height: 70vh;
-                overflow-y: auto;
             }
         }
     </style>
@@ -310,14 +316,14 @@
 
             <div class="tab-content mb-5">
                 
-                <!-- PLANTILLA DE MESES DINÁMICA CON BOTÓN DE EXPORTAR A EXCEL -->
                 <!-- ENERO -->
                 <div class="tab-pane fade" id="tab-enero">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Enero 2026</h5>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-enero', 'Enero')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                            <div class="d-flex gap-2 align-items-center flex-wrap">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-enero', 'Enero')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-enero')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-enero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -359,8 +365,9 @@
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Febrero 2026</h5>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-febrero', 'Febrero')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                            <div class="d-flex gap-2 align-items-center flex-wrap">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-febrero', 'Febrero')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-febrero')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-febrero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -391,8 +398,9 @@
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Marzo 2026</h5>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-marzo', 'Marzo')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                            <div class="d-flex gap-2 align-items-center flex-wrap">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-marzo', 'Marzo')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-marzo')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-marzo')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -423,8 +431,9 @@
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Abril 2026</h5>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-abril', 'Abril')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                            <div class="d-flex gap-2 align-items-center flex-wrap">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-abril', 'Abril')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-abril')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-abril')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -455,8 +464,9 @@
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Mayo 2026</h5>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-mayo', 'Mayo')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                            <div class="d-flex gap-2 align-items-center flex-wrap">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-mayo', 'Mayo')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-mayo')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-mayo')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -487,8 +497,9 @@
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Junio 2026</h5>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-junio', 'Junio')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                            <div class="d-flex gap-2 align-items-center flex-wrap">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-junio', 'Junio')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-junio')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-junio')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -519,8 +530,9 @@
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Julio 2026</h5>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-julio', 'Julio')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                            <div class="d-flex gap-2 align-items-center flex-wrap">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-julio', 'Julio')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-julio')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-julio')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -551,8 +563,9 @@
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Agosto 2026</h5>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-agosto', 'Agosto')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                            <div class="d-flex gap-2 align-items-center flex-wrap">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-agosto', 'Agosto')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-agosto')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-agosto')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -583,8 +596,9 @@
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Septiembre 2026</h5>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-septiembre', 'Septiembre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                            <div class="d-flex gap-2 align-items-center flex-wrap">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-septiembre', 'Septiembre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-septiembre')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-septiembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -615,8 +629,9 @@
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Octubre 2026</h5>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-octubre', 'Octubre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                            <div class="d-flex gap-2 align-items-center flex-wrap">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-octubre', 'Octubre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-octubre')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-octubre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -647,8 +662,9 @@
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Noviembre 2026</h5>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-noviembre', 'Noviembre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                            <div class="d-flex gap-2 align-items-center flex-wrap">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-noviembre', 'Noviembre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-noviembre')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-noviembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -679,8 +695,9 @@
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Diciembre 2026</h5>
-                            <div class="d-flex gap-2">
-                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-diciembre', 'Diciembre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                            <div class="d-flex gap-2 align-items-center flex-wrap">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-diciembre', 'Diciembre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
+                                <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv" style="display: none;" onchange="importarTablaExcel(event, 'tabla-diciembre')"></label>
                                 <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-diciembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
                             </div>
                         </div>
@@ -1006,20 +1023,13 @@
             let csv = [];
             const filas = tabla.querySelectorAll('tr');
             
-            filas.forEach((fila, rowIndex) => {
+            filas.forEach((fila) => {
                 let rowData = [];
                 const cols = fila.querySelectorAll('th, td');
                 cols.forEach((col, colIndex) => {
-                    // Omitir columna de acciones si es la última
-                    if (colIndex === cols.length - 1) return;
-                    
+                    if (colIndex === cols.length - 1) return; // Omitir acciones
                     let input = col.querySelector('input, textarea, select');
-                    let text = '';
-                    if (input) {
-                        text = input.value;
-                    } else {
-                        text = col.innerText;
-                    }
+                    let text = input ? input.value : col.innerText;
                     text = text.replace(/"/g, '""');
                     rowData.push(`"${text}"`);
                 });
@@ -1035,6 +1045,57 @@
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
+        }
+
+        // FUNCIÓN PARA IMPORTAR ARCHIVO EXCEL/CSV A LA TABLA
+        function importarTablaExcel(event, idTabla) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const text = e.target.result;
+                const lines = text.split(/\r\n|\n/);
+                const tbody = document.getElementById(idTabla).getElementsByTagName('tbody')[0];
+                tbody.innerHTML = ""; // Limpiar tabla antes de importar
+
+                for (let i = 1; i < lines.length; i++) {
+                    let line = lines[i].trim();
+                    if (!line) continue;
+
+                    let cols = [];
+                    let inQuotes = false;
+                    let currentCol = '';
+                    for (let char of line) {
+                        if (char === '"') {
+                            inQuotes = !inQuotes;
+                        } else if (char === ',' && !inQuotes) {
+                            cols.push(currentCol.replace(/^"|"$/g, '').replace(/""/g, '"'));
+                            currentCol = '';
+                        } else {
+                            currentCol += char;
+                        }
+                    }
+                    cols.push(currentCol.replace(/^"|"$/g, '').replace(/""/g, '"'));
+
+                    if (cols.length >= 7) {
+                        const nuevaFila = tbody.insertRow();
+                        nuevaFila.innerHTML = `
+                            <td><input type="text" class="form-control form-control-sm" value="${cols[0] || ''}"></td>
+                            <td><input type="text" class="form-control form-control-sm" value="${cols[1] || ''}"></td>
+                            <td><input type="text" class="form-control form-control-sm" value="${cols[2] || ''}"></td>
+                            <td><input type="text" class="form-control form-control-sm" value="${cols[3] || ''}"></td>
+                            <td><textarea class="form-control form-control-sm" rows="1">${cols[4] || ''}</textarea></td>
+                            <td><input type="text" class="form-control form-control-sm" value="${cols[5] || ''}"></td>
+                            <td><input type="text" class="form-control form-control-sm" value="${cols[6] || ''}"></td>
+                            <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
+                        `;
+                    }
+                }
+                alert('¡Datos importados con éxito a la tabla!');
+                event.target.value = '';
+            };
+            reader.readAsText(file, 'utf-8');
         }
 
         function agregarFilaServicio(idTabla) {
