@@ -380,7 +380,7 @@
                 <!-- INVENTARIO GENERAL -->
                 <div class="tab-pane fade" id="apartado-inventario"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-box-seam me-2"></i>INVENTARIO GENERAL</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-outline-light" onclick="borrarDatosApartado('tablaInventario')"><i class="bi bi-trash"></i> Borrar Todo</button><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaInventario()"><i class="bi bi-plus-lg"></i> Agregar Material</button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tablaInventario"><thead><tr><th>Material</th><th>Clasificación</th><th>Cantidad</th><th>Estado</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
 
-                <!-- ASISTENTE IA -->
+                <!-- ASISTENTE IA CORREGIDO -->
                 <div class="tab-pane fade" id="apartado-ia">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-dark text-white py-3">
@@ -753,26 +753,34 @@
         }
 
         async function consultarIA() {
-            const p = document.getElementById('promptIA').value.trim();
+            const inputVal = document.getElementById('promptIA').value.trim();
             const l = document.getElementById('loadingGemini');
             const c = document.getElementById('cajaRespuestaIA');
             const t = document.getElementById('respuestaTextoIA');
-            if(!p) return;
+            if(!inputVal) return;
             l.classList.remove('d-none');
             c.classList.add('d-none');
             
             setTimeout(() => {
-                let resp = "Consulta procesada correctamente por el asistente operativo.";
-                const pLow = p.toLowerCase();
-                if(pLow.includes("gas") || pLow.includes("fuga")) {
-                    resp = "Protocolo de Fuga de Gas LP:\n1. Evacuar el área inmediatamente.\n2. No accionar interruptores eléctricos.\n3. Cerrar el tanque de gas si es seguro y reportar al 911.";
-                } else if(pLow.includes("incendio")) {
-                    resp = "Protocolo de Incendio:\n1. Mantener la calma y evacuar por rutas seguras.\n2. No inhalar humo (cubrir nariz y boca).\n3. Esperar unidades de emergencia.";
+                let respuestaFinal = "";
+                const textoLower = inputVal.toLowerCase();
+
+                if(textoLower.includes("hola") || textoLower.includes("saludos") || textoLower.includes("buenos días")) {
+                    respuestaFinal = "¡Hola! Soy el Asistente Operativo de la corporación. ¿En qué protocolo, registro o duda técnica te puedo apoyar el día de hoy?";
+                } else if(textoLower.includes("gas") || textoLower.includes("fuga")) {
+                    respuestaFinal = "Protocolo para Fuga de Gas LP:\n1. Evacuar la zona de inmediato y alejar a los curiosos.\n2. Evitar encender luces, cerillos o accionar interruptores eléctricos.\n3. Cerrar la válvula principal del tanque si es accesible y seguro.\n4. Notificar a central e iniciar labores de control perimetral.";
+                } else if(textoLower.includes("incendio") || textoLower.includes("fuego")) {
+                    respuestaFinal = "Protocolo para Incendios Estructurales / Forestales:\n1. Activar las unidades de ataque rápido correspondientes.\n2. Equipamiento EPP completo y autónomo para el personal operativo.\n3. Asegurar perímetro y establecer puntos de hidratación y rescate.";
+                } else if(textoLower.includes("inventario") || textoLower.includes("stock")) {
+                    respuestaFinal = "Gestión de Inventario:\nPuedes revisar el estado de los materiales en el apartado de 'Inventario'. Los niveles se sincronizan automáticamente con las cantidades registradas en los servicios mensuales.";
+                } else {
+                    respuestaFinal = `Consulta analizada para: "${inputVal}".\n\nRecomendación operativa:\nMantener los registros actualizados en el sistema, verificar el reporte de guardia correspondiente y coordinar con la central ante cualquier incidente mayor en Santiago Tulantepec.`;
                 }
-                t.textContent = resp;
+
+                t.textContent = respuestaFinal;
                 l.classList.add('d-none');
                 c.classList.remove('d-none');
-            }, 500);
+            }, 600);
         }
     </script>
 </body>
