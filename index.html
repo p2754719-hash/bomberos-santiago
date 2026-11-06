@@ -300,7 +300,7 @@
                         <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-vehicular', event)"><i class="bi bi-truck me-2"></i> Parque Vehicular</a></li>
                         <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-inventario', event)"><i class="bi bi-box-seam me-2"></i> Inventario</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-ia', event)"><i class="bi bi-stars text-danger me-2"></i> Asistente IA Local (Ollama)</a></li>
+                        <li><a class="dropdown-item item-tab-link" href="#" onclick="abrirPestana('apartado-ia', event)"><i class="bi bi-stars text-danger me-2"></i> Asistente IA (Gemini Cloud)</a></li>
                     </ul>
                 </div>
             </div>
@@ -310,12 +310,16 @@
 
             <div class="tab-content mb-5">
                 
-                <!-- TABLAS DE REGISTRO DE SERVICIOS POR MES -->
+                <!-- PLANTILLA DE MESES DINÁMICA CON BOTÓN DE EXPORTAR A EXCEL -->
+                <!-- ENERO -->
                 <div class="tab-pane fade" id="tab-enero">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Enero 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-enero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-enero', 'Enero')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                                <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-enero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -350,11 +354,15 @@
                     </div>
                 </div>
 
+                <!-- FEBRERO -->
                 <div class="tab-pane fade" id="tab-febrero">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Febrero 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-febrero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-febrero', 'Febrero')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                                <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-febrero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -378,11 +386,15 @@
                     </div>
                 </div>
 
+                <!-- MARZO -->
                 <div class="tab-pane fade" id="tab-marzo">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Marzo 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-marzo')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-marzo', 'Marzo')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                                <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-marzo')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -406,11 +418,15 @@
                     </div>
                 </div>
 
+                <!-- ABRIL -->
                 <div class="tab-pane fade" id="tab-abril">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Abril 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-abril')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-abril', 'Abril')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                                <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-abril')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -434,11 +450,15 @@
                     </div>
                 </div>
 
+                <!-- MAYO -->
                 <div class="tab-pane fade" id="tab-mayo">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Mayo 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-mayo')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-mayo', 'Mayo')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                                <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-mayo')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -462,11 +482,15 @@
                     </div>
                 </div>
 
+                <!-- JUNIO -->
                 <div class="tab-pane fade" id="tab-junio">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Junio 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-junio')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-junio', 'Junio')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                                <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-junio')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -490,11 +514,15 @@
                     </div>
                 </div>
 
+                <!-- JULIO -->
                 <div class="tab-pane fade" id="tab-julio">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Julio 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-julio')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-julio', 'Julio')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                                <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-julio')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -518,11 +546,15 @@
                     </div>
                 </div>
 
+                <!-- AGOSTO -->
                 <div class="tab-pane fade" id="tab-agosto">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Agosto 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-agosto')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-agosto', 'Agosto')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                                <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-agosto')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -546,11 +578,15 @@
                     </div>
                 </div>
 
+                <!-- SEPTIEMBRE -->
                 <div class="tab-pane fade" id="tab-septiembre">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Septiembre 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-septiembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-septiembre', 'Septiembre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                                <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-septiembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -574,11 +610,15 @@
                     </div>
                 </div>
 
+                <!-- OCTUBRE -->
                 <div class="tab-pane fade" id="tab-octubre">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Octubre 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-octubre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-octubre', 'Octubre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                                <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-octubre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -602,11 +642,15 @@
                     </div>
                 </div>
 
+                <!-- NOVIEMBRE -->
                 <div class="tab-pane fade" id="tab-noviembre">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Noviembre 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-noviembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-noviembre', 'Noviembre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                                <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-noviembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -630,11 +674,15 @@
                     </div>
                 </div>
 
+                <!-- DICIEMBRE -->
                 <div class="tab-pane fade" id="tab-diciembre">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
                             <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Diciembre 2026</h5>
-                            <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-diciembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-diciembre', 'Diciembre')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar Excel</button>
+                                <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-diciembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                            </div>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -808,14 +856,14 @@
                     </div>
                 </div>
 
-                <!-- APARTADO 4: INTELIGENCIA ARTIFICIAL (LOCAL - OLLAMA) -->
+                <!-- APARTADO 4: INTELIGENCIA ARTIFICIAL EN LA NUBE (GEMINI) -->
                 <div class="tab-pane fade" id="apartado-ia">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-dark text-white py-3">
-                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-stars text-danger me-2"></i> ASISTENTE TÉCNICO LOCAL (OLLAMA)</h5>
+                            <h5 class="m-0 fw-bold fs-6"><i class="bi bi-stars text-danger me-2"></i> ASISTENTE VIRTUAL (GEMINI CLOUD)</h5>
                         </div>
                         <div class="card-body">
-                            <p class="text-muted small mb-3">Modelo ligero ejecutándose localmente.</p>
+                            <p class="text-muted small mb-3">Asistente operando en la nube 24/7 (Sin requerir equipos locales encendidos).</p>
 
                             <div class="mb-3">
                                 <label class="form-label fw-bold">Escribe tu consulta para los Bomberos:</label>
@@ -823,15 +871,14 @@
                                     <input type="text" id="promptIA" class="form-control" placeholder="Ej: ¿Qué hacer en caso de fuga de gas LP?">
                                     <button class="btn btn-rojo" type="button" onclick="consultarOllama()">Consultar</button>
                                 </div>
-                                <small class="text-secondary">Modelo: <input type="text" id="nombreModelo" class="form-control form-control-sm d-inline-block w-25 ms-1" value="tinyllama:latest"></small>
                             </div>
 
                             <div id="loadingGemini" class="text-secondary d-none my-3">
-                                <span class="spinner-border spinner-border-sm text-danger" role="status"></span> Procesando localmente...
+                                <span class="spinner-border spinner-border-sm text-danger" role="status"></span> Consultando a la IA en la nube...
                             </div>
 
                             <div id="cajaRespuestaIA" class="p-3 bg-light rounded border d-none">
-                                <strong class="text-danger"><i class="bi bi-chat-left-text"></i> Respuesta de la IA Local:</strong>
+                                <strong class="text-danger"><i class="bi bi-chat-left-text"></i> Respuesta del Asistente:</strong>
                                 <div id="respuestaTextoIA" class="mt-2 text-dark" style="white-space: pre-wrap;"></div>
                             </div>
                         </div>
@@ -949,6 +996,45 @@
         function cancelarPassword56() {
             document.getElementById('inputPass56').value = '';
             document.getElementById('errorPass56').classList.add('d-none');
+        }
+
+        // FUNCIÓN PARA EXPORTAR LAS TABLAS A EXCEL (CSV)
+        function exportarTablaExcel(idTabla, nombreMes) {
+            const tabla = document.getElementById(idTabla);
+            if (!tabla) return;
+            
+            let csv = [];
+            const filas = tabla.querySelectorAll('tr');
+            
+            filas.forEach((fila, rowIndex) => {
+                let rowData = [];
+                const cols = fila.querySelectorAll('th, td');
+                cols.forEach((col, colIndex) => {
+                    // Omitir columna de acciones si es la última
+                    if (colIndex === cols.length - 1) return;
+                    
+                    let input = col.querySelector('input, textarea, select');
+                    let text = '';
+                    if (input) {
+                        text = input.value;
+                    } else {
+                        text = col.innerText;
+                    }
+                    text = text.replace(/"/g, '""');
+                    rowData.push(`"${text}"`);
+                });
+                csv.push(rowData.join(','));
+            });
+
+            const csvString = csv.join('\n');
+            const blob = new Blob(['\ufeff' + csvString], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Registro_Servicios_${nombreMes}_2026.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
         }
 
         function agregarFilaServicio(idTabla) {
@@ -1069,7 +1155,6 @@
 
         async function consultarOllama() {
             const prompt = document.getElementById('promptIA').value;
-            const modelo = document.getElementById('nombreModelo').value;
             const loader = document.getElementById('loadingGemini');
             const cajaRespuesta = document.getElementById('cajaRespuestaIA');
             const textoRespuesta = document.getElementById('respuestaTextoIA');
@@ -1079,17 +1164,30 @@
             loader.classList.remove('d-none');
             cajaRespuesta.classList.add('d-none');
 
+            const API_KEY = "TU_API_KEY_AQUI";
+            const URL_API = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+
             try {
-                const response = await fetch('http://localhost:11434/api/generate', {
+                const response = await fetch(URL_API, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ model: modelo, prompt: prompt, stream: false })
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{ text: `Eres un asistente virtual experto para el H. Cuerpo de Bomberos y Protección Civil de Santiago Tulantepec. Responde de manera profesional, clara y concisa a la siguiente consulta operativa: ${prompt}` }]
+                        }]
+                    })
                 });
+
                 const data = await response.json();
-                textoRespuesta.textContent = data.response || "Sin respuesta del modelo local.";
+                
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                    textoRespuesta.textContent = data.candidates[0].content.parts[0].text;
+                } else {
+                    textoRespuesta.textContent = "No se pudo obtener una respuesta de la IA en este momento.";
+                }
                 cajaRespuesta.classList.remove('d-none');
             } catch (err) {
-                textoRespuesta.textContent = "Error: No se pudo conectar con Ollama en el entorno local (localhost:11434).";
+                textoRespuesta.textContent = "Error de conexión con la IA en la nube. Verifique su acceso a internet.";
                 cajaRespuesta.classList.remove('d-none');
             } finally {
                 loader.classList.add('d-none');
