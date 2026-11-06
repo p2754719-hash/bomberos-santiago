@@ -425,7 +425,7 @@
             else { badge.style.background = '#dc3545'; badge.style.color = '#fff'; badge.textContent = 'Rojo'; }
         }
 
-        // Sincronización estricta entre Registros de Meses e Inventario General
+        // Sincronización estricta acumulando por mes y distinguiendo si es Servicio (Aumenta) o Pieza (Disminuye)
         function sincronizarInventarioTotal() {
             const filasInventario = document.querySelectorAll('#tablaInventario tbody tr');
             filasInventario.forEach(fila => {
@@ -435,7 +435,7 @@
                 }
             });
 
-            let consumoMateriales = {};
+            let movimientosMateriales = {};
             const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
             meses.forEach(mes => {
                 const tablaMes = document.querySelector(`#tabla-${mes}`);
@@ -448,7 +448,7 @@
                             lista.forEach(item => {
                                 let limpio = item.trim();
                                 if(limpio) {
-                                    consumoMateriales[limpio] = (consumoMateriales[limpio] || 0) + cantUsada;
+                                    movimientosMateriales[limpio] = (movimientosMateriales[limpio] || 0) + cantUsada;
                                 }
                             });
                         }
@@ -458,11 +458,23 @@
 
             filasInventario.forEach(fila => {
                 let nombreMat = fila.querySelector('.material-nombre')?.value.trim().toLowerCase();
+                let selectTipo = fila.querySelector('select'); // 'pieza' o 'servicio'
                 let inputCant = fila.querySelector('.cantidad-inv');
                 let stockBase = parseInt(fila.dataset.stockBase) || 0;
-                if(nombreMat && inputCant) {
-                    let totalGastado = consumoMateriales[nombreMat] || 0;
-                    let stockFinal = Math.max(0, stockBase - totalGastado);
+                
+                if(nombreMat && inputCant && selectTipo) {
+                    let totalMovimiento = movimientosMateriales[nombreMat] || 0;
+                    let tipoMaterial = selectTipo.value;
+                    let stockFinal = stockBase;
+
+                    if (tipoMaterial === 'servicio') {
+                        // Si es servicio, se acumula (aumenta)
+                        stockFinal = stockBase + totalMovimiento;
+                    } else {
+                        // Si es pieza, se desgasta (disminuye, sin bajar de 0)
+                        stockFinal = Math.max(0, stockBase - totalMovimiento);
+                    }
+
                     inputCant.value = stockFinal;
                     actualizarEstadoInventario(inputCant);
                 }
@@ -493,7 +505,6 @@
             XLSX.writeFile(wb, nombreArchivo);
         }
 
-        // Importación Inteligente con mapeo exacto de columnas para que no se revuelvan los datos
         function importarExcel(e, idTabla) {
             const archivo = e.target.files[0];
             if (!archivo) return;
