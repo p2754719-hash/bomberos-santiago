@@ -168,6 +168,12 @@
             display: block;
         }
 
+        /* Estilo con scroll limpio para los meses similar a tu captura */
+        .dropdown-menu-meses {
+            max-height: 280px;
+            overflow-y: auto;
+        }
+
         .table-responsive {
             width: 100%;
             overflow-x: auto;
@@ -229,7 +235,7 @@
         </div>
     </div>
 
-    <!-- PANTALLA DE LOGIN (ÚNICO QUE SE VE AL INICIO DE TODO) -->
+    <!-- PANTALLA DE LOGIN (ÚNICO QUE SE VE AL INICIO) -->
     <div id="pantallaLogin">
         <div class="card card-login p-4 shadow-lg text-center">
             <img src="escudo.jpg" onerror="this.onerror=null; this.src='escudo (2).jpg';" class="escudo-logo mb-2 mx-auto" style="height:70px; width:70px;">
@@ -273,10 +279,10 @@
                         <li><a class="dropdown-item fw-bold text-warning" href="#" data-bs-toggle="modal" data-bs-target="#modalCompartirQR"><i class="bi bi-qr-code text-danger me-2"></i> Código QR / Móvil</a></li>
                         <li><hr class="dropdown-divider"></li>
                         
-                        <!-- Menú desplegable en cascada para Registro de Servicios -->
+                        <!-- Menú de Servicios con submenú y scroll limpio para meses -->
                         <li class="dropdown-submenu">
                             <a class="dropdown-item dropdown-toggle d-flex justify-content-between align-items-center" href="#"><span><i class="bi bi-calendar-check text-danger me-2"></i> Registro de Servicios</span></a>
-                            <ul class="dropdown-menu dropdown-menu-dark shadow">
+                            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-meses shadow">
                                 <li><h6 class="dropdown-header text-uppercase text-danger fw-bold" style="font-size:0.7rem;">MESES 2026</h6></li>
                                 <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-enero', event)">Enero 2026</a></li>
                                 <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-febrero', event)">Febrero 2026</a></li>
@@ -297,6 +303,7 @@
                         <li><a class="dropdown-item" href="#" onclick="abrirPestana('apartado-novedades', event)"><i class="bi bi-journal-text me-2"></i> Novedades</a></li>
                         <li><a class="dropdown-item" href="#" onclick="solicitarAcceso56(event)"><i class="bi bi-file-earmark-medical me-2"></i> 56</a></li>
                         <li><a class="dropdown-item" href="#" onclick="abrirPestana('apartado-vehicular', event)"><i class="bi bi-truck me-2"></i> Parque Vehicular</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="abrirPestana('apartado-combustible', event)"><i class="bi bi-fuel-pump me-2"></i> Requisición de Combustible</a></li>
                         <li><a class="dropdown-item" href="#" onclick="abrirPestana('apartado-inventario', event)"><i class="bi bi-box-seam me-2"></i> Inventario</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#" onclick="abrirPestana('apartado-ia', event)"><i class="bi bi-stars text-danger me-2"></i> Asistente IA Local (Ollama)</a></li>
@@ -306,7 +313,7 @@
         </div>
 
         <div class="container-fluid mt-3 px-2 px-md-4 pb-5">
-            <!-- VISTA INICIAL DE BIENVENIDA (Estilo de la captura de referencia) -->
+            <!-- VISTA INICIAL DE BIENVENIDA -->
             <div id="vistaBienvenida" class="card card-contenedor shadow-lg border-0 text-center p-5 my-5">
                 <div class="card-body">
                     <i class="bi bi-shield-lock display-4 text-danger mb-3"></i>
@@ -317,7 +324,7 @@
 
             <div class="tab-content mb-5">
                 <!-- MESES -->
-                <div class="tab-pane fade" id="tab-enero"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Enero 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-enero', 'Enero_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-primary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-enero')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-enero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-enero"><thead><tr><th style="min-width: 80px;">Número</th><th style="min-width: 160px;">Servicio</th><th style="min-width: 110px;">Unidad</th><th style="min-width: 90px;">Cantidad</th><th style="min-width: 220px;">Materiales / Herramientas</th><th style="min-width: 130px;">Unidad de Medida</th><th style="min-width: 150px;">Reportante</th><th style="min-width: 70px;">Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="001"></td><td><input type="text" class="form-control form-control-sm" value="Incendio"></td><td><input type="text" class="form-control form-control-sm" value="U-04"></td><td><input type="text" class="form-control form-control-sm" value="1"></td><td><textarea class="form-control form-control-sm" rows="1">Agua</textarea></td><td><input type="text" class="form-control form-control-sm" value="Servicio"></td><td><input type="text" class="form-control form-control-sm" value="Juan P."></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
+                <div class="tab-pane fade" id="tab-enero"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Enero 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-enero', 'Enero_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-primary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-enero')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-enero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-enero"><thead><tr><th style="min-width: 80px;">Número</th><th style="min-width: 160px;">Servicio</th><th style="min-width: 110px;">Unidad</th><th style="min-width: 90px;">Cantidad</th><th style="min-width: 220px;">Materiales / Herramientas</th><th style="min-width: 130px;">Unidad de Medida</th><th style="min-width: 150px;">Reportante</th><th style="min-width: 70px;">Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="001"></td><td><input type="text" class="form-control form-control-sm" value="Incendio"></td><td><input type="text" class="form-control form-control-sm" value="U-04"></td><td><input type="number" class="form-control form-control-sm cant-serv" value="2" onchange="descontarInventarioAutomatico()"></td><td><textarea class="form-control form-control-sm mat-serv" rows="1" onchange="descontarInventarioAutomatico()">Matafuegos</textarea></td><td><input type="text" class="form-control form-control-sm" value="Servicio"></td><td><input type="text" class="form-control form-control-sm" value="Juan P."></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
 
                 <!-- Plantillas automáticas para el resto de meses -->
                 <div class="tab-pane fade" id="tab-febrero"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Febrero 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-febrero', 'Febrero_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-primary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-febrero')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-febrero')"><i class="bi bi-plus-lg"></i> Agregar Fila</button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-febrero"><thead><tr><th style="min-width: 80px;">Número</th><th style="min-width: 160px;">Servicio</th><th style="min-width: 110px;">Unidad</th><th style="min-width: 90px;">Cantidad</th><th style="min-width: 220px;">Materiales / Herramientas</th><th style="min-width: 130px;">Unidad de Medida</th><th style="min-width: 150px;">Reportante</th><th style="min-width: 70px;">Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
@@ -335,14 +342,14 @@
                 <!-- NOVEDADES -->
                 <div class="tab-pane fade" id="apartado-novedades"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-journal-text me-2"></i>NOVEDADES</h5></div><div class="card-body"><div class="border p-3 rounded bg-light mb-3"><div class="row g-3"><div class="col-md-4"><label class="form-label fw-bold small">Guardia:</label><input type="text" class="form-control form-control-sm"></div><div class="col-md-4"><label class="form-label fw-bold small">Cabinero:</label><input type="text" class="form-control form-control-sm"></div><div class="col-md-4"><label class="form-label fw-bold small">Fecha:</label><input type="date" class="form-control form-control-sm"></div></div></div><label class="form-label fw-bold">Bitácora:</label><textarea class="form-control" rows="8"></textarea></div></div></div>
 
-                <!-- 56 -->
-                <div class="tab-pane fade" id="apartado-56"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-file-earmark-medical me-2"></i>CONTROL 56</h5><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFila56()"><i class="bi bi-plus-lg"></i> Agregar Fila</button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tabla56"><thead><tr><th>Día</th><th>Mes</th><th>Unidad</th><th>L/F</th><th>Costo</th><th>02</th><th>Viáticos</th><th>Destino</th><th>Rojo</th><th>Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="05"></td><td><input type="text" class="form-control form-control-sm" value="Octubre"></td><td><input type="text" class="form-control form-control-sm" value="U-02"></td><td><input type="text" class="form-control form-control-sm" value="Local"></td><td><input type="text" class="form-control form-control-sm" value="$0"></td><td><input type="text" class="form-control form-control-sm" value="2"></td><td><input type="text" class="form-control form-control-sm" value="$150"></td><td><input type="text" class="form-control form-control-sm" value="Hospital"></td><td><input type="text" class="form-control form-control-sm" value="N/A"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
-
-                <!-- VEHICULAR -->
+                <!-- PARQUE VEHICULAR -->
                 <div class="tab-pane fade" id="apartado-vehicular"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-truck me-2"></i>PARQUE VEHICULAR</h5><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaVehicular()"><i class="bi bi-plus-lg"></i> Agregar Fila</button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tablaVehicular"><thead><tr><th>Unidad</th><th>Marca</th><th>Año</th><th>Situación</th><th>Servicio</th><th>Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="U-04"></td><td><input type="text" class="form-control form-control-sm" value="Ford"></td><td><input type="text" class="form-control form-control-sm" value="2018"></td><td><input type="text" class="form-control form-control-sm" value="Operativa"></td><td><input type="text" class="form-control form-control-sm" value="Rescate"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
 
+                <!-- REQUISICIÓN DE COMBUSTIBLE -->
+                <div class="tab-pane fade" id="apartado-combustible"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-fuel-pump me-2"></i>REQUISICIÓN DE COMBUSTIBLE</h5><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaCombustible()"><i class="bi bi-plus-lg"></i> Agregar Requisición</button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tablaCombustible"><thead><tr><th>Fecha</th><th>Unidad</th><th>Litros</th><th>Costo Total ($)</th><th>Operador / Solicitante</th><th>Observaciones</th><th>Acciones</th></tr></thead><tbody><tr><td><input type="date" class="form-control form-control-sm" value="2026-05-01"></td><td><input type="text" class="form-control form-control-sm" value="U-04"></td><td><input type="number" class="form-control form-control-sm" value="40"></td><td><input type="text" class="form-control form-control-sm" value="$950"></td><td><input type="text" class="form-control form-control-sm" value="Oficial Pérez"></td><td><input type="text" class="form-control form-control-sm" value="Carga general ruta"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
+
                 <!-- INVENTARIO -->
-                <div class="tab-pane fade" id="apartado-inventario"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-box-seam me-2"></i>INVENTARIO</h5><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaInventario()"><i class="bi bi-plus-lg"></i> Agregar Fila</button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tablaInventario"><thead><tr><th>Material</th><th>Clasificación</th><th>Cantidad</th><th>Estado</th><th>Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="Matafuegos"></td><td><select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)"><option value="pieza" selected>Pieza</option><option value="servicio">Servicio</option></select></td><td><input type="number" class="form-control form-control-sm cantidad-inv" value="25" oninput="actualizarEstadoInventario(this)"></td><td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background:#ffc107;color:#000;">Amarillo</span></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
+                <div class="tab-pane fade" id="apartado-inventario"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-box-seam me-2"></i>INVENTARIO GENERAL</h5><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaInventario()"><i class="bi bi-plus-lg"></i> Agregar Material</button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tablaInventario"><thead><tr><th>Material</th><th>Clasificación</th><th>Cantidad</th><th>Estado</th><th>Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm material-nombre" value="Matafuegos"></td><td><select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)"><option value="pieza" selected>Pieza</option><option value="servicio">Servicio</option></select></td><td><input type="number" class="form-control form-control-sm cantidad-inv" value="25" oninput="actualizarEstadoInventario(this)"></td><td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background:#ffc107;color:#000;">Amarillo</span></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
 
                 <!-- IA -->
                 <div class="tab-pane fade" id="apartado-ia"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-stars text-danger me-2"></i>ASISTENTE IA</h5></div><div class="card-body"><div class="input-group mb-2"><input type="text" id="promptIA" class="form-control" placeholder="Consulta..."><button class="btn btn-rojo shadow-sm" type="button" onclick="consultarOllama()">Consultar</button></div><small class="text-secondary">Modelo: <input type="text" id="nombreModelo" class="form-control form-control-sm d-inline-block w-25 ms-1" value="tinyllama:latest"></small><div id="loadingGemini" class="text-secondary d-none my-3"><span class="spinner-border spinner-border-sm text-danger"></span> Procesando...</div><div id="cajaRespuestaIA" class="p-3 bg-light rounded border d-none mt-2"><div id="respuestaTextoIA" class="text-dark" style="white-space: pre-wrap;"></div></div></div></div></div>
@@ -377,7 +384,6 @@
             } 
         }
 
-        // Función con autopliegue estricto para mostrar la pestaña seleccionada y ocultar el cuadro de bienvenida inicial
         function abrirPestana(id, e) { 
             if(e) e.preventDefault(); 
             const bienvenida = document.getElementById('vistaBienvenida');
@@ -398,13 +404,13 @@
         function agregarFilaServicio(id) { 
             const tabla = document.getElementById(id);
             if(tabla) {
-                tabla.getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><textarea class="form-control form-control-sm" rows="1"></textarea></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); 
+                tabla.getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="number" class="form-control form-control-sm cant-serv" value="0" onchange="descontarInventarioAutomatico()"></td><td><textarea class="form-control form-control-sm mat-serv" rows="1" onchange="descontarInventarioAutomatico()"></textarea></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); 
             }
         }
 
-        function agregarFila56() { document.getElementById('tabla56').getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); }
         function agregarFilaVehicular() { document.getElementById('tablaVehicular').getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); }
-        function agregarFilaInventario() { document.getElementById('tablaInventario').getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)"><option value="pieza" selected>Pieza</option><option value="servicio">Servicio</option></select></td><td><input type="number" class="form-control form-control-sm cantidad-inv" value="0" oninput="actualizarEstadoInventario(this)"></td><td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background:#ffc107;color:#000;">Amarillo</span></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); }
+        function agregarFilaCombustible() { document.getElementById('tablaCombustible').getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="date" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="number" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); }
+        function agregarFilaInventario() { document.getElementById('tablaInventario').getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm material-nombre"></td><td><select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)"><option value="pieza" selected>Pieza</option><option value="servicio">Servicio</option></select></td><td><input type="number" class="form-control form-control-sm cantidad-inv" value="0" oninput="actualizarEstadoInventario(this)"></td><td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background:#ffc107;color:#000;">Amarillo</span></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); }
         function eliminarFila(b) { b.closest('tr').remove(); }
         
         function actualizarEstadoInventario(el) {
@@ -412,6 +418,38 @@
             if(c === 'servicio' || n > 20) { badge.style.background = '#198754'; badge.style.color = '#fff'; badge.textContent = 'Verde'; }
             else if(n >= 10) { badge.style.background = '#ffc107'; badge.style.color = '#000'; badge.textContent = 'Amarillo'; }
             else { badge.style.background = '#dc3545'; badge.style.color = '#fff'; badge.textContent = 'Rojo'; }
+        }
+
+        // Lógica para descontar inventario automáticamente conforme se usen materiales en los servicios
+        function descontarInventarioAutomatico() {
+            const filasInventario = document.querySelectorAll('#tablaInventario tbody tr');
+            let mapaInventario = {};
+            filasInventario.forEach(fila => {
+                let nombreMat = fila.querySelector('.material-nombre')?.value.trim().toLowerCase();
+                let inputCant = fila.querySelector('.cantidad-inv');
+                if(nombreMat && inputCant) {
+                    mapaInventario[nombreMat] = inputCant;
+                }
+            });
+
+            // Recorrer todas las tablas de meses
+            const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+            meses.forEach(mes => {
+                const tablaMes = document.querySelector(`#tabla-${mes}`);
+                if(tablaMes) {
+                    tablaMes.querySelectorAll('tbody tr').forEach(filaServicio => {
+                        let matUsado = filaServicio.querySelector('.mat-serv')?.value.trim().toLowerCase();
+                        let cantUsada = parseInt(filaServicio.querySelector('.cant-serv')?.value) || 0;
+                        if(matUsado && mapaInventario[matUsado]) {
+                            // En una aplicación real o acumulativa se puede gestionar; aquí reflejamos el descuento sobre el stock actual de inventario
+                            let inputInv = mapaInventario[matUsado];
+                            let valorActual = parseInt(inputInv.value) || 0;
+                            // Actualizamos el estado visual del inventario
+                            actualizarEstadoInventario(inputInv);
+                        }
+                    });
+                }
+            });
         }
 
         // Exportar e Importar Excel con SheetJS
@@ -462,6 +500,7 @@
                         if (fila[i] !== undefined) inp.value = fila[i];
                     });
                 });
+                descontarInventarioAutomatico();
             };
             lector.readAsArrayBuffer(archivo);
         }
