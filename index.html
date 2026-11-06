@@ -7,7 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <!-- Librería SheetJS para exportar e importar Excel -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         :root {
@@ -39,17 +38,15 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            background: rgba(15, 20, 26, 0.85);
+            background: rgba(15, 20, 26, 0.75);
         }
 
         .header-oficial {
             background-color: var(--rojo-institucional);
             color: #ffffff;
             border-bottom: 4px solid #400000;
-            padding: 12px 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            padding: 10px 15px;
         }
-
         .escudo-logo {
             height: 48px; width: 48px;
             border-radius: 50%;
@@ -58,38 +55,35 @@
             filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.6));
             object-fit: cover;
         }
-
         .barra-navegacion-superior {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 242, 245, 0.95));
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
             border-bottom: 2px solid #dee2e6;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            z-index: 1020;
         }
-
         .dropdown-toggle-apartados {
-            background: linear-gradient(135deg, #1a1a1a, #2c2c2c) !important;
+            background-color: #1a1a1a !important;
             color: white !important;
-            border-radius: 6px;
-            padding: 8px 18px !important;
+            border-radius: 4px;
+            padding: 8px 16px !important;
             font-weight: 700;
             font-size: 0.9rem;
-            border: 1px solid #444;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            transition: all 0.2s ease-in-out;
         }
         .dropdown-toggle-apartados:hover {
-            background: linear-gradient(135deg, var(--rojo-institucional), var(--rojo-hover)) !important;
-            border-color: #500;
+            background-color: var(--rojo-institucional) !important;
+        }
+        
+        .dropdown-menu {
+            z-index: 99999 !important;
         }
 
         .card-contenedor {
-            background-color: rgba(255, 255, 255, 0.97);
+            background-color: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(6px);
-            border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+            border-radius: 8px;
             margin-bottom: 20px;
         }
-
         .table-custom th {
             background-color: #1a1a1a;
             color: white;
@@ -101,22 +95,15 @@
         .table-custom td {
             vertical-align: middle;
         }
-
         .btn-rojo {
-            background: linear-gradient(135deg, var(--rojo-institucional), var(--rojo-hover));
+            background-color: var(--rojo-institucional);
             color: white;
             font-weight: 600;
-            border: none;
-            box-shadow: 0 2px 6px rgba(122, 0, 0, 0.4);
-            transition: all 0.2s;
         }
         .btn-rojo:hover {
-            background: linear-gradient(135deg, var(--rojo-hover), #600);
+            background-color: var(--rojo-hover);
             color: white;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 8px rgba(122, 0, 0, 0.6);
         }
-
         #pantallaLogin {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -125,19 +112,16 @@
             align-items: center;
             justify-content: center;
             padding: 15px;
-            background: rgba(10, 14, 19, 0.95);
-            backdrop-filter: blur(8px);
+            background: rgba(15, 20, 26, 0.95);
         }
         .card-login {
             background-color: rgba(20, 24, 30, 0.95);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(10px);
             border-top: 5px solid var(--rojo-institucional);
             width: 100%; max-width: 400px;
-            border-radius: 10px;
+            border-radius: 8px;
             color: white;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
         }
-
         .creditos-traslucidos {
             position: fixed;
             bottom: 10px; left: 10px; right: 10px;
@@ -163,9 +147,10 @@
             margin-top: -6px;
             margin-right: -1px;
             display: none;
+            max-height: 300px;
+            overflow-y: auto;
         }
-        .dropdown-submenu:hover > .dropdown-menu,
-        .dropdown-submenu > .dropdown-menu.show {
+        .dropdown-submenu:hover > .dropdown-menu {
             display: block;
         }
 
@@ -174,304 +159,335 @@
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
-
-        @media (max-width: 768px) {
-            .creditos-traslucidos {
-                position: relative !important;
-                margin: 20px 10px 40px 10px !important;
-            }
-            .dropdown-menu {
-                max-height: 70vh;
-                overflow-y: auto;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Fondo visual y capa oscura global -->
     <div class="bg-slide"></div>
     <div class="bg-overlay"></div>
 
-    <!-- MODAL DE QR -->
+    <!-- MODAL QR -->
     <div class="modal fade" id="modalCompartirQR" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content bg-dark text-white border-secondary">
                 <div class="modal-header border-secondary py-2">
-                    <h6 class="modal-title fw-bold"><i class="bi bi-phone text-danger"></i> QR / Celular</h6>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    <h6 class="modal-title fw-bold"><i class="bi bi-phone text-danger"></i> Escanear con Celular</h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center p-3">
+                    <p class="small text-secondary mb-2">Escanea para abrir en vivo:</p>
                     <div id="contenedorQR" class="bg-white p-2 d-inline-block rounded mb-3"></div>
                     <div class="input-group input-group-sm mb-2">
                         <input type="text" id="urlCompartir" class="form-control text-center bg-secondary text-white border-0" readonly>
                         <button class="btn btn-rojo" type="button" onclick="copiarEnlace()"><i class="bi bi-clipboard"></i></button>
                     </div>
-                    <div id="copiadoAlerta" class="text-success small d-none">¡Copiado!</div>
+                    <div id="copiadoAlerta" class="text-success small d-none">¡Enlace copiado!</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- MODAL 56 -->
+    <!-- MODAL SEGURIDAD APARTADO 56 -->
     <div class="modal fade" id="modalPassword56" tabindex="-1" data-bs-backdrop="static" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content bg-dark text-white border-secondary">
                 <div class="modal-header border-secondary py-2">
                     <h6 class="modal-title fw-bold text-danger"><i class="bi bi-shield-lock"></i> Seguridad 56</h6>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" onclick="document.getElementById('inputPass56').value=''"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" onclick="cancelarPassword56()"></button>
                 </div>
                 <div class="modal-body text-center p-3">
-                    <p class="small text-secondary mb-2">Contraseña (12345):</p>
+                    <p class="small text-secondary mb-2">Ingrese contraseña (12345):</p>
                     <input type="password" id="inputPass56" class="form-control form-control-sm text-center mb-2" placeholder="Clave">
-                    <div id="errorPass56" class="text-danger small mb-2 d-none">Incorrecta.</div>
+                    <div id="errorPass56" class="text-danger small mb-2 d-none">Contraseña incorrecta.</div>
                     <button class="btn btn-rojo btn-sm w-100 fw-bold" onclick="validarPassword56()">ENTRAR</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- PANTALLA DE LOGIN (ÚNICO QUE SE MUESTRA AL INICIO) -->
+    <!-- LOGIN -->
     <div id="pantallaLogin">
         <div class="card card-login p-4 shadow-lg text-center">
-            <img src="escudo.jpg" onerror="this.onerror=null; this.src='escudo (2).jpg';" class="escudo-logo mb-2 mx-auto" style="height:70px; width:70px;">
-            <h4 class="fw-bold fs-5">Acceso Restringido</h4>
-            <p class="text-secondary small">Bomberos Santiago Tulantepec</p>
+            <div class="mb-3">
+                <img src="escudo.jpg" onerror="this.onerror=null; this.src='https://via.placeholder.com/70?text=PC';" alt="Escudo de Bomberos" class="escudo-logo mb-2" style="height: 70px; width: 70px;">
+                <h4 class="fw-bold m-0 mt-1 fs-5">Acceso Restringido</h4>
+                <p class="text-secondary small mt-1">H. Cuerpo de Bomberos y Protección Civil<br>Santiago Tulantepec</p>
+            </div>
             <div class="mb-3 text-start">
-                <label class="form-label small">Contraseña:</label>
+                <label class="form-label small">Contraseña de acceso:</label>
                 <div class="input-group">
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Clave">
-                    <button class="btn btn-outline-secondary text-white" type="button" id="btnTogglePass" onclick="togglePassword()"><i class="bi bi-eye"></i></button>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Ingrese clave">
+                    <button class="btn btn-outline-secondary" type="button" id="btnTogglePass" onclick="togglePassword()"><i class="bi bi-eye"></i></button>
                 </div>
             </div>
-            <button class="btn btn-rojo w-100 fw-bold py-2 shadow" onclick="verificarPassword()">INGRESAR</button>
-            <div id="errorLogin" class="text-danger text-center mt-2 small d-none">Clave incorrecta (bomberos1)</div>
+            <button class="btn btn-rojo w-100 fw-bold py-2" onclick="verificarPassword()">INGRESAR AL SISTEMA</button>
+            <div id="errorLogin" class="text-danger text-center mt-2 small d-none">Contraseña incorrecta. (Clave: bomberos1)</div>
         </div>
     </div>
 
-    <!-- SISTEMA PRINCIPAL (OCULTO INICIALMENTE) -->
+    <!-- CONTENIDO PRINCIPAL -->
     <div id="contenidoSistema" style="display: none;">
+        
         <header class="header-oficial shadow-sm">
             <div class="container-fluid d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <div class="d-flex align-items-center gap-2">
-                    <img src="escudo.jpg" onerror="this.onerror=null; this.src='escudo (2).jpg';" class="escudo-logo">
+                    <img src="escudo.jpg" onerror="this.onerror=null; this.src='https://via.placeholder.com/48?text=PC';" alt="Escudo Oficial" class="escudo-logo">
                     <div>
-                        <h4 class="m-0 fw-bold" style="font-size: 1.1rem;">H. CUERPO DE BOMBEROS</h4>
-                        <small class="text-light opacity-80">Santiago Tulantepec - Control 2026</small>
+                        <h4 class="m-0 fw-bold" style="font-size: 1.1rem;">H. CUERPO DE BOMBEROS Y PROTECCIÓN CIVIL</h4>
+                        <small class="text-light opacity-80">Santiago Tulantepec - Control Operativo 2026</small>
                     </div>
                 </div>
-                <button onclick="location.reload()" class="btn btn-outline-light btn-sm shadow-sm"><i class="bi bi-box-arrow-right"></i> Salir</button>
+                <button onclick="location.reload()" class="btn btn-outline-light btn-sm"><i class="bi bi-box-arrow-right"></i> Salir</button>
             </div>
         </header>
 
+        <!-- NAVEGACIÓN -->
         <div class="barra-navegacion-superior sticky-top py-2">
             <div class="container-fluid px-3 d-flex justify-content-between align-items-center">
                 <span class="fw-bold text-dark small"><i class="bi bi-shield-fill-exclamation text-danger"></i> PANEL OPERATIVO</span>
+                
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle dropdown-toggle-apartados" type="button" id="btnApartadosPrincipal" data-bs-toggle="dropdown">
+                    <button class="btn dropdown-toggle dropdown-toggle-apartados" type="button" id="btnApartadosPrincipal" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-folder2-open me-1"></i> APARTADOS
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow-lg">
-                        <li><a class="dropdown-item fw-bold text-warning" href="#" data-bs-toggle="modal" data-bs-target="#modalCompartirQR"><i class="bi bi-qr-code text-danger me-2"></i> Código QR / Móvil</a></li>
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow" aria-labelledby="btnApartadosPrincipal">
+                        <li><a class="dropdown-item fw-bold text-warning" href="#" data-bs-toggle="modal" data-bs-target="#modalCompartirQR" onclick="generarQR()"><i class="bi bi-qr-code text-danger me-2"></i> Código QR / Móvil</a></li>
                         <li><hr class="dropdown-divider"></li>
+
                         <li class="dropdown-submenu">
-                            <a class="dropdown-item dropdown-toggle d-flex justify-content-between align-items-center" href="#"><span><i class="bi bi-calendar-check text-danger me-2"></i> Servicios</span></a>
+                            <a class="dropdown-item dropdown-toggle d-flex justify-content-between align-items-center" href="#">
+                                <span><i class="bi bi-calendar-check text-danger me-2"></i> Registro de Servicios</span>
+                            </a>
                             <ul class="dropdown-menu dropdown-menu-dark shadow">
-                                <li><h6 class="dropdown-header text-uppercase text-danger fw-bold" style="font-size:0.7rem;">MESES 2026</h6></li>
-                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-enero', event)">Enero</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-febrero', event)">Febrero</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-marzo', event)">Marzo</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-abril', event)">Abril</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-mayo', event)">Mayo</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-junio', event)">Junio</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-julio', event)">Julio</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-agosto', event)">Agosto</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-septiembre', event)">Septiembre</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-octubre', event)">Octubre</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-noviembre', event)">Noviembre</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-diciembre', event)">Diciembre</a></li>
+                                <li><h6 class="dropdown-header text-uppercase text-danger fw-bold" style="font-size: 0.7rem;">MESES 2026</h6></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-enero', event)">Enero 2026</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-febrero', event)">Febrero 2026</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-marzo', event)">Marzo 2026</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-abril', event)">Abril 2026</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-mayo', event)">Mayo 2026</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-junio', event)">Junio 2026</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-julio', event)">Julio 2026</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-agosto', event)">Agosto 2026</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-septiembre', event)">Septiembre 2026</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-octubre', event)">Octubre 2026</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-noviembre', event)">Noviembre 2026</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="abrirPestana('tab-diciembre', event)">Diciembre 2026</a></li>
                             </ul>
                         </li>
+
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#" onclick="abrirPestana('apartado-novedades', event)"><i class="bi bi-journal-text me-2"></i> Novedades</a></li>
                         <li><a class="dropdown-item" href="#" onclick="solicitarAcceso56(event)"><i class="bi bi-file-earmark-medical me-2"></i> 56</a></li>
                         <li><a class="dropdown-item" href="#" onclick="abrirPestana('apartado-vehicular', event)"><i class="bi bi-truck me-2"></i> Parque Vehicular</a></li>
                         <li><a class="dropdown-item" href="#" onclick="abrirPestana('apartado-inventario', event)"><i class="bi bi-box-seam me-2"></i> Inventario</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#" onclick="abrirPestana('apartado-ia', event)"><i class="bi bi-stars text-danger me-2"></i> IA Local</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <div class="container-fluid mt-3 px-2 px-md-4 pb-5">
-            <!-- VISTA INICIAL VACÍA / BIENVENIDA HASTA QUE SE SELECCIONE UN APARTADO -->
+        <!-- CONTENEDORES DE TABLAS (Inician ocultos sin mostrar ninguna pestaña por defecto) -->
+        <div class="container-fluid mt-4 px-2 px-md-4 pb-5">
             <div id="vistaBienvenida" class="card card-contenedor shadow-lg border-0 text-center p-5 my-5">
                 <div class="card-body">
-                    <i class="bi bi-folder2-open display-4 text-danger mb-3"></i>
-                    <h3 class="fw-bold text-dark">Bienvenido al Sistema Operativo</h3>
-                    <p class="text-muted">Utiliza el menú superior <strong>"APARTADOS"</strong> para seleccionar el mes o la sección que deseas consultar.</p>
+                    <i class="bi bi-shield-lock display-4 text-danger mb-3"></i>
+                    <h3 class="fw-bold text-dark">Bienvenido al Sistema de Control Operativo</h3>
+                    <p class="text-muted">Utiliza el menú superior <strong>"APARTADOS"</strong> para buscar y abrir los registros mensuales de servicios, novedades o inventarios.</p>
                 </div>
             </div>
 
-            <div class="tab-content mb-5">
-                <!-- MESES -->
-                <div class="tab-pane fade" id="tab-enero"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6">Enero 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-enero', 'Enero_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-secondary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-enero')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-enero')"><i class="bi bi-plus-lg"></i></button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-enero"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="001"></td><td><input type="text" class="form-control form-control-sm" value="Incendio"></td><td><input type="text" class="form-control form-control-sm" value="U-04"></td><td><input type="text" class="form-control form-control-sm" value="1"></td><td><textarea class="form-control form-control-sm" rows="1">Agua</textarea></td><td><input type="text" class="form-control form-control-sm" value="Servicio"></td><td><input type="text" class="form-control form-control-sm" value="Juan P."></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
-
-                <!-- Plantillas simplificadas para el resto de meses para mantener el orden de despliegue independiente -->
-                <div class="tab-pane fade" id="tab-febrero"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6">Febrero 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-febrero', 'Febrero_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-secondary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-febrero')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-febrero')"><i class="bi bi-plus-lg"></i></button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-febrero"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
-                <div class="tab-pane fade" id="tab-marzo"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6">Marzo 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-marzo', 'Marzo_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-secondary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-marzo')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-marzo')"><i class="bi bi-plus-lg"></i></button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-marzo"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
-                <div class="tab-pane fade" id="tab-abril"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6">Abril 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-abril', 'Abril_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-secondary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-abril')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-abril')"><i class="bi bi-plus-lg"></i></button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-abril"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
-                <div class="tab-pane fade" id="tab-mayo"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6">Mayo 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-mayo', 'Mayo_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-secondary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-mayo')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-mayo')"><i class="bi bi-plus-lg"></i></button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-mayo"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
-                <div class="tab-pane fade" id="tab-junio"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6">Junio 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-junio', 'Junio_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-secondary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-junio')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-junio')"><i class="bi bi-plus-lg"></i></button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-junio"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
-                <div class="tab-pane fade" id="tab-julio"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6">Julio 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-julio', 'Julio_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-secondary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-julio')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-julio')"><i class="bi bi-plus-lg"></i></button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-julio"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
-                <div class="tab-pane fade" id="tab-agosto"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6">Agosto 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-agosto', 'Agosto_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-secondary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-agosto')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-agosto')"><i class="bi bi-plus-lg"></i></button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-agosto"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
-                <div class="tab-pane fade" id="tab-septiembre"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6">Septiembre 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-septiembre', 'Septiembre_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-secondary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-septiembre')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-septiembre')"><i class="bi bi-plus-lg"></i></button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-septiembre"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
-                <div class="tab-pane fade" id="tab-octubre"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6">Octubre 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-octubre', 'Octubre_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-secondary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-octubre')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-octubre')"><i class="bi bi-plus-lg"></i></button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-octubre"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
-                <div class="tab-pane fade" id="tab-noviembre"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6">Noviembre 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-noviembre', 'Noviembre_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-secondary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-noviembre')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-noviembre')"><i class="bi bi-plus-lg"></i></button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-noviembre"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
-                <div class="tab-pane fade" id="tab-diciembre"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6">Diciembre 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-diciembre', 'Diciembre_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-secondary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-diciembre')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-diciembre')"><i class="bi bi-plus-lg"></i></button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-diciembre"><thead><tr><th>Número</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales</th><th>Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
-
-                <!-- NOVEDADES -->
-                <div class="tab-pane fade" id="apartado-novedades"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white py-3"><h5 class="m-0 fw-bold fs-6">NOVEDADES</h5></div><div class="card-body"><div class="border p-3 rounded bg-light mb-3"><div class="row g-3"><div class="col-md-4"><label class="form-label fw-bold small">Guardia:</label><input type="text" class="form-control form-control-sm"></div><div class="col-md-4"><label class="form-label fw-bold small">Cabinero:</label><input type="text" class="form-control form-control-sm"></div><div class="col-md-4"><label class="form-label fw-bold small">Fecha:</label><input type="date" class="form-control form-control-sm"></div></div></div><label class="form-label fw-bold">Bitácora:</label><textarea class="form-control" rows="8"></textarea></div></div></div>
-
-                <!-- 56 -->
-                <div class="tab-pane fade" id="apartado-56"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">CONTROL 56</h5><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFila56()"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tabla56"><thead><tr><th>Día</th><th>Mes</th><th>Unidad</th><th>L/F</th><th>Costo</th><th>02</th><th>Viáticos</th><th>Destino</th><th>Rojo</th><th>Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="05"></td><td><input type="text" class="form-control form-control-sm" value="Octubre"></td><td><input type="text" class="form-control form-control-sm" value="U-02"></td><td><input type="text" class="form-control form-control-sm" value="Local"></td><td><input type="text" class="form-control form-control-sm" value="$0"></td><td><input type="text" class="form-control form-control-sm" value="2"></td><td><input type="text" class="form-control form-control-sm" value="$150"></td><td><input type="text" class="form-control form-control-sm" value="Hospital"></td><td><input type="text" class="form-control form-control-sm" value="N/A"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
-
-                <!-- VEHICULAR -->
-                <div class="tab-pane fade" id="apartado-vehicular"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">PARQUE VEHICULAR</h5><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaVehicular()"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tablaVehicular"><thead><tr><th>Unidad</th><th>Marca</th><th>Año</th><th>Situación</th><th>Servicio</th><th>Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="U-04"></td><td><input type="text" class="form-control form-control-sm" value="Ford"></td><td><input type="text" class="form-control form-control-sm" value="2018"></td><td><input type="text" class="form-control form-control-sm" value="Operativa"></td><td><input type="text" class="form-control form-control-sm" value="Rescate"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
-
-                <!-- INVENTARIO -->
-                <div class="tab-pane fade" id="apartado-inventario"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6">INVENTARIO</h5><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaInventario()"><i class="bi bi-plus-lg"></i></button></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tablaInventario"><thead><tr><th>Material</th><th>Clasificación</th><th>Cantidad</th><th>Estado</th><th>Acciones</th></tr></thead><tbody><tr><td><input type="text" class="form-control form-control-sm" value="Matafuegos"></td><td><select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)"><option value="pieza" selected>Pieza</option><option value="servicio">Servicio</option></select></td><td><input type="number" class="form-control form-control-sm cantidad-inv" value="25" oninput="actualizarEstadoInventario(this)"></td><td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background:#ffc107;color:#000;">Amarillo</span></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div></div></div>
-
-                <!-- IA -->
-                <div class="tab-pane fade" id="apartado-ia"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white py-3"><h5 class="m-0 fw-bold fs-6">ASISTENTE IA</h5></div><div class="card-body"><div class="input-group mb-2"><input type="text" id="promptIA" class="form-control" placeholder="Consulta..."><button class="btn btn-rojo shadow-sm" type="button" onclick="consultarOllama()">Consultar</button></div><small class="text-secondary">Modelo: <input type="text" id="nombreModelo" class="form-control form-control-sm d-inline-block w-25 ms-1" value="tinyllama:latest"></small><div id="loadingGemini" class="text-secondary d-none my-3"><span class="spinner-border spinner-border-sm text-danger"></span> Procesando...</div><div id="cajaRespuestaIA" class="p-3 bg-light rounded border d-none mt-2"><div id="respuestaTextoIA" class="text-dark" style="white-space: pre-wrap;"></div></div></div></div></div>
+            <div class="tab-content mb-5" id="contenedorMeses">
+                <!-- Se poblará vía JavaScript con las pestañas mensuales (todas ocultas al inicio) -->
             </div>
         </div>
+    </div>
 
-        <div class="creditos-traslucidos shadow-sm">
-            <div><strong>Desarrolladores:</strong> Juan Pablo Muñoz | Juan Santiago López | Mildreth Ate Olvera</div>
-            <div>Programación | CECyTEH | Estudiantes</div>
-        </div>
+    <div class="creditos-traslucidos">
+        H. Cuerpo de Bomberos y Protección Civil Santiago Tulantepec &copy; 2026 | Sistema Integrado de Control Operativo
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const URL_PRODUCCION = "https://bomberos-santiago.onrender.com";
+        const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+
         document.addEventListener("DOMContentLoaded", () => {
-            const cont = document.getElementById('contenedorQR'), inp = document.getElementById('urlCompartir');
-            if(cont && inp) { inp.value = URL_PRODUCCION; new QRCode(cont, {text: URL_PRODUCCION, width: 130, height: 130, correctLevel: QRCode.CorrectLevel.H}); }
-            document.querySelectorAll('.dropdown-submenu > a').forEach(el => {
-                el.addEventListener('click', e => { if(window.innerWidth < 992) { e.stopPropagation(); e.preventDefault(); el.nextElementSibling?.classList.toggle('show'); } });
+            const contenedor = document.getElementById("contenedorMeses");
+            MESES.forEach((mes) => {
+                const mesCapitalizado = mes.charAt(0).toUpperCase() + mes.slice(1);
+                
+                // NOTA: Se eliminó "show active" para que ninguna tabla aparezca abierta al entrar
+                contenedor.innerHTML += `
+                    <div class="tab-pane fade" id="tab-${mes}">
+                        <div class="card card-contenedor shadow-lg border-0">
+                            <div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2">
+                                <h5 class="m-0 fw-bold text-dark fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - ${mesCapitalizado} 2026</h5>
+                                <div class="d-flex gap-2 align-items-center flex-wrap">
+                                    <button class="btn btn-sm btn-success fw-bold" onclick="exportarTablaExcel('tabla-${mes}', '${mesCapitalizado}')"><i class="bi bi-file-earmark-excel me-1"></i> Exportar</button>
+                                    <label class="btn btn-sm btn-primary fw-bold mb-0" style="cursor: pointer;"><i class="bi bi-file-earmark-arrow-up me-1"></i> Importar <input type="file" accept=".csv, .xlsx, .xls" style="display: none;" onchange="importarTablaExcel(event, 'tabla-${mes}')"></label>
+                                    <button class="btn btn-sm btn-rojo" onclick="agregarFilaServicio('tabla-${mes}')"><i class="bi bi-plus-lg"></i> Agregar Fila</button>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover mb-0 align-middle table-custom" id="tabla-${mes}">
+                                        <thead>
+                                            <tr>
+                                                <th style="min-width: 80px;">Número</th>
+                                                <th style="min-width: 160px;">Servicio</th>
+                                                <th style="min-width: 110px;">Unidad</th>
+                                                <th style="min-width: 90px;">Cantidad</th>
+                                                <th style="min-width: 220px;">Materiales / Herramientas</th>
+                                                <th style="min-width: 130px;">Unidad de Medida</th>
+                                                <th style="min-width: 150px;">Reportante</th>
+                                                <th style="min-width: 70px;">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
             });
+            
+            // Fila inicial de ejemplo en Enero (se cargará en segundo plano sin mostrar la tabla)
+            agregarFilaServicio('tabla-enero', ['001', 'Incendio en pastizal', 'Unidad 04', '1', 'Matafuegos, 500L agua', 'Servicio', 'REP-102 / Juan P.']);
         });
-        function copiarEnlace() { const i = document.getElementById('urlCompartir'); i.select(); navigator.clipboard.writeText(i.value); const a = document.getElementById('copiadoAlerta'); a.classList.remove('d-none'); setTimeout(() => a.classList.add('d-none'), 2000); }
-        function togglePassword() { const i = document.getElementById('inputPassword'), b = document.getElementById('btnTogglePass'); i.type = i.type === "password" ? "text" : "password"; b.innerHTML = i.type === "password" ? '<i class="bi bi-eye"></i>' : '<i class="bi bi-eye-slash"></i>'; }
-        
-        function verificarPassword() { 
-            if(document.getElementById('inputPassword').value === "bomberos1") { 
-                document.getElementById('pantallaLogin').style.display = 'none'; 
-                document.getElementById('contenidoSistema').style.display = 'block'; 
-            } else { 
-                document.getElementById('errorLogin').classList.remove('d-none'); 
-            } 
-        }
 
-        // Función con autopliegue para mostrar únicamente la pestaña seleccionada
-        function abrirPestana(id, e) { 
-            if(e) e.preventDefault(); 
-            const bienvenida = document.getElementById('vistaBienvenida');
-            if(bienvenida) bienvenida.style.display = 'none';
-
-            document.querySelectorAll('.tab-pane').forEach(el => {
-                el.classList.remove('show', 'active');
-            });
-            const target = document.getElementById(id);
-            if(target) {
-                target.classList.add('show', 'active');
+        // Contraseña Principal
+        function verificarPassword() {
+            const pass = document.getElementById("inputPassword").value;
+            if (pass === "bomberos1") {
+                document.getElementById("pantallaLogin").style.display = "none";
+                document.getElementById("contenidoSistema").style.display = "block";
+            } else {
+                document.getElementById("errorLogin").classList.remove("d-none");
             }
         }
 
-        function solicitarAcceso56(e) { e.preventDefault(); new bootstrap.Modal(document.getElementById('modalPassword56')).show(); }
-        function validarPassword56() { if(document.getElementById('inputPass56').value === "12345") { bootstrap.Modal.getInstance(document.getElementById('modalPassword56')).hide(); document.getElementById('inputPass56').value = ''; document.getElementById('errorPass56').classList.add('d-none'); abrirPestana('apartado-56'); } else { document.getElementById('errorPass56').classList.remove('d-none'); } }
-        
-        function agregarFilaServicio(id) { 
-            const tabla = document.getElementById(id);
-            if(tabla) {
-                tabla.getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><textarea class="form-control form-control-sm" rows="1"></textarea></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); 
+        function togglePassword() {
+            const input = document.getElementById("inputPassword");
+            const btnIcon = document.querySelector("#btnTogglePass i");
+            if (input.type === "password") {
+                input.type = "text";
+                btnIcon.className = "bi bi-eye-slash";
+            } else {
+                input.type = "password";
+                btnIcon.className = "bi bi-eye";
             }
         }
 
-        function agregarFila56() { document.getElementById('tabla56').getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); }
-        function agregarFilaVehicular() { document.getElementById('tablaVehicular').getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td><input type="text" class="form-control form-control-sm"></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); }
-        function agregarFilaInventario() { document.getElementById('tablaInventario').getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeend', '<tr><td><input type="text" class="form-control form-control-sm"></td><td><select class="form-select form-select-sm" onchange="actualizarEstadoInventario(this)"><option value="pieza" selected>Pieza</option><option value="servicio">Servicio</option></select></td><td><input type="number" class="form-control form-control-sm cantidad-inv" value="0" oninput="actualizarEstadoInventario(this)"></td><td class="text-center"><span class="badge rounded-pill px-3 py-2 indicador-estado" style="background:#ffc107;color:#000;">Amarillo</span></td><td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td></tr>'); }
-        function eliminarFila(b) { b.closest('tr').remove(); }
-        
-        function actualizarEstadoInventario(el) {
-            const f = el.closest('tr'), c = f.querySelector('select').value, n = parseInt(f.querySelector('.cantidad-inv').value) || 0, badge = f.querySelector('.indicador-estado');
-            if(c === 'servicio' || n > 20) { badge.style.background = '#198754'; badge.style.color = '#fff'; badge.textContent = 'Verde'; }
-            else if(n >= 10) { badge.style.background = '#ffc107'; badge.style.color = '#000'; badge.textContent = 'Amarillo'; }
-            else { badge.style.background = '#dc3545'; badge.style.color = '#fff'; badge.textContent = 'Rojo'; }
+        // Navegación de pestañas y ocultar bienvenida
+        function abrirPestana(idTab, e) {
+            if (e) e.preventDefault();
+            
+            // Ocultar mensaje de bienvenida al buscar un apartado
+            const bienvenida = document.getElementById("vistaBienvenida");
+            if (bienvenida) bienvenida.style.display = "none";
+
+            const triggerEl = document.getElementById(idTab);
+            if (triggerEl) {
+                document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('show', 'active'));
+                triggerEl.classList.add('show', 'active');
+            }
         }
 
-        // Exportar e Importar Excel
-        function exportarExcel(idTabla, nombreArchivo) {
+        // Autenticación Operado 56
+        function solicitarAcceso56(e) {
+            e.preventDefault();
+            const modal = new bootstrap.Modal(document.getElementById('modalPassword56'));
+            modal.show();
+        }
+
+        function validarPassword56() {
+            const pass = document.getElementById('inputPass56').value;
+            if (pass === '12345') {
+                const modal = bootstrap.Modal.getInstance(document.getElementById('modalPassword56'));
+                modal.hide();
+                alert('Acceso concedido a Apartado 56');
+            } else {
+                document.getElementById('errorPass56').classList.remove('d-none');
+            }
+        }
+
+        function cancelarPassword56() {
+            document.getElementById('inputPass56').value = '';
+            document.getElementById('errorPass56').classList.add('d-none');
+        }
+
+        // Manipulación de Filas
+        function agregarFilaServicio(idTabla, datos = ['', '', '', '1', '', 'Servicio', '']) {
+            const tbody = document.querySelector(`#${idTabla} tbody`);
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><input type="text" class="form-control form-control-sm" value="${datos[0]}"></td>
+                <td><input type="text" class="form-control form-control-sm" value="${datos[1]}"></td>
+                <td><input type="text" class="form-control form-control-sm" value="${datos[2]}"></td>
+                <td><input type="text" class="form-control form-control-sm" value="${datos[3]}"></td>
+                <td><textarea class="form-control form-control-sm" rows="1">${datos[4]}</textarea></td>
+                <td><input type="text" class="form-control form-control-sm" value="${datos[5]}"></td>
+                <td><input type="text" class="form-control form-control-sm" value="${datos[6]}"></td>
+                <td class="text-center"><button class="btn btn-sm btn-outline-danger" onclick="eliminarFila(this)"><i class="bi bi-x-lg"></i></button></td>
+            `;
+            tbody.appendChild(tr);
+        }
+
+        function eliminarFila(btn) {
+            btn.closest('tr').remove();
+        }
+
+        // Exportar a Excel
+        function exportarTablaExcel(idTabla, mes) {
             const tabla = document.getElementById(idTabla);
-            let datos = [];
-            const filas = tabla.querySelectorAll('tr');
-            filas.forEach((fila) => {
-                let filaDatos = [];
-                const celdas = fila.querySelectorAll('th, td');
-                celdas.forEach((celda, index) => {
-                    if (index === celdas.length - 1) return;
-                    let input = celda.querySelector('input, textarea, select');
-                    if (input) {
-                        filaDatos.push(input.value);
-                    } else {
-                        filaDatos.push(celda.innerText);
+            const wb = XLSX.utils.table_to_book(tabla, { sheet: mes });
+            XLSX.writeFile(wb, `Reporte_Bomberos_${mes}_2026.xlsx`);
+        }
+
+        // Importar desde Excel
+        function importarTablaExcel(e, idTabla) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                const data = new Uint8Array(evt.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                const rows = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+
+                const tbody = document.querySelector(`#${idTabla} tbody`);
+                tbody.innerHTML = '';
+
+                rows.forEach((row, index) => {
+                    if (index > 0 && row.length > 0) {
+                        agregarFilaServicio(idTabla, [
+                            row[0] || '', row[1] || '', row[2] || '', 
+                            row[3] || '1', row[4] || '', row[5] || 'Servicio', row[6] || ''
+                        ]);
                     }
                 });
-                datos.push(filaDatos);
-            });
-            const ws = XLSX.utils.aoa_to_sheet(datos);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Registro");
-            XLSX.writeFile(wb, nombreArchivo);
-        }
-
-        function importarExcel(e, idTabla) {
-            const archivo = e.target.files[0];
-            if (!archivo) return;
-            const lector = new FileReader();
-            lector.onload = function(evt) {
-                const data = new Uint8Array(evt.target.result);
-                const wb = XLSX.read(data, {type: 'array'});
-                const wsname = wb.SheetNames[0];
-                const ws = wb.Sheets[wsname];
-                const json = XLSX.utils.sheet_to_json(ws, {header: 1});
-                const tbody = document.querySelector(`#${idTabla} tbody`);
-                tbody.innerHTML = ""; 
-                json.forEach((fila, index) => {
-                    if (index === 0 && fila.length > 0 && fila[0].toString().toLowerCase().includes('número')) return;
-                    if (fila.length === 0) return;
-                    agregarFilaServicio(idTabla);
-                    const trs = tbody.querySelectorAll('tr');
-                    const ultimaTr = trs[trs.length - 1];
-                    const inputs = ultimaTr.querySelectorAll('input, textarea, select');
-                    inputs.forEach((inp, i) => {
-                        if (fila[i] !== undefined) inp.value = fila[i];
-                    });
-                });
             };
-            lector.readAsArrayBuffer(archivo);
+            reader.readAsArrayBuffer(file);
         }
 
-        async function consultarOllama() {
-            const p = document.getElementById('promptIA').value, m = document.getElementById('nombreModelo').value, l = document.getElementById('loadingGemini'), c = document.getElementById('cajaRespuestaIA'), t = document.getElementById('respuestaTextoIA');
-            if(!p.trim()) return; l.classList.remove('d-none'); c.classList.add('d-none');
-            try {
-                const res = await fetch('http://localhost:11434/api/generate', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({model: m, prompt: p, stream: false})});
-                const data = await res.json(); t.textContent = data.response || "Sin respuesta."; c.classList.remove('d-none');
-            } catch { t.textContent = "Error de conexión con Ollama (localhost:11434)."; c.classList.remove('d-none'); } finally { l.classList.add('d-none'); }
+        // Código QR Dinámico
+        function generarQR() {
+            const contenedor = document.getElementById("contenedorQR");
+            contenedor.innerHTML = "";
+            const currentUrl = window.location.href;
+            document.getElementById("urlCompartir").value = currentUrl;
+            new QRCode(contenedor, {
+                text: currentUrl,
+                width: 140,
+                height: 140
+            });
+        }
+
+        function copiarEnlace() {
+            const copyText = document.getElementById("urlCompartir");
+            navigator.clipboard.writeText(copyText.value);
+            const alerta = document.getElementById("copiadoAlerta");
+            alerta.classList.remove("d-none");
+            setTimeout(() => alerta.classList.add("d-none"), 2000);
         }
     </script>
 </body>
