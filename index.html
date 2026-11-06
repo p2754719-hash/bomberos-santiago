@@ -342,7 +342,7 @@
                 <div class="tab-pane fade" id="tab-noviembre"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Noviembre 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-outline-danger" onclick="borrarDatosApartado('tabla-noviembre')"><i class="bi bi-trash"></i> Borrar Todo</button><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-noviembre', 'Noviembre_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-primary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-noviembre')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-noviembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-noviembre"><thead><tr><th>Número</th><th>Fecha</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales / Herramientas</th><th>Unidad de Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
                 <div class="tab-pane fade" id="tab-diciembre"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-white d-flex justify-content-between align-items-center py-3 flex-wrap gap-2"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-calendar-check text-danger me-2"></i>Registro de Servicios - Diciembre 2026</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-outline-danger" onclick="borrarDatosApartado('tabla-diciembre')"><i class="bi bi-trash"></i> Borrar Todo</button><button class="btn btn-sm btn-success shadow-sm" onclick="exportarExcel('tabla-diciembre', 'Diciembre_2026.xlsx')"><i class="bi bi-file-earmark-excel"></i> Exportar</button><label class="btn btn-sm btn-primary mb-0 shadow-sm" style="cursor: pointer;"><i class="bi bi-upload"></i> Importar <input type="file" hidden accept=".xlsx, .xls, .csv" onchange="importarExcel(event, 'tabla-diciembre')"></label><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaServicio('tabla-diciembre')"><i class="bi bi-plus-lg"></i> Agregar Fila</button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered mb-0 align-middle table-custom" id="tabla-diciembre"><thead><tr><th>Número</th><th>Fecha</th><th>Servicio</th><th>Unidad</th><th>Cantidad</th><th>Materiales / Herramientas</th><th>Unidad de Medida</th><th>Reportante</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
 
-                <!-- NOVEDADES (MEJORADO CON BOTÓN DE AÑADIR APARTADO) -->
+                <!-- NOVEDADES -->
                 <div class="tab-pane fade" id="apartado-novedades">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3">
@@ -363,7 +363,6 @@
                             <label class="form-label fw-bold">Bitácora Principal:</label>
                             <textarea id="nov-bitacora" class="form-control mb-4" rows="5" oninput="guardarEstadoLocal()"></textarea>
                             
-                            <!-- Contenedor donde se agregan los nuevos apartados dinámicos -->
                             <div id="contenedorSeccionesNovedades"></div>
                         </div>
                     </div>
@@ -381,7 +380,7 @@
                 <!-- INVENTARIO GENERAL -->
                 <div class="tab-pane fade" id="apartado-inventario"><div class="card card-contenedor shadow-lg border-0"><div class="card-header bg-dark text-white d-flex justify-content-between py-3"><h5 class="m-0 fw-bold fs-6"><i class="bi bi-box-seam me-2"></i>INVENTARIO GENERAL</h5><div class="d-flex gap-2"><button class="btn btn-sm btn-outline-light" onclick="borrarDatosApartado('tablaInventario')"><i class="bi bi-trash"></i> Borrar Todo</button><button class="btn btn-sm btn-rojo shadow-sm" onclick="agregarFilaInventario()"><i class="bi bi-plus-lg"></i> Agregar Material</button></div></div><div class="card-body p-0"><div class="table-responsive"><table class="table table-bordered align-middle table-custom mb-0" id="tablaInventario"><thead><tr><th>Material</th><th>Clasificación</th><th>Cantidad</th><th>Estado</th><th>Acciones</th></tr></thead><tbody></tbody></table></div></div></div></div>
 
-                <!-- ASISTENTE IA MEJORADO -->
+                <!-- ASISTENTE IA -->
                 <div class="tab-pane fade" id="apartado-ia">
                     <div class="card card-contenedor shadow-lg border-0">
                         <div class="card-header bg-dark text-white py-3">
@@ -525,7 +524,6 @@
         }
         function eliminarFila(b) { b.closest('tr').remove(); sincronizarInventarioTotal(); guardarEstadoLocal(); }
         
-        // Función para añadir una nueva sección/apartado en Novedades
         function agregarSeccionNovedad(titulo = '', contenido = '') {
             const contenedor = document.getElementById('contenedorSeccionesNovedades');
             const idUnico = 'nov_sec_' + Date.now() + Math.random().toString(36).substr(2, 5);
@@ -559,7 +557,6 @@
         }
 
         function guardarEstadoLocal() {
-            // Guardar secciones dinámicas de novedades
             const seccionesNovedades = [];
             document.querySelectorAll('.seccion-novedad-item').forEach(sec => {
                 seccionesNovedades.push({
@@ -726,4 +723,57 @@
                             else if(col.includes('unid') && !col.includes('medid')) indices.unidad = idx;
                             else if(col.includes('cant')) indices.cant = idx;
                             else if(col.includes('mat') || col.includes('herram')) indices.mat = idx;
-                            else if(col.includes('medid')) indices.medida =
+                            else if(col.includes('medid')) indices.medida = idx;
+                            else if(col.includes('report') || col.includes('resp')) indices.rep = idx;
+                        });
+                    }
+                    for(let i = filaInicio; i < json.length; i++) {
+                        let fila = json[i];
+                        if (!fila || fila.length === 0) continue;
+                        agregarFilaServicio(idTabla);
+                        let trs = tbody.querySelectorAll('tr');
+                        let ultimaTr = trs[trs.length - 1];
+                        let inputs = ultimaTr.querySelectorAll('input, textarea, select');
+                        inputs[0].value = fila[indices.num] !== undefined ? fila[indices.num] : '';
+                        inputs[1].value = fila[indices.fecha] !== undefined ? fila[indices.fecha] : '';
+                        inputs[2].value = fila[indices.servicio] !== undefined ? fila[indices.servicio] : '';
+                        inputs[3].value = fila[indices.unidad] !== undefined ? fila[indices.unidad] : '';
+                        inputs[4].value = fila[indices.cant] !== undefined ? fila[indices.cant] : 0;
+                        inputs[5].value = fila[indices.mat] !== undefined ? fila[indices.mat] : '';
+                        inputs[6].value = fila[indices.medida] !== undefined ? fila[indices.medida] : '';
+                        inputs[7].value = fila[indices.rep] !== undefined ? fila[indices.rep] : '';
+                    }
+                    sincronizarInventarioTotal();
+                    guardarEstadoLocal();
+                } catch (err) {
+                    console.error("Error al importar el archivo Excel.");
+                }
+            };
+            lector.readAsArrayBuffer(archivo);
+        }
+
+        async function consultarIA() {
+            const p = document.getElementById('promptIA').value.trim();
+            const l = document.getElementById('loadingGemini');
+            const c = document.getElementById('cajaRespuestaIA');
+            const t = document.getElementById('respuestaTextoIA');
+            if(!p) return;
+            l.classList.remove('d-none');
+            c.classList.add('d-none');
+            
+            setTimeout(() => {
+                let resp = "Consulta procesada correctamente por el asistente operativo.";
+                const pLow = p.toLowerCase();
+                if(pLow.includes("gas") || pLow.includes("fuga")) {
+                    resp = "Protocolo de Fuga de Gas LP:\n1. Evacuar el área inmediatamente.\n2. No accionar interruptores eléctricos.\n3. Cerrar el tanque de gas si es seguro y reportar al 911.";
+                } else if(pLow.includes("incendio")) {
+                    resp = "Protocolo de Incendio:\n1. Mantener la calma y evacuar por rutas seguras.\n2. No inhalar humo (cubrir nariz y boca).\n3. Esperar unidades de emergencia.";
+                }
+                t.textContent = resp;
+                l.classList.add('d-none');
+                c.classList.remove('d-none');
+            }, 500);
+        }
+    </script>
+</body>
+</html>
